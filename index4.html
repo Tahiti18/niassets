@@ -1,0 +1,587 @@
+<html lang="en" class="scroll-smooth"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikos Ioannou | The Designers of Historic Jewels</title>
+<meta name="description" content="Nikos Ioannou Jewellers. Est. 1945. The Designers of Historic Jewels. Historic gold jewellery and bespoke commissions.">
+
+<!-- Tailwind & Icons -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<!-- Typography: Cinzel (Roman/Heritage) & Inter (Modern UI) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Inter:wght@200;300;400&amp;display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Cinzel', 'serif'],
+            },
+            colors: {
+                gold: {
+                    100: '#F5E6C8',
+                    200: '#E6CFA0',
+                    300: '#C8AA6E', // Primary Gold
+                    400: '#A68A4E',
+                    500: '#8C7335',
+                    600: '#6B5624',
+                },
+                neutral: {
+                    850: '#1A1A1A',
+                    900: '#121212',
+                    925: '#0A0A0A',
+                    950: '#050505', // Deep Black
+                }
+            },
+            letterSpacing: {
+                tight: '-0.025em',
+                widest: '.2em',
+                ultra: '.3em',
+            },
+            animation: {
+                'fade-in': 'fadeIn 1.5s ease-out forwards',
+                'slide-up': 'slideUp 1.2s ease-out forwards',
+                'breathe': 'breathe 15s ease-in-out infinite alternate',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideUp: {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                breathe: {
+                    '0%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(1.05)' },
+                }
+            }
+        }
+    }
+}
+</script>
+
+<style>
+    /* Institutional Reset */
+    body { 
+        background-color: #050505; 
+        color: #e5e5e5; 
+        -webkit-font-smoothing: antialiased; 
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 4px; background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #333; }
+    
+    /* Text Rendering */
+    .text-balance { text-wrap: balance; }
+    
+    /* Navigation Hover States */
+    .nav-link { position: relative; }
+    .nav-link::after {
+        content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+        background-color: #C8AA6E; transition: width 0.4s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Dropdown Logic */
+    .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease-out; }
+    
+    /* Image Handling */
+    img { transition: opacity 0.5s ease; }
+    img.loading { opacity: 0; }
+    img.loaded { opacity: 1; }
+    
+    /* Modal Transition */
+    .modal-enter { opacity: 0; pointer-events: none; transform: scale(0.98); }
+    .modal-active { opacity: 1; pointer-events: auto; transform: scale(1); }
+</style>
+</head>
+<body class="bg-neutral-950 text-neutral-300 font-sans selection:bg-gold-300 selection:text-neutral-950">
+
+    <!-- DATA & LOGIC -->
+    <script>
+        // JEWELLERY DATA MANIFEST
+        const APP_DATA = {
+            "brand": "Nikos Ioannou",
+            "base_url": "https://niassets.netlify.app",
+            "assets": {
+                "earrings": [
+                    { "id": "earrings-01", "url": "https://niassets.netlify.app/Earrings/ni-earrings-01.jpg" },
+                    { "id": "earrings-02", "url": "https://niassets.netlify.app/Earrings/ni-earrings-02.jpg" },
+                    { "id": "earrings-03", "url": "https://niassets.netlify.app/Earrings/ni-earrings-03.jpg" },
+                    { "id": "earrings-04", "url": "https://niassets.netlify.app/Earrings/ni-earrings-04.jpg" },
+                    { "id": "earrings-05", "url": "https://niassets.netlify.app/Earrings/ni-earrings-05.jpg" },
+                    { "id": "earrings-06", "url": "https://niassets.netlify.app/Earrings/ni-earrings-06.jpg" },
+                    { "id": "earrings-07", "url": "https://niassets.netlify.app/Earrings/ni-earrings-07.jpg" },
+                    { "id": "earrings-08", "url": "https://niassets.netlify.app/Earrings/ni-earrings-08.jpg" }
+                ],
+                "rings": [
+                    { "id": "rings-01", "url": "https://niassets.netlify.app/Rings/ni-rings-01.jpg" },
+                    { "id": "rings-02", "url": "https://niassets.netlify.app/Rings/ni-rings-02.jpg" },
+                    { "id": "rings-03", "url": "https://niassets.netlify.app/Rings/ni-rings-03.jpg" },
+                    { "id": "rings-04", "url": "https://niassets.netlify.app/Rings/ni-rings-04.jpg" },
+                    { "id": "rings-05", "url": "https://niassets.netlify.app/Rings/ni-rings-05.jpg" },
+                    { "id": "rings-06", "url": "https://niassets.netlify.app/Rings/ni-rings-06.jpg" },
+                    { "id": "rings-07", "url": "https://niassets.netlify.app/Rings/ni-rings-07.jpg" },
+                    { "id": "rings-08", "url": "https://niassets.netlify.app/Rings/ni-rings-08.jpg" },
+                    { "id": "rings-09", "url": "https://niassets.netlify.app/Rings/ni-rings-09.jpg" },
+                    { "id": "rings-10", "url": "https://niassets.netlify.app/Rings/ni-rings-10.jpg" },
+                    { "id": "rings-11", "url": "https://niassets.netlify.app/Rings/ni-rings-11.jpg" }
+                ],
+                "bracelets": [
+                    { "id": "bracelets-01", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-01.jpg" },
+                    { "id": "bracelets-02", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-02.jpg" },
+                    { "id": "bracelets-03", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-03.jpg" },
+                    { "id": "bracelets-04", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-04.jpg" },
+                    { "id": "bracelets-05", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-05.jpg" },
+                    { "id": "bracelets-06", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-06.jpg" },
+                    { "id": "bracelets-07", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-07.jpg" },
+                    { "id": "bracelets-08", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-08.jpg" },
+                    { "id": "bracelets-09", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-09.jpg" },
+                    { "id": "bracelets-10", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-10.jpg" },
+                    { "id": "bracelets-11", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-11.jpg" },
+                    { "id": "bracelets-12", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-12.jpg" },
+                    { "id": "bracelets-13", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-13.jpg" },
+                    { "id": "bracelets-14", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-14.jpg" },
+                    { "id": "bracelets-15", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-15.jpg" },
+                    { "id": "bracelets-16", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-16.jpg" }
+                ],
+                "necklaces": [
+                    { "id": "necklaces-01", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-01.jpg" },
+                    { "id": "necklaces-02", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-02.jpg" },
+                    { "id": "necklaces-03", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-03.jpg" },
+                    { "id": "necklaces-04", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-04.jpg" },
+                    { "id": "necklaces-05", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-05.jpg" },
+                    { "id": "necklaces-06", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-06.jpg" },
+                    { "id": "necklaces-07", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-07.jpg" }
+                ],
+                "pendants": [
+                    { "id": "pendants-01", "url": "https://niassets.netlify.app/Pendants/ni-pendant-01.jpg" },
+                    { "id": "pendants-02", "url": "https://niassets.netlify.app/Pendants/ni-pendant-02.jpg" },
+                    { "id": "pendants-03", "url": "https://niassets.netlify.app/Pendants/ni-pendant-03.jpg" },
+                    { "id": "pendants-04", "url": "https://niassets.netlify.app/Pendants/ni-pendant-04.jpg" },
+                    { "id": "pendants-05", "url": "https://niassets.netlify.app/Pendants/ni-pendant-05.jpg" }
+                ],
+                "crosses": [
+                    { "id": "crosses-01", "url": "https://niassets.netlify.app/Crosses/ni-cross-01.jpg" },
+                    { "id": "crosses-02", "url": "https://niassets.netlify.app/Crosses/ni-cross-02.jpg" },
+                    { "id": "crosses-03", "url": "https://niassets.netlify.app/Crosses/ni-cross-03.jpg" },
+                    { "id": "crosses-04", "url": "https://niassets.netlify.app/Crosses/ni-cross-04.jpg" },
+                    { "id": "crosses-05", "url": "https://niassets.netlify.app/Crosses/ni-cross-05.jpg" },
+                    { "id": "crosses-06", "url": "https://niassets.netlify.app/Crosses/ni-cross-06.jpg" }
+                ],
+                "tiaras": [
+                    { "id": "tiaras-01", "url": "https://niassets.netlify.app/Tiaras/ni-tiara-01.jpg" },
+                    { "id": "tiaras-02", "url": "https://niassets.netlify.app/Tiaras/ni-tiara-02.jpg" }
+                ]
+            }
+        };
+
+        // MUSEUM DESCRIPTION GENERATOR (Simulating Curatorial Text)
+        function getDescription(type, id) {
+            const index = parseInt(id.split('-')[1]);
+            const descs = [
+                "Defined by a fluid architectural structure, this piece utilizes solid gold to capture light across its hammered planes.",
+                "A study in texture, featuring granulated detailing reminiscent of Etruscan revival techniques, hand-finished to a matte lustre.",
+                "Constructed with articulated segments that allow for movement, creating a seamless integration between the object and the body.",
+                "An archival form reinterpreted through heavy gauge gold, prioritizing silhouette and the inherent warmth of the material.",
+                "Marked by intricate filigree work, this piece demonstrates the maison's commitment to preserving complex hand-fabrication methods."
+            ];
+            return descs[index % descs.length];
+        }
+
+        // SPA ROUTER LOGIC
+        function loadRoute() {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            const app = document.getElementById('app');
+            const nav = document.getElementById('main-nav');
+            
+            // Scroll to top on route change
+            window.scrollTo(0, 0);
+
+            if (hash === 'home') {
+                renderHome(app);
+            } else if (APP_DATA.assets[hash]) {
+                renderCategory(app, hash);
+            } else {
+                // Fallback for anchors on home page (like #heritage)
+                if(document.getElementById(hash)) {
+                    document.getElementById(hash).scrollIntoView();
+                    return; // Don't re-render
+                }
+                renderHome(app);
+            }
+        }
+
+        // RENDER: HOME
+        function renderHome(container) {
+            // Using Necklace-04 for Hero (Strongest Image)
+            container.innerHTML = `
+                <!-- HERO -->
+                <header class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+                    <div class="absolute inset-0 z-0">
+                        <img src="${APP_DATA.assets.necklaces[3].url}" alt="Hero" class="w-full h-full object-cover animate-breathe opacity-70">
+                        <div class="absolute inset-0 bg-neutral-950/40"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/60"></div>
+                    </div>
+                    
+                    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-12">
+                         <div class="mb-12 opacity-0 animate-fade-in delay-300">
+                            <p class="font-serif text-lg md:text-xl text-gold-200/90 italic tracking-wide">
+                                " Praise must nevertheless be earned; it is never bestowed lightly "
+                            </p>
+                        </div>
+                        <div class="opacity-0 animate-slide-up delay-700">
+                            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-4 leading-none">
+                                NIKOS IOANNOU
+                            </h1>
+                            <p class="font-serif text-xs md:text-sm text-gold-400 tracking-[0.2em] uppercase mb-8">Jewellers</p>
+                            
+                            <div class="w-px h-12 bg-white/20 mx-auto mb-8"></div>
+                            
+                            <p class="font-sans text-sm md:text-base text-white tracking-widest uppercase mb-2">The Designers of Historic Jewels</p>
+                            <p class="text-[10px] tracking-[0.3em] uppercase text-neutral-400 mb-16">Est. 1945 - Cyprus</p>
+                            
+                            <a href="#categories-section" class="inline-block text-[10px] tracking-widest uppercase text-white border border-white/30 px-8 py-4 hover:bg-white hover:text-neutral-950 transition-all duration-500">
+                                Explore Jewellery
+                            </a>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- INTRO -->
+                <section class="py-32 md:py-48 px-6 bg-neutral-950 border-b border-neutral-900">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <p class="font-serif text-2xl md:text-3xl lg:text-4xl leading-relaxed text-neutral-200 text-balance">
+                            "At Nikos Ioannou, gold is treated not as ornament, but as material memory. Each piece is shaped by hand, informed by history, and intended to endure beyond fashion."
+                        </p>
+                    </div>
+                </section>
+
+                <!-- CATEGORIES TILES -->
+                <section id="categories-section" class="py-32 bg-neutral-950 px-6">
+                    <div class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
+                        ${generateCategoryTile('Earrings', APP_DATA.assets.earrings[0].url)}
+                        ${generateCategoryTile('Rings', APP_DATA.assets.rings[0].url)}
+                        ${generateCategoryTile('Bracelets', APP_DATA.assets.bracelets[0].url)}
+                        ${generateCategoryTile('Necklaces', APP_DATA.assets.necklaces[0].url)}
+                        ${generateCategoryTile('Pendants', APP_DATA.assets.pendants[0].url)}
+                        ${generateCategoryTile('Crosses', APP_DATA.assets.crosses[0].url)}
+                        ${generateCategoryTile('Tiaras', APP_DATA.assets.tiaras[0].url)}
+                        <div class="aspect-[4/5] bg-neutral-900 flex items-center justify-center text-center p-8 group cursor-pointer hover:bg-neutral-850 transition-colors">
+                            <a href="#contact" class="flex flex-col items-center">
+                                <span class="font-serif text-2xl text-gold-300 mb-2">Commissions</span>
+                                <span class="text-[9px] uppercase tracking-widest text-neutral-500 group-hover:text-white transition-colors">Bespoke Service</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SIGNATURE PIECES -->
+                <section class="py-40 bg-neutral-925 px-6">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-end">
+                            ${generateSignaturePiece('Gold / Earrings', APP_DATA.assets.earrings[2].url, 'earrings-03')}
+                            ${generateSignaturePiece('Gold / Necklace', APP_DATA.assets.necklaces[3].url, 'necklaces-04', 'md:-translate-y-20')}
+                            ${generateSignaturePiece('Gold / Bracelet', APP_DATA.assets.bracelets[1].url, 'bracelets-02')}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MAISON -->
+                <section id="maison" class="py-40 bg-neutral-950 border-t border-neutral-900">
+                    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <span class="text-[9px] tracking-widest uppercase text-gold-500 mb-6 block">The House</span>
+                            <h2 class="font-serif text-3xl md:text-4xl text-white mb-8 tracking-tight font-normal">Est. 1945</h2>
+                            <p class="font-serif text-xl md:text-2xl leading-relaxed text-neutral-300 mb-8">
+                                "Nikos Ioannou Jewellers is a family-run atelier founded in Cyprus in 1945. The house is dedicated to historic gold jewellery, drawing from classical, Byzantine, and regional traditions. Work is guided by continuity of hand rather than trend, and by permanence rather than seasonality."
+                            </p>
+                        </div>
+                        <div class="relative aspect-square bg-neutral-900 overflow-hidden">
+                             <!-- Abstract Placeholder -->
+                             <div class="absolute inset-0 bg-neutral-800 animate-pulse opacity-10"></div>
+                             <div class="absolute inset-0 flex items-center justify-center border border-neutral-800 m-8">
+                                <span class="text-[9px] tracking-widest uppercase text-neutral-600">Atelier View</span>
+                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- HERITAGE (Exact Text) -->
+                <section id="heritage" class="py-32 px-6 bg-neutral-950 border-t border-neutral-900">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="font-serif text-3xl text-white tracking-tight mb-16 text-center">Heritage</h2>
+                        <div class="space-y-8 font-light text-neutral-400 text-sm md:text-base leading-7 tracking-wide text-justify md:text-left">
+                            <p>Nikos Ioannou is a widely known company with a substantial qualitative contribution to the island's long-standing tradition in the field of jewellery making and selling.</p>
+                            <p>The founder started his career as a young apprentice in one of the goldsmithing workshops in the old district of Larnaca in 1945. The company was founded in 1961 and has since grown considerably, with shops in Nicosia and Limassol, other business ventures, as well as a substantial qualitative contribution to the jewellery-making industry.</p>
+                            <p>He developed the company while holding a personal interest and love for Cypriot art and culture, which led to a large collection of old Cypriot jewellery, artefacts, and antiques in his private gallery. In 1992, through personal efforts, he formed the Cyprus Jewellers Museum.</p>
+                            <p>Along with his own collection, he managed to gather through donations several additional pieces of jewellery and jewellery-making equipment, used since the beginning of the 18th century. These are exhibited at the Cyprus Jewellers Museum, of which he is the founder and chairman.</p>
+                            <p>In 1995, he was joined by his eldest son, Yiannos Ioannou, a graduate of the St Martin's School of Art in London. Yiannos Ioannou has won several awards at international jewellery-making competitions, which rightfully branded the company as "The Designers of Historic Jewels."</p>
+                            <p>He has continued the company's tradition while upgrading and modernising the services provided. Today, he is the Creative Director and leading force of the company.</p>
+                            <p>Nikos Ioannou Company now sells fine jewellery as well as luxury watches and maintains the same principles of attention to detail, customer satisfaction, and uncompromising quality that have contributed to its success throughout the years.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CRAFTSMANSHIP & BESPOKE -->
+                <section id="craftsmanship" class="grid grid-cols-1 md:grid-cols-2 border-t border-neutral-900">
+                    <div class="bg-neutral-925 p-16 md:p-24 flex flex-col justify-center border-r border-neutral-900">
+                        <h3 class="font-serif text-2xl text-white mb-8 tracking-tight">Craftsmanship</h3>
+                        <p class="text-neutral-400 font-light text-sm leading-relaxed mb-12">
+                            "All jewellery is produced using traditional goldsmithing techniques. Surfaces are shaped by hand, forms are resolved through repeated refinement, and each piece is finished with attention to proportion and balance."
+                        </p>
+                        <div class="w-full h-64 bg-neutral-900 flex items-center justify-center border border-neutral-800">
+                            <span class="text-[9px] tracking-widest uppercase text-neutral-700">Goldsmithing Bench</span>
+                        </div>
+                    </div>
+                    <div id="bespoke" class="bg-neutral-950 p-16 md:p-24 flex flex-col justify-center">
+                        <h3 class="font-serif text-2xl text-white mb-8 tracking-tight">Bespoke</h3>
+                        <p class="text-neutral-400 font-light text-sm leading-relaxed mb-12">
+                            "The house accepts a limited number of bespoke commissions each year. Each commission is approached as a collaborative process, guided by the client's intent and the house's historic language."
+                        </p>
+                        <a href="#contact" class="inline-block border border-neutral-800 px-8 py-3 text-[10px] tracking-widest uppercase text-white hover:border-gold-400 transition-colors w-max">
+                            Request a Private Consultation
+                        </a>
+                    </div>
+                </section>
+
+                <!-- CONTACT -->
+                <section id="contact" class="py-32 px-6 bg-neutral-950 border-t border-neutral-900">
+                    <div class="max-w-5xl mx-auto">
+                        <div class="text-center mb-16">
+                            <h2 class="font-serif text-3xl text-white mb-6">Contact</h2>
+                            <p class="text-neutral-400 font-light text-sm">"For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier."</p>
+                        </div>
+                        <form class="max-w-xl mx-auto space-y-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <input type="text" placeholder="NAME" class="bg-transparent border-b border-neutral-800 py-3 text-xs tracking-widest uppercase text-white placeholder-neutral-600 focus:border-gold-400 focus:outline-none transition-colors w-full">
+                                <input type="email" placeholder="EMAIL" class="bg-transparent border-b border-neutral-800 py-3 text-xs tracking-widest uppercase text-white placeholder-neutral-600 focus:border-gold-400 focus:outline-none transition-colors w-full">
+                            </div>
+                            <textarea placeholder="MESSAGE" rows="4" class="bg-transparent border-b border-neutral-800 py-3 text-xs tracking-widest uppercase text-white placeholder-neutral-600 focus:border-gold-400 focus:outline-none transition-colors w-full resize-none"></textarea>
+                            <div class="text-center pt-8">
+                                <button type="button" class="bg-neutral-900 text-white px-12 py-4 text-[10px] tracking-widest uppercase hover:bg-gold-500 hover:text-black transition-all duration-500">
+                                    Send Enquiry
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            `;
+        }
+
+        // RENDER: CATEGORY PAGE
+        function renderCategory(container, category) {
+            const items = APP_DATA.assets[category];
+            const title = category.charAt(0).toUpperCase() + category.slice(1);
+            
+            let gridHtml = items.map(item => `
+                <div class="group relative flex flex-col gap-4 mb-16 cursor-pointer" onclick="openModal('${category}', '${item.id}', '${item.url}')">
+                    <div class="relative aspect-[4/5] bg-neutral-900 overflow-hidden">
+                        <img src="${item.url}" alt="${item.id}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000">
+                        <div class="absolute inset-0 bg-neutral-950/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="text-[10px] tracking-widest uppercase text-white">${title}</span>
+                            <span class="text-[9px] tracking-widest uppercase text-neutral-500">${item.id}</span>
+                        </div>
+                        <p class="text-xs font-light text-neutral-400 leading-relaxed line-clamp-2">
+                            ${getDescription(title, item.id)}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="pt-40 pb-20 px-6 bg-neutral-950 min-h-screen">
+                    <div class="max-w-[1800px] mx-auto">
+                        <div class="mb-24 text-center md:text-left border-b border-neutral-900 pb-12">
+                            <span class="text-[9px] tracking-widest uppercase text-gold-500 mb-4 block">Archive Collection</span>
+                            <h1 class="font-serif text-4xl md:text-6xl text-white mb-6">${title}</h1>
+                            <p class="text-sm font-light text-neutral-400 max-w-xl">
+                                "Each piece is handcrafted in gold, informed by historic form and executed with restraint."
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+                            ${gridHtml}
+                        </div>
+                        <div class="mt-24 text-center">
+                            <a href="#home" class="text-[10px] tracking-widest uppercase text-neutral-500 hover:text-white transition-colors">Return to Maison</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // HELPER: Category Tile
+        function generateCategoryTile(title, img) {
+            return `
+                <a href="#${title.toLowerCase()}" class="group relative block aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src="${img}" alt="${title}" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-60 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-neutral-950/30 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">${title}</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 border-b border-transparent group-hover:border-gold-300 group-hover:text-gold-300 transition-all pb-1">View Collection</span>
+                    </div>
+                </a>
+            `;
+        }
+
+        // HELPER: Signature Piece
+        function generateSignaturePiece(label, img, id, extraClasses = '') {
+            // Extract category for modal linkage
+            const cat = label.split(' / ')[1].toLowerCase().trim() + 's'; 
+            // Handle singular/plural mismatch for linking
+            let safeCat = cat;
+            if (cat === 'bracelets') safeCat = 'bracelets';
+            if (cat === 'necklaces') safeCat = 'necklaces';
+            if (cat === 'earringss') safeCat = 'earrings'; 
+
+            return `
+                <div class="flex flex-col items-center group cursor-pointer ${extraClasses}" onclick="openModal('${safeCat}', '${id}', '${img}')">
+                    <div class="w-full aspect-[4/5] bg-neutral-900 mb-8 overflow-hidden relative shadow-2xl">
+                        <img src="${img}" alt="${label}" class="w-full h-full object-cover opacity-90 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-105">
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase text-neutral-500 mb-2">${label}</span>
+                    <span class="text-[9px] uppercase tracking-widest text-white border-b border-transparent group-hover:border-gold-400 transition-all pb-1">View Piece</span>
+                </div>
+            `;
+        }
+
+        // MODAL LOGIC
+        function openModal(category, id, imgUrl) {
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+            
+            // Clean up Category Name
+            const displayCat = category.charAt(0).toUpperCase() + category.slice(1);
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 h-full">
+                    <div class="bg-neutral-900 h-[50vh] lg:h-full relative overflow-hidden">
+                        <img src="${imgUrl}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-12 lg:p-20 flex flex-col justify-center bg-neutral-950 relative">
+                        <button onclick="closeModal()" class="absolute top-8 right-8 text-white hover:text-gold-300 transition-colors">
+                            <iconify-icon icon="lucide:x" width="24"></iconify-icon>
+                        </button>
+                        
+                        <span class="text-[9px] tracking-[0.2em] uppercase text-gold-500 mb-4 block">Nikos Ioannou Archive</span>
+                        <h2 class="font-serif text-3xl text-white mb-8">Historic Gold ${displayCat}</h2>
+                        
+                        <div class="space-y-4 text-[10px] tracking-widest uppercase text-neutral-500 mb-12 border-t border-b border-neutral-900 py-8">
+                            <div class="flex justify-between"><span>Category</span> <span class="text-neutral-300">${displayCat}</span></div>
+                            <div class="flex justify-between"><span>Material</span> <span class="text-neutral-300">Gold</span></div>
+                            <div class="flex justify-between"><span>ID</span> <span class="text-neutral-300">${id}</span></div>
+                        </div>
+                        
+                        <p class="text-sm font-light text-neutral-400 leading-7 mb-12">
+                            "A historic gold piece defined by sculptural form and measured ornamentation. Executed by hand, with emphasis on proportion, surface, and permanence."
+                        </p>
+                        
+                        <a href="#contact" onclick="closeModal()" class="inline-block text-center border border-neutral-800 py-4 text-[10px] tracking-widest uppercase text-white hover:bg-white hover:text-black transition-all">
+                            Enquire About This Piece
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            // Slight delay for animation
+            setTimeout(() => {
+                modal.classList.add('modal-active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('modal-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        // INIT
+        window.addEventListener('load', loadRoute);
+        window.addEventListener('hashchange', loadRoute);
+
+    </script>
+
+    <!-- NAVIGATION -->
+    <nav id="main-nav" class="fixed w-full z-40 bg-gradient-to-b from-neutral-950/95 to-transparent hover:bg-neutral-950 transition-colors duration-500 border-b border-white/5">
+        <div class="max-w-[1920px] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+            
+            <!-- Left Nav -->
+            <div class="hidden lg:flex items-center gap-12 text-[10px] tracking-widest uppercase text-neutral-400">
+                <a href="#home" class="nav-link text-white">Home</a>
+                
+                <div class="relative dropdown h-24 flex items-center">
+                    <button class="nav-link text-white flex items-center gap-1 h-full">
+                        Jewellery
+                        <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                    </button>
+                    <div class="dropdown-menu hidden absolute top-full left-0 pt-0 w-56">
+                        <div class="bg-neutral-950 border border-neutral-800 p-8 flex flex-col gap-5 shadow-2xl">
+                            <a href="#earrings" class="hover:text-gold-300 transition-colors">Earrings</a>
+                            <a href="#rings" class="hover:text-gold-300 transition-colors">Rings</a>
+                            <a href="#bracelets" class="hover:text-gold-300 transition-colors">Bracelets</a>
+                            <a href="#necklaces" class="hover:text-gold-300 transition-colors">Necklaces</a>
+                            <a href="#pendants" class="hover:text-gold-300 transition-colors">Pendants</a>
+                            <a href="#crosses" class="hover:text-gold-300 transition-colors">Crosses</a>
+                            <a href="#tiaras" class="hover:text-gold-300 transition-colors">Tiaras</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <a href="#home" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group">
+                <span class="font-serif text-2xl tracking-widest text-white leading-none group-hover:text-gold-200 transition-colors duration-700">NIKOS IOANNOU</span>
+            </a>
+
+            <!-- Right Nav -->
+            <div class="hidden lg:flex items-center gap-12 text-[10px] tracking-widest uppercase text-neutral-400">
+                <a href="#heritage" class="nav-link hover:text-white transition-colors">Heritage</a>
+                <a href="#bespoke" class="nav-link hover:text-white transition-colors">Bespoke</a>
+                <a href="#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Icon (Visual Only for this demo scope) -->
+            <button class="lg:hidden text-white">
+                <iconify-icon icon="lucide:menu" width="24" stroke-width="1"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <!-- APP CONTAINER (Views Render Here) -->
+    <main id="app" class="min-h-screen"></main>
+
+    <!-- FOOTER (Global) -->
+    <footer class="bg-neutral-950 py-12 px-6 border-t border-neutral-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] tracking-widest uppercase text-neutral-600">
+            <span>© Nikos Ioannou Jewellers</span>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <a href="#" class="hover:text-neutral-400">Legal</a>
+                <a href="#" class="hover:text-neutral-400">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DETAIL MODAL OVERLAY -->
+    <div id="detail-modal" class="fixed inset-0 z-50 bg-black/90 hidden transition-all duration-500 flex items-center justify-center p-4 md:p-12 backdrop-blur-sm">
+        <div id="modal-content" class="bg-neutral-950 w-full max-w-6xl h-[90vh] shadow-2xl border border-neutral-900 overflow-y-auto">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+
+
+</body></html>

@@ -1,0 +1,470 @@
+<html lang="en" class="scroll-smooth"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikos Ioannou | The Designers of Historic Jewels</title>
+<meta name="description" content="Nikos Ioannou Jewellers. Est. 1945. The Designers of Historic Jewels. A family-run atelier dedicated to historic gold jewellery and bespoke commissions.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<!-- Using Cinzel for the Heritage/Roman feel and Inter for the clean UI -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Inter:wght@200;300;400&amp;display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                serif: ['Cinzel', 'serif'],
+            },
+            colors: {
+                // Gold tones derived from the jewellery photography
+                gold: {
+                    100: '#F5E6C8',
+                    200: '#E6CFA0',
+                    300: '#C8AA6E',
+                    400: '#A68A4E',
+                    500: '#8C7335',
+                    600: '#6B5624',
+                },
+                // Deep architectural neutrals
+                neutral: {
+                    850: '#1A1A1A',
+                    900: '#121212',
+                    925: '#0A0A0A',
+                    950: '#050505',
+                }
+            },
+            letterSpacing: {
+                tight: '-0.025em',
+                tighter: '-0.05em',
+                widest: '.25em',
+                ultra: '.35em',
+            },
+            animation: {
+                'fade-in': 'fadeIn 2s ease-out forwards',
+                'slide-up': 'slideUp 1.5s ease-out forwards',
+                'slow-zoom': 'slowZoom 20s linear infinite alternate',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideUp: {
+                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                slowZoom: {
+                    '0%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(1.1)' },
+                }
+            }
+        }
+    }
+}
+</script>
+<style>
+    /* Museum-grade refinement */
+    body { background-color: #050505; color: #e5e5e5; }
+    ::-webkit-scrollbar { width: 6px; background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::selection { background: #C8AA6E; color: #000; }
+    
+    /* Smooth image loading */
+    img { transition: opacity 0.7s ease-in-out; }
+    
+    /* Navigation Dropdown Logic */
+    .group:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease-out; }
+    
+    /* Typography Utilities */
+    .text-balance { text-wrap: balance; }
+</style>
+</head>
+<body class="bg-neutral-950 text-neutral-300 font-sans antialiased selection:bg-gold-300 selection:text-black">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 transition-all duration-700 bg-gradient-to-b from-neutral-950/90 to-transparent hover:bg-neutral-950">
+        <div class="max-w-[1920px] mx-auto px-6 md:px-12 h-28 flex items-center justify-between">
+            
+            <!-- Left Nav -->
+            <div class="hidden lg:flex items-center gap-12 text-[11px] tracking-widest uppercase font-light text-neutral-400">
+                <a href="#" class="hover:text-white transition-colors duration-500">Home</a>
+                
+                <!-- Jewellery Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button class="hover:text-white transition-colors duration-500 flex items-center gap-1">
+                        Jewellery
+                        <iconify-icon icon="lucide:chevron-down" width="12" class="opacity-50 group-hover:opacity-100"></iconify-icon>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown-menu hidden absolute top-full left-0 pt-8 w-48">
+                        <div class="bg-neutral-900 border border-neutral-800 p-6 flex flex-col gap-4 shadow-2xl">
+                            <a href="#earrings" class="hover:text-gold-200 transition-colors">Earrings</a>
+                            <a href="#rings" class="hover:text-gold-200 transition-colors">Rings</a>
+                            <a href="#bracelets" class="hover:text-gold-200 transition-colors">Bracelets</a>
+                            <a href="#necklaces" class="hover:text-gold-200 transition-colors">Necklaces</a>
+                            <a href="#pendants" class="hover:text-gold-200 transition-colors">Pendants</a>
+                            <a href="#crosses" class="hover:text-gold-200 transition-colors">Crosses</a>
+                            <a href="#tiaras" class="hover:text-gold-200 transition-colors">Tiaras</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#maison" class="hover:text-white transition-colors duration-500">Maison</a>
+            </div>
+
+            <!-- Center Logo -->
+            <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-50">
+                <span class="font-serif text-2xl md:text-3xl tracking-widest text-white leading-none">NIKOS IOANNOU</span>
+                <span class="text-[9px] tracking-[0.3em] uppercase text-gold-400 mt-2 opacity-80">Jewellers</span>
+            </a>
+
+            <!-- Right Nav -->
+            <div class="hidden lg:flex items-center gap-12 text-[11px] tracking-widest uppercase font-light text-neutral-400">
+                <a href="#heritage" class="hover:text-white transition-colors duration-500">Heritage</a>
+                <a href="#craftsmanship" class="hover:text-white transition-colors duration-500">Craftsmanship</a>
+                <a href="#bespoke" class="hover:text-white transition-colors duration-500">Bespoke</a>
+                <a href="#contact" class="hover:text-white transition-colors duration-500">Contact</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden text-white/80 hover:text-white ml-auto">
+                <iconify-icon icon="lucide:menu" width="24" stroke-width="1"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-screen w-full overflow-hidden">
+        <!-- Background Asset: Strongest Jewellery Image (Necklace-04 or Tiara-01) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://niassets.netlify.app/Necklaces/ni-necklace-04.jpg" alt="Historic Necklace" class="w-full h-full object-cover animate-slow-zoom opacity-60">
+            <div class="absolute inset-0 bg-neutral-950/40 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+            
+            <!-- Hero Quote -->
+            <div class="mb-12 opacity-0 animate-fade-in delay-300">
+                <p class="font-serif text-lg md:text-xl text-gold-100/90 italic tracking-wide">
+                    “Praise must nevertheless be earned; it is never bestowed lightly”
+                </p>
+            </div>
+
+            <div class="opacity-0 animate-slide-up delay-700">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-6">
+                    NIKOS IOANNOU
+                </h1>
+                <p class="font-serif text-xl text-neutral-300 tracking-widest uppercase mb-4">
+                    The Designers of Historic Jewels
+                </p>
+                <div class="w-px h-12 bg-gold-400/50 mx-auto mb-6"></div>
+                <p class="text-[10px] tracking-ultra uppercase text-neutral-400 mb-16">
+                    Est. 1945 — Cyprus
+                </p>
+                
+                <a href="#categories" class="group inline-flex flex-col items-center gap-2 text-[10px] tracking-widest uppercase text-white hover:text-gold-300 transition-colors duration-500">
+                    <span>Explore Jewellery</span>
+                    <iconify-icon icon="lucide:arrow-down" width="16" class="group-hover:translate-y-1 transition-transform duration-500"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- INTRO STATEMENT (MUSEUM WALL TEXT) -->
+    <section class="py-32 md:py-48 px-6 bg-neutral-950 border-b border-neutral-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="font-serif text-2xl md:text-4xl leading-relaxed text-neutral-200 text-balance">
+                “At Nikos Ioannou, gold is treated not as ornament, but as material memory. Each piece is shaped by hand, informed by history, and intended to endure beyond fashion.”
+            </p>
+        </div>
+    </section>
+
+    <!-- FEATURED CATEGORIES GRID -->
+    <!-- Using JSON Assets strictly -->
+    <section id="categories" class="py-32 bg-neutral-950">
+        <div class="max-w-[1920px] mx-auto px-6 md:px-12">
+            
+            <!-- Row 1: 3 Columns -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                
+                <!-- Earrings -->
+                <a href="#earrings" class="group relative block aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Earrings/ni-earrings-01.jpg" alt="Earrings" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Earrings</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+
+                <!-- Rings -->
+                <a href="#rings" class="group relative block aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Rings/ni-rings-01.jpg" alt="Rings" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Rings</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+
+                <!-- Bracelets -->
+                <a href="#bracelets" class="group relative block aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Bracelets/ni-bracelet-01.jpg" alt="Bracelets" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Bracelets</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Row 2: 2 Columns -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Necklaces -->
+                <a href="#necklaces" class="group relative block aspect-square md:aspect-[16/9] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Necklaces/ni-necklace-01.jpg" alt="Necklaces" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Necklaces</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+
+                <!-- Tiaras -->
+                <a href="#tiaras" class="group relative block aspect-square md:aspect-[16/9] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Tiaras/ni-tiara-01.jpg" alt="Tiaras" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Tiaras</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+            </div>
+
+             <!-- Row 3: 2 Columns -->
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Pendants -->
+                <a href="#pendants" class="group relative block aspect-[4/3] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Pendants/ni-pendant-01.jpg" alt="Pendants" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Pendants</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+
+                <!-- Crosses -->
+                <a href="#crosses" class="group relative block aspect-[4/3] overflow-hidden bg-neutral-900">
+                    <img src="https://niassets.netlify.app/Crosses/ni-cross-01.jpg" alt="Crosses" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-serif text-2xl text-white tracking-wide block mb-2">Crosses</span>
+                        <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SIGNATURE PIECES (Curated Selection) -->
+    <section class="py-32 px-6 bg-neutral-925">
+        <div class="max-w-[1600px] mx-auto">
+            <h2 class="font-serif text-3xl text-white tracking-tight mb-20 text-center font-normal">Signature Works</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
+                
+                <!-- Piece 1 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-full aspect-[4/5] bg-neutral-900 mb-8 overflow-hidden relative">
+                         <!-- Using a specific ring from JSON -->
+                        <img src="https://niassets.netlify.app/Rings/ni-rings-03.jpg" alt="Signature Ring" class="w-full h-full object-cover opacity-90 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-105">
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Gold / Rings</span>
+                    <span class="text-[9px] uppercase tracking-widest text-white border-b border-transparent group-hover:border-gold-400 transition-all pb-1">View Piece</span>
+                </div>
+
+                <!-- Piece 2 -->
+                <div class="flex flex-col items-center group cursor-pointer md:-translate-y-16">
+                    <div class="w-full aspect-[4/5] bg-neutral-900 mb-8 overflow-hidden relative">
+                        <!-- Using a specific bracelet from JSON -->
+                        <img src="https://niassets.netlify.app/Bracelets/ni-bracelet-04.jpg" alt="Signature Bracelet" class="w-full h-full object-cover opacity-90 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-105">
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Gold / Bracelet</span>
+                    <span class="text-[9px] uppercase tracking-widest text-white border-b border-transparent group-hover:border-gold-400 transition-all pb-1">View Piece</span>
+                </div>
+
+                <!-- Piece 3 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-full aspect-[4/5] bg-neutral-900 mb-8 overflow-hidden relative">
+                        <!-- Using a specific necklace from JSON -->
+                        <img src="https://niassets.netlify.app/Necklaces/ni-necklace-02.jpg" alt="Signature Necklace" class="w-full h-full object-cover opacity-90 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-105">
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase text-neutral-500 mb-2">Gold / Necklace</span>
+                    <span class="text-[9px] uppercase tracking-widest text-white border-b border-transparent group-hover:border-gold-400 transition-all pb-1">View Piece</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MAISON TEASER (Placeholder Image) -->
+    <section id="maison" class="py-40 bg-neutral-950 border-t border-neutral-900">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 lg:pr-12">
+                <h2 class="font-serif text-4xl text-white mb-8 tracking-tight font-normal">
+                    The House
+                </h2>
+                <p class="text-neutral-400 text-sm md:text-base font-light leading-relaxed mb-12 max-w-md">
+                    Founded in Cyprus in 1945, the house of Nikos Ioannou continues a tradition of historic gold craftsmanship shaped by place, time, and continuity of hand.
+                </p>
+                <a href="#" class="inline-block border border-neutral-800 px-12 py-4 text-[10px] tracking-widest uppercase text-white hover:bg-white hover:text-black hover:border-white transition-all duration-500">
+                    Discover the Maison
+                </a>
+            </div>
+            <!-- Atmospheric Placeholder -->
+            <div class="order-1 lg:order-2 relative aspect-square overflow-hidden bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1618403088890-3d1347cb3755?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" alt="Atelier Atmosphere" class="w-full h-full object-cover opacity-50 grayscale transition-all duration-[2s]">
+            </div>
+        </div>
+    </section>
+
+    <!-- HERITAGE SECTION (VERBATIM TEXT REQUIREMENT) -->
+    <section id="heritage" class="py-32 px-6 bg-neutral-925">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[9px] tracking-[0.3em] uppercase text-gold-500 mb-4 block">Est. 1945</span>
+                <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tight font-normal">Heritage</h2>
+            </div>
+            
+            <!-- Verbatim Text Block -->
+            <div class="space-y-8 font-light text-neutral-400 text-sm md:text-base leading-7 tracking-wide text-justify md:text-left">
+                <p>
+                    Nikos Ioannou is a widely known company with a substantial qualitative contribution to the island’s long-standing tradition in the field of jewellery making and selling.
+                </p>
+                <p>
+                    Mr. Nikos Ioannou started his career as a young apprentice in one of the goldsmithing workshops in the old district of Larnaca in 1945. The company was founded in 1961 and has since grown considerably, with shops in Nicosia and Limassol, other business ventures, as well as a substantial qualitative contribution to the jewellery-making industry.
+                </p>
+                <p>
+                    Mr. Nikos Ioannou developed the company while holding a personal interest and love for Cypriot art and culture, which led to a large collection of old Cypriot jewellery, artefacts, and antiques in his private gallery. In 1992, through his personal efforts, Mr. Ioannou formed the Cyprus Jewellers Museum.
+                </p>
+                <p>
+                    Along with his own collection, he managed to gather through donations several additional pieces of jewellery and jewellery-making equipment, used since the beginning of the 18th century. These are exhibited at the Cyprus Jewellers Museum, of which Mr. Ioannou is the founder and chairman.
+                </p>
+                <p>
+                    In 1995, Mr. Nikos Ioannou was joined by his eldest son, Mr. Yiannos Ioannou, a graduate of the St Martin’s School of Art in London. Mr. Yiannos Ioannou has won several awards at international jewellery-making competitions, which rightfully branded the company as “The Designers of Historic Jewels.”
+                </p>
+                <p>
+                    He has continued the company’s tradition while upgrading and modernising the services provided. Today, he is the Creative Director and leading force of the company.
+                </p>
+                <p>
+                    Nikos Ioannou Company now sells fine jewellery as well as luxury watches and maintains the same principles of attention to detail, customer satisfaction, and uncompromising quality that have contributed to its success throughout the years.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRAFTSMANSHIP & BESPOKE (Split) -->
+    <section id="craftsmanship" class="grid grid-cols-1 md:grid-cols-2 border-t border-neutral-900">
+        
+        <!-- Craftsmanship Side -->
+        <div class="relative min-h-[600px] bg-neutral-950 p-12 md:p-20 flex flex-col justify-center border-r border-neutral-900">
+            <div class="max-w-md mx-auto">
+                <h3 class="font-serif text-2xl text-white mb-6 tracking-tight">Craftsmanship</h3>
+                <p class="text-neutral-400 font-light text-sm leading-relaxed mb-10">
+                    All jewellery is produced using traditional goldsmithing techniques. Surfaces are shaped by hand, forms are resolved through repeated refinement, and each piece is finished with attention to proportion and balance.
+                </p>
+                <!-- Placeholder for Craft -->
+                <div class="w-full h-64 bg-neutral-900 overflow-hidden mb-8 grayscale opacity-60">
+                     <img src="https://images.unsplash.com/photo-1629196914375-f7e48f477b6d?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" alt="Goldsmith Tools" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bespoke Side -->
+        <div id="bespoke" class="relative min-h-[600px] bg-neutral-950 p-12 md:p-20 flex flex-col justify-center">
+            <div class="max-w-md mx-auto">
+                <h3 class="font-serif text-2xl text-white mb-6 tracking-tight">Bespoke</h3>
+                <p class="text-neutral-400 font-light text-sm leading-relaxed mb-10">
+                    The house accepts a limited number of bespoke commissions each year. Each commission is approached as a collaborative process, guided by the client’s intent and the house’s historic language.
+                </p>
+                <a href="#contact" class="text-[10px] tracking-widest uppercase text-white hover:text-gold-300 transition-colors border-b border-white/20 hover:border-gold-300 pb-1 inline-block">
+                    Request a Private Consultation
+                </a>
+                 <!-- Placeholder for Bespoke -->
+                 <div class="w-full h-64 bg-neutral-900 overflow-hidden mt-10 grayscale opacity-60">
+                    <img src="https://images.unsplash.com/photo-1596944924616-00cc36780838?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" alt="Sketching" class="w-full h-full object-cover">
+               </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- BESPOKE TEASER (Full Width) -->
+    <section class="py-32 bg-neutral-200 text-neutral-900 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <p class="font-serif text-2xl md:text-3xl mb-8 leading-tight">
+                “Private commissions by appointment. Each bespoke piece begins with a conversation.”
+            </p>
+            <a href="#contact" class="inline-block bg-neutral-900 text-white px-12 py-4 text-[10px] tracking-widest uppercase hover:bg-gold-500 transition-colors duration-300">
+                Bespoke Commissions
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="bg-neutral-950 text-neutral-500 py-32 px-6 border-t border-neutral-900">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-20">
+            
+            <!-- Contact Info -->
+            <div class="md:w-1/3">
+                <h3 class="font-serif text-2xl text-white mb-8">Contact</h3>
+                <p class="text-sm font-light leading-relaxed mb-8 text-neutral-400">
+                    For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier.
+                </p>
+                <div class="space-y-2 text-xs tracking-widest uppercase text-neutral-500">
+                    <p>Nicosia, Cyprus</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="md:w-1/2">
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="group">
+                            <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2 group-focus-within:text-gold-400 transition-colors">Name</label>
+                            <input type="text" class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none placeholder-transparent">
+                        </div>
+                        <div class="group">
+                            <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2 group-focus-within:text-gold-400 transition-colors">Email</label>
+                            <input type="email" class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none placeholder-transparent">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2 group-focus-within:text-gold-400 transition-colors">Message</label>
+                        <textarea rows="4" class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none resize-none placeholder-transparent"></textarea>
+                    </div>
+                    <button type="button" class="text-[10px] tracking-widest uppercase text-white border border-neutral-800 px-10 py-3 hover:bg-white hover:text-black transition-all">
+                        Send Enquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="max-w-7xl mx-auto mt-32 pt-12 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center text-[9px] tracking-widest uppercase text-neutral-700">
+            <span>© 2024 Nikos Ioannou Jewellers</span>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <a href="#" class="hover:text-neutral-500">Legal</a>
+                <a href="#" class="hover:text-neutral-500">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body></html>

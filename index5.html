@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikos Ioannou Jewellers | The Designers of Historic Jewels</title>
+    <meta name="description" content="Nikos Ioannou Jewellers. Est. 1945 - Cyprus. The Designers of Historic Jewels.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neutral: {
+                            850: '#1f1f1f',
+                            900: '#171717',
+                            925: '#121212',
+                            950: '#080808', 
+                        },
+                        gold: {
+                            300: '#D4AF37',
+                            400: '#C5A028',
+                            500: '#B49020',
+                            900: '#3E320A',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '0.2em',
+                        tight: '-0.025em',
+                        tighter: '-0.05em',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'breathe': 'breathe 20s infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        breathe: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-gold-900 selection:text-gold-300 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 -ml-2">
+                <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+
+            <!-- Desktop Links (Left) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <div class="dropdown-wrapper relative py-8">
+                    <a href="/jewellery" class="hover:text-white transition-colors flex items-center gap-1">
+                        Jewellery
+                        <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                    </a>
+                    <!-- Dropdown -->
+                    <div class="dropdown-menu">
+                        <a href="/earrings">Earrings</a>
+                        <a href="/rings">Rings</a>
+                        <a href="/bracelets">Bracelets</a>
+                        <a href="/necklaces">Necklaces</a>
+                        <a href="/pendants">Pendants</a>
+                        <a href="/crosses">Crosses</a>
+                        <a href="/tiaras">Tiaras</a>
+                    </div>
+                </div>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Maison</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Heritage</a>
+            </div>
+
+            <!-- Logo -->
+            <a href="/" class="absolute left-1/2 transform -translate-x-1/2 text-center group z-40">
+                <h1 class="font-serif text-2xl tracking-widest text-white group-hover:text-gold-300 transition-colors duration-700">NIKOS IOANNOU</h1>
+            </a>
+
+            <!-- Desktop Links (Right) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <a href="/" onclick="event.preventDefault(); document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Craftsmanship</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Bespoke</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Placeholder (Right) -->
+            <div class="lg:hidden w-6"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-500 lg:hidden flex flex-col pt-24 px-8 border-r border-neutral-800">
+        <button onclick="toggleMenu()" class="absolute top-8 right-6 text-white/50 hover:text-white transition-colors p-2">
+            <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+        <div class="flex flex-col gap-5 text-sm tracking-widest uppercase text-neutral-400 font-medium">
+            <div class="text-[10px] text-gold-500 mb-2 mt-4 font-semibold opacity-80">Collections</div>
+            <a href="/jewellery" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">View All</a>
+            <a href="/earrings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Earrings</a>
+            <a href="/rings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Rings</a>
+            <a href="/bracelets" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Bracelets</a>
+            <a href="/necklaces" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Necklaces</a>
+            <a href="/pendants" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Pendants</a>
+            <a href="/crosses" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Crosses</a>
+            <a href="/tiaras" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Tiaras</a>
+            
+            <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
+            <a href="/" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Maison</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Heritage</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Craftsmanship</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Bespoke</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content Injection -->
+    <main id="app" class="flex-grow pt-24 min-h-screen transition-opacity duration-500 opacity-100">
+        <!-- Content Rendered by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 border-t border-neutral-900 py-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-neutral-500 text-[10px] tracking-widest uppercase opacity-60">
+                (c) Nikos Ioannou Jewellers
+            </div>
+            <div class="flex gap-10 text-neutral-500 text-[10px] tracking-widest uppercase">
+                <a href="#" class="hover:text-white cursor-pointer transition-colors">Legal</a>
+                <a href="#" class="hover:text-white cursor-pointer transition-colors">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Details Modal -->
+    <div id="modal" class="fixed inset-0 z-[70] bg-black/95 hidden items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-500">
+        <div class="bg-neutral-925 w-full max-w-6xl h-[90vh] grid grid-cols-1 lg:grid-cols-2 shadow-2xl overflow-hidden relative border border-neutral-800 ring-1 ring-white/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-white/50 hover:text-white transition-colors bg-black/20 p-2 rounded-full backdrop-blur-md">
+                <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+            
+            <!-- Modal Image -->
+            <div class="relative bg-neutral-900 h-1/2 lg:h-full flex items-center justify-center p-8 lg:p-16 overflow-hidden">
+                <img id="modal-img" src="" alt="Detail" class="w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-2xl">
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-8 lg:p-20 flex flex-col justify-center h-1/2 lg:h-full overflow-y-auto bg-neutral-950 border-l border-neutral-900">
+                <div class="space-y-10">
+                    <div>
+                        <span id="modal-category" class="text-[10px] tracking-[0.25em] uppercase text-gold-400 mb-4 block font-medium"></span>
+                        <h2 id="modal-title" class="font-serif text-3xl lg:text-4xl text-white tracking-tight leading-tight"></h2>
+                    </div>
+
+                    <div class="space-y-5 border-t border-neutral-900 pt-10">
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Collection</span>
+                            <span class="text-neutral-300 font-serif italic">Nikos Ioannou Archive</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Material</span>
+                            <span class="text-neutral-300 font-serif italic">Gold</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Reference</span>
+                            <span id="modal-id" class="text-neutral-300 font-mono text-xs"></span>
+                        </div>
+                    </div>
+
+                    <p id="modal-description" class="text-neutral-400 leading-relaxed font-light font-serif text-lg lg:text-xl">
+                        "A historic gold piece defined by sculptural form and measured ornamentation. Executed by hand, with emphasis on proportion, surface, and permanence."
+                    </p>
+
+                    <div class="pt-8">
+                        <a href="#contact" onclick="closeModal(); handleNav('contact')" class="inline-flex items-center justify-center w-full border border-neutral-800 py-4 text-xs tracking-widest uppercase text-white hover:bg-gold-500 hover:border-gold-500 hover:text-black transition-all duration-500">
+                            Enquire About This Piece
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script src="js/app.js"></script>
+</body>
+</html>
+This is the current working HTML. Upload this along with the css/style.css, js/app.js, and _redirects files to Netlify.
+
+Copy
+Save to Notion
+You mean you didn't include the JavaScript and the CSS style and all that stuff in the HTML it's separate. Why are you doing it separate it has to be all in one HTML what's going on
+You're right! Let me give you ONE complete HTML file with everything embedded:
+
+Copy<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikos Ioannou Jewellers | The Designers of Historic Jewels</title>
+    <meta name="description" content="Nikos Ioannou Jewellers. Est. 1945 - Cyprus. The Designers of Historic Jewels.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neutral: {
+                            850: '#1f1f1f',
+                            900: '#171717',
+                            925: '#121212',
+                            950: '#080808', 
+                        },
+                        gold: {
+                            300: '#D4AF37',
+                            400: '#C5A028',
+                            500: '#B49020',
+                            900: '#3E320A',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '0.2em',
+                        tight: '-0.025em',
+                        tighter: '-0.05em',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'breathe': 'breathe 20s infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        breathe: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #080808;
+            color: #e5e5e5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography overrides */
+        h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Image Handling */
+        img { transition: opacity 0.7s ease-in-out; }
+        .img-loading { opacity: 0; }
+        .img-loaded { opacity: 1; }
+        
+        /* Image container fixes */
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Navigation Hover */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Dropdown Menu Fix */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 14rem;
+            background-color: #0a0a0a;
+            border: 1px solid #262626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #a3a3a3;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Smooth Anchor Scrolling offset */
+        html { scroll-padding-top: 100px; }
+
+        /* Glass Effect */
+        .glass { 
+            background: rgba(8, 8, 8, 0.8); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-gold-900 selection:text-gold-300 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 -ml-2">
+                <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+
+            <!-- Desktop Links (Left) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <div class="dropdown-wrapper relative py-8">
+                    <a href="/jewellery" class="hover:text-white transition-colors flex items-center gap-1">
+                        Jewellery
+                        <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                    </a>
+                    <!-- Dropdown -->
+                    <div class="dropdown-menu">
+                        <a href="/earrings">Earrings</a>
+                        <a href="/rings">Rings</a>
+                        <a href="/bracelets">Bracelets</a>
+                        <a href="/necklaces">Necklaces</a>
+                        <a href="/pendants">Pendants</a>
+                        <a href="/crosses">Crosses</a>
+                        <a href="/tiaras">Tiaras</a>
+                    </div>
+                </div>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Maison</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Heritage</a>
+            </div>
+
+            <!-- Logo -->
+            <a href="/" class="absolute left-1/2 transform -translate-x-1/2 text-center group z-40">
+                <h1 class="font-serif text-2xl tracking-widest text-white group-hover:text-gold-300 transition-colors duration-700">NIKOS IOANNOU</h1>
+            </a>
+
+            <!-- Desktop Links (Right) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <a href="/" onclick="event.preventDefault(); document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Craftsmanship</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Bespoke</a>
+                <a href="/" onclick="event.preventDefault(); document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})" class="nav-link hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Placeholder (Right) -->
+            <div class="lg:hidden w-6"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-500 lg:hidden flex flex-col pt-24 px-8 border-r border-neutral-800">
+        <button onclick="toggleMenu()" class="absolute top-8 right-6 text-white/50 hover:text-white transition-colors p-2">
+            <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+        <div class="flex flex-col gap-5 text-sm tracking-widest uppercase text-neutral-400 font-medium">
+            <div class="text-[10px] text-gold-500 mb-2 mt-4 font-semibold opacity-80">Collections</div>
+            <a href="/jewellery" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">View All</a>
+            <a href="/earrings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Earrings</a>
+            <a href="/rings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Rings</a>
+            <a href="/bracelets" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Bracelets</a>
+            <a href="/necklaces" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Necklaces</a>
+            <a href="/pendants" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Pendants</a>
+            <a href="/crosses" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Crosses</a>
+            <a href="/tiaras" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Tiaras</a>
+            
+            <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
+            <a href="/" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Maison</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Heritage</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Craftsmanship</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Bespoke</a>
+            <a href="/" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content Injection -->
+    <main id="app" class="flex-grow pt-24 min-h-screen transition-opacity duration-500 opacity-100">
+        <!-- Content Rendered by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 border-t border-neutral-900 py-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-neutral-500 text-[10px] tracking-widest uppercase opacity-60">
+                (c) Nikos Ioannou Jewellers
+            </div>
+            <div class="flex gap-10 text-neutral-500 text-[10px] tracking-widest uppercase">
+                <a href="#" class="hover:text-white cursor-pointer transition-colors">Legal</a>
+                <a href="#" class="hover:text-white cursor-pointer transition-colors">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Details Modal -->
+    <div id="modal" class="fixed inset-0 z-[70] bg-black/95 hidden items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-500">
+        <div class="bg-neutral-925 w-full max-w-6xl h-[90vh] grid grid-cols-1 lg:grid-cols-2 shadow-2xl overflow-hidden relative border border-neutral-800 ring-1 ring-white/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-white/50 hover:text-white transition-colors bg-black/20 p-2 rounded-full backdrop-blur-md">
+                <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+            
+            <!-- Modal Image -->
+            <div class="relative bg-neutral-900 h-1/2 lg:h-full flex items-center justify-center p-8 lg:p-16 overflow-hidden">
+                <img id="modal-img" src="" alt="Detail" class="w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-2xl">
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-8 lg:p-20 flex flex-col justify-center h-1/2 lg:h-full overflow-y-auto bg-neutral-950 border-l border-neutral-900">
+                <div class="space-y-10">
+                    <div>
+                        <span id="modal-category" class="text-[10px] tracking-[0.25em] uppercase text-gold-400 mb-4 block font-medium"></span>
+                        <h2 id="modal-title" class="font-serif text-3xl lg:text-4xl text-white tracking-tight leading-tight"></h2>
+                    </div>
+
+                    <div class="space-y-5 border-t border-neutral-900 pt-10">
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Collection</span>
+                            <span class="text-neutral-300 font-serif italic">Nikos Ioannou Archive</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Material</span>
+                            <span class="text-neutral-300 font-serif italic">Gold</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Reference</span>
+                            <span id="modal-id" class="text-neutral-300 font-mono text-xs"></span>
+                        </div>
+                    </div>
+
+                    <p id="modal-description" class="text-neutral-400 leading-relaxed font-light font-serif text-lg lg:text-xl">
+                        "A historic gold piece defined by sculptural form and measured ornamentation. Executed by hand, with emphasis on proportion, surface, and permanence."
+                    </p>
+
+                    <div class="pt-8">
+                        <a href="/" onclick="event.preventDefault(); closeModal(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'}), 300)" class="inline-flex items-center justify-center w-full border border-neutral-800 py-4 text-xs tracking-widest uppercase text-white hover:bg-gold-500 hover:border-gold-500 hover:text-black transition-all duration-500">
+                            Enquire About This Piece
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+/**
+ * Nikos Ioannou Jewellers - Application Logic
+ * AURA Digital Studio - Institutional Website
+ * Est. 1945 - Cyprus
+ */
+
+// DATA SOURCE
+const RAW_ASSETS = {
+    "brand": "Nikos Ioannou",
+    "description": "Historic gold jewelry - curated archive",
+    "base_url": "https://niassets.netlify.app",
+    "assets": {
+        "earrings": [
+            { "id": "earrings-01", "url": "https://niassets.netlify.app/Earrings/ni-earrings-01.jpg" },
+            { "id": "earrings-02", "url": "https://niassets.netlify.app/Earrings/ni-earrings-02.jpg" },
+            { "id": "earrings-03", "url": "https://niassets.netlify.app/Earrings/ni-earrings-03.jpg" },
+            { "id": "earrings-04", "url": "https://niassets.netlify.app/Earrings/ni-earrings-04.jpg" },
+            { "id": "earrings-05", "url": "https://niassets.netlify.app/Earrings/ni-earrings-05.jpg" },
+            { "id": "earrings-06", "url": "https://niassets.netlify.app/Earrings/ni-earrings-06.jpg" },
+            { "id": "earrings-07", "url": "https://niassets.netlify.app/Earrings/ni-earrings-07.jpg" },
+            { "id": "earrings-08", "url": "https://niassets.netlify.app/Earrings/ni-earrings-08.jpg" }
+        ],
+        "rings": [
+            { "id": "rings-01", "url": "https://niassets.netlify.app/Rings/ni-rings-01.jpg" },
+            { "id": "rings-02", "url": "https://niassets.netlify.app/Rings/ni-rings-02.jpg" },
+            { "id": "rings-03", "url": "https://niassets.netlify.app/Rings/ni-rings-03.jpg" },
+            { "id": "rings-04", "url": "https://niassets.netlify.app/Rings/ni-rings-04.jpg" },
+            { "id": "rings-05", "url": "https://niassets.netlify.app/Rings/ni-rings-05.jpg" },
+            { "id": "rings-06", "url": "https://niassets.netlify.app/Rings/ni-rings-06.jpg" },
+            { "id": "rings-07", "url": "https://niassets.netlify.app/Rings/ni-rings-07.jpg" },
+            { "id": "rings-08", "url": "https://niassets.netlify.app/Rings/ni-rings-08.jpg" },
+            { "id": "rings-09", "url": "https://niassets.netlify.app/Rings/ni-rings-09.jpg" },
+            { "id": "rings-10", "url": "https://niassets.netlify.app/Rings/ni-rings-10.jpg" },
+            { "id": "rings-11", "url": "https://niassets.netlify.app/Rings/ni-rings-11.jpg" }
+        ],
+        "bracelets": [
+            { "id": "bracelets-01", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-01.jpg" },
+            { "id": "bracelets-02", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-02.jpg" },
+            { "id": "bracelets-03", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-03.jpg" },
+            { "id": "bracelets-04", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-04.jpg" },
+            { "id": "bracelets-05", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-05.jpg" },
+            { "id": "bracelets-06", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-06.jpg" },
+            { "id": "bracelets-07", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-07.jpg" },
+            { "id": "bracelets-08", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-08.jpg" },
+            { "id": "bracelets-09", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-09.jpg" },
+            { "id": "bracelets-10", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-10.jpg" },
+            { "id": "bracelets-11", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-11.jpg" },
+            { "id": "bracelets-12", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-12.jpg" },
+            { "id": "bracelets-13", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-13.jpg" },
+            { "id": "bracelets-14", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-14.jpg" },
+            { "id": "bracelets-15", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-15.jpg" },
+            { "id": "bracelets-16", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-16.jpg" }
+        ],
+        "necklaces": [
+            { "id": "necklaces-01", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-01.jpg" },
+            { "id": "necklaces-02", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-02.jpg" },
+            { "id": "necklaces-03", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-03.jpg" },
+            { "id": "necklaces-04", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-04.jpg" },
+            { "id": "necklaces-05", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-05.jpg" },
+            { "id": "necklaces-06", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-06.jpg" },
+            { "id": "necklaces-07", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-07.jpg" }
+        ],
+        "pendants": [
+            { "id": "pendants-01", "url": "https://niassets.netlify.app/Pendants/ni-pendant-01.jpg" },
+            { "id": "pendants-02", "url": "https://niassets.netlify.app/Pendants/ni-pendant-02.jpg" },
+            { "id": "pendants-03", "url": "https://niassets.netlify.app/Pendants/ni-pendant-03.jpg" },
+            { "id": "pendants-04", "url": "https://niassets.netlify.app/Pendants/ni-pendant-04.jpg" },
+            { "id": "pendants-05", "url": "https://niassets.netlify.app/Pendants/ni-pendant-05.jpg" }
+        ],
+        "crosses": [
+            { "id": "crosses-01", "url": "https://niassets.netlify.app/Crosses/ni-cross-01.jpg" },
+            { "id": "crosses-02", "url": "https://niassets.netlify.app/Crosses/ni-cross-02.jpg" },
+            { "id": "crosses-03", "url": "https://niassets.netlify.app/Crosses/ni-cross-03.jpg" },
+            { "id": "crosses-04", "url": "https://niassets.netlify.app/Crosses/ni-cross-04.jpg" },
+            { "id": "crosses-05", "url": "https://niassets.netlify.app/Crosses/ni-cross-05.jpg" },
+            { "id": "crosses-06", "url": "https://niassets.netlify.app/Crosses/ni-cross-06.jpg" }
+        ],
+        "tiaras": [
+            { "id": "tiaras-01", "url": "https://niassets.netlify.app/Tiaras/ni-tiara-01.jpg" },
+            { "id": "tiaras-02", "url": "https://niassets.netlify.app/Tiaras/ni-tiara-02.jpg" }
+        ]
+    }
+};
+
+// MUSEUM-QUALITY DESCRIPTIONS
+const DESCRIPTIONS = {
+    "earrings-01": "Domed drop earrings with granulated surface texture and spherical form.",
+    "earrings-02": "Substantial hoop earrings with smooth polished exterior and hammered detail.",
+    "earrings-03": "Articulated drop earrings featuring graduated spherical elements with surface ornamentation.",
+    "earrings-04": "Shield-form earrings with raised central dome and granulated border detail.",
+    "earrings-05": "Linear drop earrings composed of linked rectangular elements with textured surfaces.",
+    "earrings-06": "Delicate openwork earrings featuring scrolling filigree wire construction.",
+    "earrings-07": "Geometric rectangular earrings with hammered surface and granulated perimeter.",
+    "earrings-08": "Circular button earrings with concentric granulation pattern.",
+    
+    "rings-01": "Signet ring with square face and engraved surface detail.",
+    "rings-02": "Wide band ring featuring continuous filigree openwork pattern.",
+    "rings-03": "High dome ring with granulated surface covering entire form.",
+    "rings-04": "Ring with raised bezel setting and split shank construction.",
+    "rings-05": "Wide band with subtle surface texture and architectural proportion.",
+    "rings-06": "Sculptural ring with organic flowing form wrapping the finger.",
+    "rings-07": "Ornate ring with raised filigree bezel and scrollwork detail.",
+    "rings-08": "Statement ring combining repoussé surface and wide band form.",
+    "rings-09": "Simple band ring with clean lines and polished finish.",
+    "rings-10": "Band ring with continuous raised pattern inspired by textile motifs.",
+    "rings-11": "Architectural ring with geometric bezel and divided shank.",
+    
+    "bracelets-01": "Link bracelet composed of hollow-formed oval elements.",
+    "bracelets-02": "Filigree bracelet with continuous openwork wire pattern.",
+    "bracelets-03": "Cuff bracelet featuring repoussé surface decoration.",
+    "bracelets-04": "Articulated panel bracelet with geometric granulation patterns.",
+    "bracelets-05": "Chain bracelet with oversized formed links.",
+    "bracelets-06": "Delicate bracelet of interconnected circular elements with granulation.",
+    "bracelets-07": "Wide cuff with raised relief pattern and curved form.",
+    "bracelets-08": "Architectural bracelet combining solid forms with negative space.",
+    "bracelets-09": "Flexible mesh bracelet created from woven wire.",
+    "bracelets-10": "Charm bracelet with suspended decorative elements.",
+    "bracelets-11": "Rope-style bracelet with twisted strand construction.",
+    "bracelets-12": "Bangle with continuous engraved surface decoration.",
+    "bracelets-13": "Link bracelet with bold geometric elements.",
+    "bracelets-14": "Bracelet featuring raised naturalistic forms in repoussé.",
+    "bracelets-15": "Multi-strand bracelet layering different chain constructions.",
+    "bracelets-16": "Hinged bangle with integrated clasp mechanism.",
+    
+    "necklaces-01": "Chain necklace with hand-formed oval links in graduated sizing.",
+    "necklaces-02": "Collar necklace featuring elaborate filigree throughout.",
+    "necklaces-03": "Contemporary necklace with bold geometric linked elements.",
+    "necklaces-04": "Multi-strand necklace with graduated chain layers.",
+    "necklaces-05": "Statement necklace alternating repoussé medallions and granulated beads.",
+    "necklaces-06": "Flexible mesh necklace created from woven wire construction.",
+    "necklaces-07": "Architectural necklace with suspended geometric elements.",
+    
+    "pendants-01": "Ornate pendant with filigree work within framed border.",
+    "pendants-02": "Circular pendant with radiating pattern in repoussé.",
+    "pendants-03": "Shield-form pendant with engraved symbolic imagery.",
+    "pendants-04": "Hinged locket pendant with surface decoration.",
+    "pendants-05": "Geometric pendant with bold sculptural form.",
+    
+    "crosses-01": "Byzantine cross with granulation covering all surfaces.",
+    "crosses-02": "Greek cross with flared terminals and engraved detail.",
+    "crosses-03": "Ornate cross featuring repoussé decoration.",
+    "crosses-04": "Filigree cross with scrolling wire patterns.",
+    "crosses-05": "Contemporary cross with clean architectural lines.",
+    "crosses-06": "Elaborate cross combining granulation, filigree, and engraving.",
+    
+    "tiaras-01": "Ceremonial tiara with intricate filigree wire construction.",
+    "tiaras-02": "Architectural tiara combining geometric framework with decorative elements."
+};
+
+// Process assets with descriptions
+const ASSETS = {};
+for (const [category, items] of Object.entries(RAW_ASSETS.assets)) {
+    ASSETS[category] = items.map((item) => ({
+        ...item,
+        description: DESCRIPTIONS[item.id] || "Gold jewellery piece with hand-finished surface."
+    }));
+}
+
+// URL-BASED ROUTING
+const ROUTES = ['jewellery', 'earrings', 'rings', 'bracelets', 'necklaces', 'pendants', 'crosses', 'tiaras'];
+const app = document.getElementById('app');
+
+function init() {
+    window.addEventListener('popstate', router);
+    router();
+    
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('a[href^="/"]')) {
+            e.preventDefault();
+            const href = e.target.getAttribute('href');
+            navigate(href);
+        }
+    });
+}
+
+function navigate(path) {
+    window.history.pushState({}, '', path);
+    router();
+}
+
+function router() {
+    const path = window.location.pathname.slice(1);
+    window.scrollTo(0, 0);
+    document.getElementById('mobile-menu').classList.add('-translate-x-full');
+
+    if (!path || path === '' || path === 'index.html') {
+        renderHome();
+    } else if (path === 'jewellery') {
+        renderJewelleryOverview();
+    } else if (ROUTES.includes(path)) {
+        renderCategory(path);
+    } else {
+        renderHome();
+    }
+}
+
+// RENDER FUNCTIONS
+function renderHome() {
+    const heroImg = ASSETS.necklaces[0].url;
+
+    app.innerHTML = `
+        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-neutral-900">
+                <img src="${heroImg}" 
+                     class="w-full h-full object-cover opacity-60 animate-breathe" 
+                     loading="eager"
+                     decoding="async"
+                     onload="this.style.opacity='0.6'"
+                     onerror="this.style.opacity='0.3'"
+                     style="opacity:0; transition: opacity 1s ease"
+                     alt="Historic Jewellery">
+                <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-neutral-950"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto animate-fade-in">
+                <p class="font-serif italic text-gold-300 text-lg md:text-xl mb-12 tracking-wide opacity-90">" Praise must nevertheless be earned; it is never bestowed lightly "</p>
+                
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-6">Nikos Ioannou</h1>
+                <p class="font-sans text-[10px] tracking-[0.3em] uppercase text-neutral-300 mb-2">Jewellers</p>
+                
+                <div class="w-12 h-[1px] bg-gold-500 mx-auto my-10 opacity-60"></div>
+                
+                <p class="font-serif text-xl text-neutral-400 mb-12">The Designers of Historic Jewels</p>
+                <p class="text-[10px] tracking-[0.25em] uppercase text-neutral-500 mb-16">Est. 1945 - Cyprus</p>
+                
+                <a href="/jewellery" class="inline-block border border-white/20 px-12 py-4 text-[11px] tracking-widest uppercase text-white hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-sm">
+                    Explore Jewellery
+                </a>
+            </div>
+        </section>
+
+        <section class="py-32 px-6 bg-neutral-950">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="font-serif text-2xl md:text-3xl lg:text-4xl leading-relaxed text-neutral-300 font-light tracking-tight">
+                    "At Nikos Ioannou, gold is treated not as ornament, but as material memory. Each piece is shaped by hand, informed by history, and intended to endure beyond fashion."
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 max-w-[1600px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
+                ${renderHomeTile('Earrings', 'earrings', ASSETS.earrings[0].url)}
+                ${renderHomeTile('Rings', 'rings', ASSETS.rings[0].url)}
+                ${renderHomeTile('Bracelets', 'bracelets', ASSETS.bracelets[3].url)}
+                ${renderHomeTile('Necklaces', 'necklaces', ASSETS.necklaces[1].url)}
+                ${renderHomeTile('Pendants', 'pendants', ASSETS.pendants[0].url)}
+                ${renderHomeTile('Crosses', 'crosses', ASSETS.crosses[0].url)}
+                ${renderHomeTile('Tiaras', 'tiaras', ASSETS.tiaras[0].url)}
+                <a href="/jewellery" class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 block flex flex-col items-center justify-center border border-neutral-900 hover:border-gold-900/30 transition-colors">
+                    <span class="font-serif text-3xl text-white mb-3 italic tracking-tight">View All</span>
+                    <span class="text-[10px] tracking-widest uppercase text-gold-500">Jewellery</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="py-32 px-6 bg-neutral-925 border-y border-neutral-900">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-16 text-center tracking-tight">Selected Signature Pieces</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+                    ${renderSignatureCard(ASSETS.earrings[2], 'Earrings')}
+                    ${renderSignatureCard(ASSETS.bracelets[1], 'Bracelet')}
+                    ${renderSignatureCard(ASSETS.necklaces[2], 'Necklace')}
+                </div>
+            </div>
+        </section>
+
+        <section id="maison" class="py-32 px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gold-500 mb-8 block">The House</span>
+                <p class="font-serif text-lg leading-loose text-neutral-400">
+                    "Nikos Ioannou Jewellers is a family-run atelier founded in Cyprus in 1945. The house is dedicated to historic gold jewellery, drawing from classical, Byzantine, and regional traditions. Work is guided by continuity of hand rather than trend, and by permanence rather than seasonality."
+                </p>
+            </div>
+        </section>
+
+        <section id="heritage" class="py-32 px-6 bg-neutral-925 border-t border-neutral-900">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tight">Heritage</h2>
+                </div>
+                <div class="space-y-8 font-light text-neutral-400 leading-relaxed text-sm md:text-base text-justify md:text-left columns-1 md:columns-2 gap-16">
+                    <p>Nikos Ioannou is a widely known company with a substantial qualitative contribution to the island's long-standing tradition in the field of jewellery making and selling.</p>
+                    <p>The founder started his career as a young apprentice in one of the goldsmithing workshops in the old district of Larnaca in 1945. The company was founded in 1961 and has since grown considerably, with shops in Nicosia and Limassol, other business ventures, as well as a substantial qualitative contribution to the jewellery-making industry.</p>
+                    <p>He developed the company while holding a personal interest and love for Cypriot art and culture, which led to a large collection of old Cypriot jewellery, artefacts, and antiques in his private gallery. In 1992, through personal efforts, he formed the Cyprus Jewellers Museum.</p>
+                    <p>Along with his own collection, he managed to gather through donations several additional pieces of jewellery and jewellery-making equipment, used since the beginning of the 18th century. These are exhibited at the Cyprus Jewellers Museum, of which he is the founder and chairman.</p>
+                    <p class="break-inside-avoid">In 1995, he was joined by his eldest son, Yiannos Ioannou, a graduate of the St Martin's School of Art in London. Yiannos Ioannou has won several awards at international jewellery-making competitions, which rightfully branded the company as "The Designers of Historic Jewels."</p>
+                    <p>He has continued the company's tradition while upgrading and modernising the services provided. Today, he is the Creative Director and leading force of the company.</p>
+                    <p>Nikos Ioannou Company now sells fine jewellery as well as luxury watches and maintains the same principles of attention to detail, customer satisfaction, and uncompromising quality that have contributed to its success throughout the years.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="craftsmanship" class="py-32 px-6 border-t border-neutral-900">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-8 tracking-tight">Craftsmanship</h2>
+                <p class="font-serif text-lg leading-loose text-neutral-400">
+                    "All jewellery is produced using traditional goldsmithing techniques. Surfaces are shaped by hand, forms are resolved through repeated refinement, and each piece is finished with attention to proportion and balance."
+                </p>
+            </div>
+        </section>
+
+        <section id="bespoke" class="py-32 px-6 bg-neutral-925 border-t border-neutral-900">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-8 tracking-tight">Bespoke</h2>
+                <p class="font-serif text-lg leading-loose text-neutral-400 mb-12">
+                    "The house accepts a limited number of bespoke commissions each year. Each commission is approached as a collaborative process, guided by the client's intent and the house's historic language."
+                </p>
+                <a href="#contact" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-400 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                    Request a Private Consultation
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="py-32 px-6 border-t border-neutral-900">
+            <div class="max-w-xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-6 tracking-tight">Contact</h2>
+                    <p class="text-neutral-400 font-light text-sm">"For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier."</p>
+                </div>
+                <form class="space-y-12" onsubmit="handleContactForm(event)">
+                    <div class="group relative">
+                        <input type="text" id="name" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Name">
+                        <label for="name" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Name</label>
+                    </div>
+                    <div class="group relative">
+                        <input type="email" id="email" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Email">
+                        <label for="email" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Email</label>
+                    </div>
+                    <div class="group relative">
+                        <textarea id="message" rows="4" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors resize-none rounded-none placeholder-transparent" placeholder="Message"></textarea>
+                        <label for="message" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Message</label>
+                    </div>
+                    <div class="text-center pt-8">
+                        <button type="submit" class="bg-white text-black px-12 py-4 text-[10px] tracking-[0.2em] uppercase hover:bg-gold-300 transition-colors duration-500 font-medium">
+                            Send Enquiry
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    `;
+}
+
+function renderJewelleryOverview() {
+    app.innerHTML = `
+        <div class="min-h-screen bg-neutral-950 px-6 pb-24">
+            <div class="max-w-[1600px] mx-auto min-h-screen">
+                <div class="pt-24 pb-24 text-center border-b border-neutral-900 animate-fade-in">
+                    <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 tracking-tight">Jewellery</h1>
+                    <p class="font-serif text-xl text-neutral-400 font-light max-w-2xl mx-auto">
+                        "The archive is organized by form. Each category represents a distinct approach to structure and ornamentation."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 py-16">
+                    ${renderCategoryTile('Earrings', 'earrings', ASSETS.earrings[0].url, ASSETS.earrings.length)}
+                    ${renderCategoryTile('Rings', 'rings', ASSETS.rings[0].url, ASSETS.rings.length)}
+                    ${renderCategoryTile('Bracelets', 'bracelets', ASSETS.bracelets[0].url, ASSETS.bracelets.length)}
+                    ${renderCategoryTile('Necklaces', 'necklaces', ASSETS.necklaces[0].url, ASSETS.necklaces.length)}
+                    ${renderCategoryTile('Pendants', 'pendants', ASSETS.pendants[0].url, ASSETS.pendants.length)}
+                    ${renderCategoryTile('Crosses', 'crosses', ASSETS.crosses[0].url, ASSETS.crosses.length)}
+                    ${renderCategoryTile('Tiaras', 'tiaras', ASSETS.tiaras[0].url, ASSETS.tiaras.length)}
+                </div>
+
+                <div class="py-12 text-center border-t border-neutral-900">
+                     <a href="/" class="text-xs tracking-widest uppercase text-neutral-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                        <iconify-icon icon="lucide:arrow-left" width="12"></iconify-icon>
+                        Return to Home
+                     </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderCategory(category) {
+    const items = ASSETS[category];
+    const title = category.charAt(0).toUpperCase() + category.slice(1);
+    
+    const gridHTML = items.map((item, i) => {
+        const delay = i * 50;
+        return `
+        <div class="group cursor-pointer opacity-0 animate-fade-in" style="animation-delay: ${delay}ms;" onclick="openModal('${item.id}', '${item.url}', '${title}', '${item.description.replace(/'/g, "\\'")}')">
+            <div class="image-container aspect-[4/5] mb-6 overflow-hidden relative border border-transparent group-hover:border-neutral-800 transition-colors duration-500 bg-neutral-900">
+                <img src="${item.url}" 
+                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.style.opacity='1'"
+                     onerror="this.style.opacity='0.2'"
+                     style="opacity:0; transition: opacity 0.7s ease"
+                     alt="${item.id}">
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                    <span class="bg-black/80 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest px-4 py-2 border border-white/10">View Piece</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <span class="block text-[10px] tracking-widest uppercase text-neutral-500 mb-2">${title}</span>
+                <span class="block text-xs tracking-widest uppercase text-white group-hover:text-gold-300 transition-colors duration-300 mb-3">${item.id}</span>
+                <p class="text-xs text-neutral-500 leading-relaxed px-2">${item.description}</p>
+            </div>
+        </div>
+    `}).join('');
+
+    app.innerHTML = `
+        <div class="min-h-screen bg-neutral-950 px-6 pb-24">
+            <div class="max-w-[1600px] mx-auto min-h-screen">
+                
+                <div class="pt-24 pb-24 text-center border-b border-neutral-900 animate-fade-in">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold-500 mb-6 block">Collection</span>
+                    <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 tracking-tight">${title}</h1>
+                    <p class="font-serif text-xl text-neutral-400 font-light max-w-2xl mx-auto">
+                        "Each piece is handcrafted in gold, informed by historic form and executed with restraint."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20 py-16">
+                    ${gridHTML}
+                </div>
+
+                <div class="py-12 text-center border-t border-neutral-900">
+                     <a href="/jewellery" class="text-xs tracking-widest uppercase text-neutral-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                        <iconify-icon icon="lucide:arrow-left" width="12"></iconify-icon>
+                        Return to Jewellery
+                     </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderHomeTile(label, route, imgUrl) {
+    return `
+        <a href="/${route}" class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 block border border-neutral-900 hover:border-neutral-800 transition-colors image-container">
+            <img src="${imgUrl}" 
+                 class="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[1.5s] ease-out" 
+                 loading="lazy"
+                 decoding="async"
+                 onload="this.style.opacity='0.7'"
+                 onerror="this.style.opacity='0.2'"
+                 style="opacity:0; transition: opacity 0.7s ease"
+                 alt="${label}">
+            <div class="absolute inset-0 flex items-center justify-center z-10">
+                <div class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                    <h3 class="font-serif text-3xl text-white mb-3 tracking-tight italic">${label}</h3>
+                    <span class="inline-block border border-white/20 px-4 py-2 text-[10px] tracking-widest uppercase text-white opacity-0 group-hover:opacity-100 transition-all duration-700 hover:bg-white hover:text-black">View Collection</span>
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-700 pointer-events-none"></div>
+        </a>
+    `;
+}
+
+function renderCategoryTile(label, route, imgUrl, count) {
+    return `
+        <a href="/${route}" class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 block border border-neutral-900 hover:border-neutral-800 transition-colors image-container">
+            <img src="${imgUrl}" 
+                 class="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[1.5s] ease-out" 
+                 loading="lazy"
+                 decoding="async"
+                 onload="this.style.opacity='0.7'"
+                 onerror="this.style.opacity='0.2'"
+                 style="opacity:0; transition: opacity 0.7s ease"
+                 alt="${label}">
+            <div class="absolute inset-0 flex items-center justify-center z-10">
+                <div class="text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                    <h3 class="font-serif text-3xl text-white mb-2 tracking-tight italic">${label}</h3>
+                    <p class="text-[10px] tracking-widest uppercase text-neutral-400 mb-3">${count} Pieces</p>
+                    <span class="inline-block border border-white/20 px-4 py-2 text-[10px] tracking-widest uppercase text-white opacity-0 group-hover:opacity-100 transition-all duration-700">View</span>
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-700 pointer-events-none"></div>
+        </a>
+    `;
+}
+
+function renderSignatureCard(item, label) {
+    return `
+        <div class="group cursor-pointer" onclick="openModal('${item.id}', '${item.url}', '${label}', '${item.description.replace(/'/g, "\\'")}')">
+            <div class="image-container aspect-square mb-8 overflow-hidden border border-transparent group-hover:border-neutral-800 transition-colors bg-neutral-900">
+                <img src="${item.url}" 
+                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.style.opacity='1'"
+                     onerror="this.style.opacity='0.2'"
+                     style="opacity:0; transition: opacity 0.7s ease"
+                     alt="${item.id}">
+            </div>
+            <div class="text-center">
+                <span class="block text-[10px] text-neutral-500 mb-2 tracking-widest uppercase">Gold / ${label}</span>
+                <span class="inline-block border-b border-transparent group-hover:border-gold-500 text-xs tracking-widest uppercase text-white transition-all pb-1">View Piece</span>
+            </div>
+        </div>
+    `;
+}
+
+function openModal(id, url, category, description) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    const descElement = document.getElementById('modal-description');
+    
+    img.src = url;
+    img.onload = function() { this.style.opacity = '1'; };
+    img.onerror = function() { this.style.opacity = '0.2'; };
+    
+    document.getElementById('modal-title').innerText = `Historic Gold ${category}`;
+    document.getElementById('modal-category').innerText = category;
+    document.getElementById('modal-id').innerText = id;
+    
+    if (descElement) {
+        descElement.innerText = '"A historic gold piece defined by sculptural form and measured ornamentation. Executed by hand, with emphasis on proportion, surface, and permanence."';
+    }
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+    });
+
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    
+    modal.classList.add('opacity-0');
+    img.style.opacity = '0';
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        img.src = ''; 
+    }, 500);
+
+    document.body.style.overflow = 'auto';
+}
+
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+    } else {
+        menu.classList.add('-translate-x-full');
+    }
+}
+
+function handleContactForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    console.log('Contact form submitted:', { name, email, message });
+    alert('Thank you for your enquiry. We will contact you shortly.');
+    event.target.reset();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+    </script>
+</body>
+</html>

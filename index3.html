@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikos Ioannou | The Designers of Historic Jewels</title>
+  <meta name="description" content="Nikos Ioannou Jewellers. Est. 1945 — Cyprus. The Designers of Historic Jewels." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','sans-serif'], serif: ['Cinzel','serif'] },
+          colors: {
+            gold: { 100:'#F5E6C8',200:'#E6CFA0',300:'#C8AA6E',400:'#A68A4E',500:'#8C7335',600:'#6B5624' },
+            neutral: { 850:'#1A1A1A',900:'#121212',925:'#0A0A0A',950:'#050505' }
+          },
+          letterSpacing: { widest: '.25em', ultra: '.35em' },
+          keyframes: {
+            fadeIn: { '0%':{opacity:'0'}, '100%':{opacity:'1'} },
+            slideUp: { '0%':{opacity:'0',transform:'translateY(18px)'}, '100%':{opacity:'1',transform:'translateY(0)'} },
+            slowZoom: { '0%':{transform:'scale(1)'}, '100%':{transform:'scale(1.08)'} }
+          },
+          animation: {
+            'fade-in': 'fadeIn 700ms ease-out both',
+            'slide-up': 'slideUp 900ms ease-out both',
+            'slow-zoom': 'slowZoom 22s linear infinite alternate'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background:#050505; color:#e5e5e5; }
+    ::-webkit-scrollbar{ width:6px; background:#050505; }
+    ::-webkit-scrollbar-thumb{ background:#333; border-radius:3px; }
+    ::selection{ background:#C8AA6E; color:#000; }
+    .drop:hover .menu{ display:block; }
+    /* “Feels like one site”: soft transitions between routes */
+    .route-enter { opacity:0; transform: translateY(10px); }
+    .route-enter-active { opacity:1; transform: translateY(0); transition: opacity .45s ease, transform .45s ease; }
+    .route-leave-active { opacity:0; transform: translateY(-6px); transition: opacity .35s ease, transform .35s ease; }
+    /* Prevent “jump” during route changes */
+    .min-vh { min-height: calc(100vh - 96px); }
+  </style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-300 font-sans antialiased selection:bg-gold-300 selection:text-black">
+
+  <!-- NAV -->
+  <nav class="fixed w-full z-50 bg-gradient-to-b from-neutral-950/90 to-transparent hover:bg-neutral-950 transition-all duration-500">
+    <div class="max-w-[1920px] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+      <div class="hidden lg:flex items-center gap-10 text-[11px] tracking-widest uppercase font-light text-neutral-400">
+        <a href="/" data-link class="hover:text-white transition-colors">Home</a>
+
+        <div class="relative drop h-full flex items-center">
+          <button class="hover:text-white transition-colors flex items-center gap-2">
+            Jewellery <span class="opacity-60">▾</span>
+          </button>
+          <div class="menu hidden absolute top-full left-0 pt-6 w-56">
+            <div class="bg-neutral-900 border border-neutral-800 p-6 flex flex-col gap-4 shadow-2xl">
+              <a href="/earrings" data-link class="hover:text-gold-200 transition-colors">Earrings</a>
+              <a href="/rings" data-link class="hover:text-gold-200 transition-colors">Rings</a>
+              <a href="/bracelets" data-link class="hover:text-gold-200 transition-colors">Bracelets</a>
+              <a href="/necklaces" data-link class="hover:text-gold-200 transition-colors">Necklaces</a>
+              <a href="/pendants" data-link class="hover:text-gold-200 transition-colors">Pendants</a>
+              <a href="/crosses" data-link class="hover:text-gold-200 transition-colors">Crosses</a>
+              <a href="/tiaras" data-link class="hover:text-gold-200 transition-colors">Tiaras</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/maison" data-link class="hover:text-white transition-colors">Maison</a>
+      </div>
+
+      <a href="/" data-link class="flex flex-col items-center">
+        <span class="font-serif text-2xl md:text-3xl tracking-widest text-white leading-none">NIKOS IOANNOU</span>
+        <span class="text-[9px] tracking-[0.3em] uppercase text-gold-400 mt-2 opacity-80">Jewellers</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-10 text-[11px] tracking-widest uppercase font-light text-neutral-400">
+        <a href="/heritage" data-link class="hover:text-white transition-colors">Heritage</a>
+        <a href="/craftsmanship" data-link class="hover:text-white transition-colors">Craftsmanship</a>
+        <a href="/bespoke" data-link class="hover:text-white transition-colors">Bespoke</a>
+        <a href="/contact" data-link class="hover:text-white transition-colors">Contact</a>
+      </div>
+
+      <button id="mobileBtn" class="lg:hidden text-white/80 hover:text-white ml-auto text-[12px] tracking-widest uppercase">
+        Menu
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU (simple, discreet) -->
+  <div id="mobileMenu" class="hidden fixed inset-0 z-50 bg-neutral-950/95">
+    <div class="h-24 px-6 flex items-center justify-between border-b border-neutral-900">
+      <span class="font-serif tracking-widest text-white">NIKOS IOANNOU</span>
+      <button id="mobileClose" class="text-neutral-300 tracking-widest uppercase text-[12px]">Close</button>
+    </div>
+    <div class="px-6 py-10 space-y-6 text-neutral-200 tracking-widest uppercase text-[12px]">
+      <a href="/" data-link class="block">Home</a>
+      <div class="pt-4 border-t border-neutral-900"></div>
+      <a href="/earrings" data-link class="block">Earrings</a>
+      <a href="/rings" data-link class="block">Rings</a>
+      <a href="/bracelets" data-link class="block">Bracelets</a>
+      <a href="/necklaces" data-link class="block">Necklaces</a>
+      <a href="/pendants" data-link class="block">Pendants</a>
+      <a href="/crosses" data-link class="block">Crosses</a>
+      <a href="/tiaras" data-link class="block">Tiaras</a>
+      <div class="pt-4 border-t border-neutral-900"></div>
+      <a href="/maison" data-link class="block">Maison</a>
+      <a href="/heritage" data-link class="block">Heritage</a>
+      <a href="/craftsmanship" data-link class="block">Craftsmanship</a>
+      <a href="/bespoke" data-link class="block">Bespoke</a>
+      <a href="/contact" data-link class="block">Contact</a>
+    </div>
+  </div>
+
+  <!-- ROUTE MOUNT (content swaps here, but feels continuous) -->
+  <main id="app" class="pt-24 min-vh"></main>
+
+  <!-- FOOTER (persistent, not “pagey”) -->
+  <footer class="bg-neutral-950 text-neutral-600 py-16 px-6 border-t border-neutral-900">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] tracking-widest uppercase">
+      <span>© 2024 Nikos Ioannou Jewellers</span>
+      <div class="flex gap-8">
+        <a href="/privacy" data-link class="hover:text-neutral-400">Privacy</a>
+        <a href="/terms" data-link class="hover:text-neutral-400">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * SINGLE FILE, MULTI-ROUTE SITE
+     * - One HTML file physically
+     * - Multiple “pages” via History API routes (/necklaces, /rings, etc.)
+     * - Feels like one continuous site (no hard reload, soft transitions)
+     */
+
+    const ASSET_JSON_URL = "https://niassets.netlify.app/assets.json";
+
+    // The inline JSON you posted (kept here as a fallback if fetch fails)
+    const INLINE_MANIFEST = {
+      "brand":"Nikos Ioannou",
+      "description":"Historic gold jewelry – curated archive",
+      "base_url":"https://niassets.netlify.app",
+      "assets":{
+        "earrings":[
+          {"id":"earrings-01","url":"https://niassets.netlify.app/Earrings/ni-earrings-01.jpg"},
+          {"id":"earrings-02","url":"https://niassets.netlify.app/Earrings/ni-earrings-02.jpg"},
+          {"id":"earrings-03","url":"https://niassets.netlify.app/Earrings/ni-earrings-03.jpg"},
+          {"id":"earrings-04","url":"https://niassets.netlify.app/Earrings/ni-earrings-04.jpg"},
+          {"id":"earrings-05","url":"https://niassets.netlify.app/Earrings/ni-earrings-05.jpg"},
+          {"id":"earrings-06","url":"https://niassets.netlify.app/Earrings/ni-earrings-06.jpg"},
+          {"id":"earrings-07","url":"https://niassets.netlify.app/Earrings/ni-earrings-07.jpg"},
+          {"id":"earrings-08","url":"https://niassets.netlify.app/Earrings/ni-earrings-08.jpg"}
+        ],
+        "rings":[
+          {"id":"rings-01","url":"https://niassets.netlify.app/Rings/ni-rings-01.jpg"},
+          {"id":"rings-02","url":"https://niassets.netlify.app/Rings/ni-rings-02.jpg"},
+          {"id":"rings-03","url":"https://niassets.netlify.app/Rings/ni-rings-03.jpg"},
+          {"id":"rings-04","url":"https://niassets.netlify.app/Rings/ni-rings-04.jpg"},
+          {"id":"rings-05","url":"https://niassets.netlify.app/Rings/ni-rings-05.jpg"},
+          {"id":"rings-06","url":"https://niassets.netlify.app/Rings/ni-rings-06.jpg"},
+          {"id":"rings-07","url":"https://niassets.netlify.app/Rings/ni-rings-07.jpg"},
+          {"id":"rings-08","url":"https://niassets.netlify.app/Rings/ni-rings-08.jpg"},
+          {"id":"rings-09","url":"https://niassets.netlify.app/Rings/ni-rings-09.jpg"},
+          {"id":"rings-10","url":"https://niassets.netlify.app/Rings/ni-rings-10.jpg"},
+          {"id":"rings-11","url":"https://niassets.netlify.app/Rings/ni-rings-11.jpg"}
+        ],
+        "bracelets":[
+          {"id":"bracelets-01","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-01.jpg"},
+          {"id":"bracelets-02","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-02.jpg"},
+          {"id":"bracelets-03","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-03.jpg"},
+          {"id":"bracelets-04","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-04.jpg"},
+          {"id":"bracelets-05","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-05.jpg"},
+          {"id":"bracelets-06","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-06.jpg"},
+          {"id":"bracelets-07","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-07.jpg"},
+          {"id":"bracelets-08","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-08.jpg"},
+          {"id":"bracelets-09","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-09.jpg"},
+          {"id":"bracelets-10","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-10.jpg"},
+          {"id":"bracelets-11","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-11.jpg"},
+          {"id":"bracelets-12","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-12.jpg"},
+          {"id":"bracelets-13","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-13.jpg"},
+          {"id":"bracelets-14","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-14.jpg"},
+          {"id":"bracelets-15","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-15.jpg"},
+          {"id":"bracelets-16","url":"https://niassets.netlify.app/Bracelets/ni-bracelet-16.jpg"}
+        ],
+        "necklaces":[
+          {"id":"necklaces-01","url":"https://niassets.netlify.app/Necklaces/ni-necklace-01.jpg"},
+          {"id":"necklaces-02","url":"https://niassets.netlify.app/Necklaces/ni-necklace-02.jpg"},
+          {"id":"necklaces-03","url":"https://niassets.netlify.app/Necklaces/ni-necklace-03.jpg"},
+          {"id":"necklaces-04","url":"https://niassets.netlify.app/Necklaces/ni-necklace-04.jpg"},
+          {"id":"necklaces-05","url":"https://niassets.netlify.app/Necklaces/ni-necklace-05.jpg"},
+          {"id":"necklaces-06","url":"https://niassets.netlify.app/Necklaces/ni-necklace-06.jpg"},
+          {"id":"necklaces-07","url":"https://niassets.netlify.app/Necklaces/ni-necklace-07.jpg"}
+        ],
+        "pendants":[
+          {"id":"pendants-01","url":"https://niassets.netlify.app/Pendants/ni-pendant-01.jpg"},
+          {"id":"pendants-02","url":"https://niassets.netlify.app/Pendants/ni-pendant-02.jpg"},
+          {"id":"pendants-03","url":"https://niassets.netlify.app/Pendants/ni-pendant-03.jpg"},
+          {"id":"pendants-04","url":"https://niassets.netlify.app/Pendants/ni-pendant-04.jpg"},
+          {"id":"pendants-05","url":"https://niassets.netlify.app/Pendants/ni-pendant-05.jpg"}
+        ],
+        "crosses":[
+          {"id":"crosses-01","url":"https://niassets.netlify.app/Crosses/ni-cross-01.jpg"},
+          {"id":"crosses-02","url":"https://niassets.netlify.app/Crosses/ni-cross-02.jpg"},
+          {"id":"crosses-03","url":"https://niassets.netlify.app/Crosses/ni-cross-03.jpg"},
+          {"id":"crosses-04","url":"https://niassets.netlify.app/Crosses/ni-cross-04.jpg"},
+          {"id":"crosses-05","url":"https://niassets.netlify.app/Crosses/ni-cross-05.jpg"},
+          {"id":"crosses-06","url":"https://niassets.netlify.app/Crosses/ni-cross-06.jpg"}
+        ],
+        "tiaras":[
+          {"id":"tiaras-01","url":"https://niassets.netlify.app/Tiaras/ni-tiara-01.jpg"},
+          {"id":"tiaras-02","url":"https://niassets.netlify.app/Tiaras/ni-tiara-02.jpg"}
+        ],
+        "museum":[]
+      }
+    };
+
+    const app = document.getElementById('app');
+
+    let manifestCache = null;
+
+    async function getManifest() {
+      if (manifestCache) return manifestCache;
+      try {
+        const res = await fetch(ASSET_JSON_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("Manifest fetch failed");
+        const data = await res.json();
+        manifestCache = data;
+        return data;
+      } catch (e) {
+        // Fallback to inline manifest
+        manifestCache = INLINE_MANIFEST;
+        return INLINE_MANIFEST;
+      }
+    }
+
+    function setTitle(title) { document.title = title; }
+
+    function softMount(html) {
+      // route transition
+      app.classList.add('route-leave-active');
+      setTimeout(() => {
+        app.innerHTML = html;
+        app.classList.remove('route-leave-active');
+        app.classList.add('route-enter');
+        requestAnimationFrame(() => {
+          app.classList.add('route-enter-active');
+          setTimeout(() => {
+            app.classList.remove('route-enter');
+            app.classList.remove('route-enter-active');
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }, 480);
+        });
+      }, 220);
+    }
+
+    function heroSection(heroUrl) {
+      return `
+        <header class="relative h-[78vh] w-full overflow-hidden">
+          <div class="absolute inset-0">
+            <img src="${heroUrl}" alt="Historic jewellery" class="w-full h-full object-cover opacity-60 animate-slow-zoom">
+            <div class="absolute inset-0 bg-neutral-950/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent"></div>
+          </div>
+          <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+            <div class="mb-10 animate-fade-in">
+              <p class="font-serif text-lg md:text-xl text-gold-100/90 italic tracking-wide">
+                “Praise must nevertheless be earned; it is never bestowed lightly”
+              </p>
+            </div>
+            <div class="animate-slide-up">
+              <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-6">NIKOS IOANNOU</h1>
+              <p class="font-serif text-xl text-neutral-200 tracking-widest uppercase mb-4">Jewellers</p>
+              <p class="font-serif text-base md:text-lg text-neutral-300 tracking-widest uppercase mb-6">
+                The Designers of Historic Jewels
+              </p>
+              <div class="w-px h-12 bg-gold-400/50 mx-auto mb-6"></div>
+              <p class="text-[10px] tracking-ultra uppercase text-neutral-400 mb-12">Est. 1945 — Cyprus</p>
+              <a href="/earrings" data-link class="inline-flex items-center gap-3 text-[10px] tracking-widest uppercase text-white hover:text-gold-300 transition-colors">
+                Explore Jewellery <span class="opacity-70">→</span>
+              </a>
+            </div>
+          </div>
+        </header>
+      `;
+    }
+
+    function wallText() {
+      return `
+        <section class="py-20 md:py-28 px-6 bg-neutral-950 border-b border-neutral-900">
+          <div class="max-w-4xl mx-auto text-center">
+            <p class="font-serif text-2xl md:text-4xl leading-relaxed text-neutral-200">
+              “At Nikos Ioannou, gold is treated not as ornament, but as material memory. Each piece is shaped by hand, informed by history, and intended to endure beyond fashion.”
+            </p>
+          </div>
+        </section>
+      `;
+    }
+
+    function categoryTiles(manifest) {
+      const pick = (cat, fallback) => (manifest.assets[cat]?.[0]?.url) || fallback;
+      return `
+        <section class="py-20 md:py-28 bg-neutral-950">
+          <div class="max-w-[1920px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              ${tile("/earrings","Earrings",pick("earrings",""))}
+              ${tile("/rings","Rings",pick("rings",""))}
+              ${tile("/bracelets","Bracelets",pick("bracelets",""))}
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              ${wideTile("/necklaces","Necklaces",pick("necklaces",""))}
+              ${wideTile("/tiaras","Tiaras",pick("tiaras",""))}
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              ${wideTile("/pendants","Pendants",pick("pendants",""))}
+              ${wideTile("/crosses","Crosses",pick("crosses",""))}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function tile(href, label, img) {
+      return `
+        <a href="${href}" data-link class="group relative block aspect-[4/5] overflow-hidden bg-neutral-900">
+          <img src="${img}" alt="${label}" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+          <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-700"></div>
+          <div class="absolute bottom-8 left-8">
+            <span class="font-serif text-2xl text-white tracking-wide block mb-2">${label}</span>
+            <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+          </div>
+        </a>
+      `;
+    }
+
+    function wideTile(href, label, img) {
+      return `
+        <a href="${href}" data-link class="group relative block aspect-[4/3] md:aspect-[16/9] overflow-hidden bg-neutral-900">
+          <img src="${img}" alt="${label}" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105 opacity-80 group-hover:opacity-100">
+          <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-700"></div>
+          <div class="absolute bottom-8 left-8">
+            <span class="font-serif text-2xl text-white tracking-wide block mb-2">${label}</span>
+            <span class="text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-gold-300 transition-colors">View Collection</span>
+          </div>
+        </a>
+      `;
+    }
+
+    function galleryPage(manifest, categoryKey, heading) {
+      const items = manifest.assets[categoryKey] || [];
+      const hero = (items[0]?.url) || (manifest.assets.necklaces?.[0]?.url) || "";
+      return `
+        ${heroSection(hero)}
+        <section class="py-16 px-6 bg-neutral-950 border-b border-neutral-900">
+          <div class="max-w-5xl mx-auto text-center">
+            <h2 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-6">${heading}</h2>
+            <p class="text-neutral-400 text-sm md:text-base font-light leading-relaxed">
+              Each piece is handcrafted in gold, informed by historic form and executed with restraint.
+            </p>
+          </div>
+        </section>
+
+        <section class="py-16 md:py-20 px-6 bg-neutral-950">
+          <div class="max-w-[1920px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+              ${items.map(it => `
+                <figure class="bg-neutral-900/40 border border-neutral-900 overflow-hidden">
+                  <div class="aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src="${it.url}" alt="${it.id}" loading="lazy" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500">
+                  </div>
+                  <figcaption class="px-4 py-4">
+                    <div class="text-[10px] tracking-widest uppercase text-neutral-500">Gold / ${heading}</div>
+                    <div class="text-[9px] tracking-widest uppercase text-neutral-300 mt-2 opacity-80">${it.id}</div>
+                  </figcaption>
+                </figure>
+              `).join('')}
+            </div>
+
+            ${items.length === 0 ? `
+              <div class="max-w-xl mx-auto text-center text-neutral-500 py-24">
+                <p class="font-serif text-2xl text-neutral-300 mb-3">Archive in preparation</p>
+                <p class="text-sm font-light">This category will be presented as the archive is curated.</p>
+              </div>
+            ` : ``}
+          </div>
+        </section>
+      `;
+    }
+
+    function maisonPage() {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-950">
+          <div class="max-w-3xl mx-auto">
+            <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-10 text-center">The House</h1>
+            <p class="text-neutral-400 text-sm md:text-base font-light leading-relaxed">
+              Nikos Ioannou Jewellers is a family-run atelier founded in Cyprus in 1945. The house is dedicated to historic gold jewellery, drawing from classical, Byzantine, and regional traditions. Work is guided by continuity of hand rather than trend, and by permanence rather than seasonality.
+            </p>
+          </div>
+        </section>
+      `;
+    }
+
+    function heritagePage() {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-925">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-14">
+              <span class="text-[9px] tracking-[0.3em] uppercase text-gold-500 mb-4 block">Est. 1945</span>
+              <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight font-normal">Heritage</h1>
+            </div>
+
+            <div class="space-y-8 font-light text-neutral-400 text-sm md:text-base leading-7 tracking-wide">
+              <p>Nikos Ioannou is a widely known company with a substantial qualitative contribution to the island’s long-standing tradition in the field of jewellery making and selling.</p>
+
+              <p>Mr. Nikos Ioannou started his career as a young apprentice in one of the goldsmithing workshops in the old district of Larnaca in 1945. The company was founded in 1961 and has since grown considerably, with shops in Nicosia and Limassol, other business ventures, as well as a substantial qualitative contribution to the jewellery-making industry.</p>
+
+              <p>Mr. Nikos Ioannou developed the company while holding a personal interest and love for Cypriot art and culture, which led to a large collection of old Cypriot jewellery, artefacts, and antiques in his private gallery. In 1992, through his personal efforts, Mr. Ioannou formed the Cyprus Jewellers Museum.</p>
+
+              <p>Along with his own collection, he managed to gather through donations several additional pieces of jewellery and jewellery-making equipment, used since the beginning of the 18th century. These are exhibited at the Cyprus Jewellers Museum, of which Mr. Ioannou is the founder and chairman.</p>
+
+              <p>In 1995, Mr. Nikos Ioannou was joined by his eldest son, Mr. Yiannos Ioannou, a graduate of the St Martin’s School of Art in London. Mr. Yiannos Ioannou has won several awards at international jewellery-making competitions, which rightfully branded the company as “The Designers of Historic Jewels.”</p>
+
+              <p>He has continued the company’s tradition while upgrading and modernising the services provided. Today, he is the Creative Director and leading force of the company.</p>
+
+              <p>Nikos Ioannou Company now sells fine jewellery as well as luxury watches and maintains the same principles of attention to detail, customer satisfaction, and uncompromising quality that have contributed to its success throughout the years.</p>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function craftsmanshipPage() {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-950 border-b border-neutral-900">
+          <div class="max-w-3xl mx-auto">
+            <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-10 text-center">Craftsmanship</h1>
+            <p class="text-neutral-400 font-light text-sm md:text-base leading-relaxed">
+              All jewellery is produced using traditional goldsmithing techniques. Surfaces are shaped by hand, forms are resolved through repeated refinement, and each piece is finished with attention to proportion and balance.
+            </p>
+            <ul class="mt-10 space-y-4 text-neutral-400 text-sm">
+              <li>• Hand-finished goldwork</li>
+              <li>• Heritage techniques</li>
+              <li>• Bespoke by appointment</li>
+            </ul>
+          </div>
+        </section>
+      `;
+    }
+
+    function bespokePage() {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-950">
+          <div class="max-w-3xl mx-auto text-center">
+            <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-8">Bespoke</h1>
+            <p class="text-neutral-400 font-light text-sm md:text-base leading-relaxed mb-10">
+              The house accepts a limited number of bespoke commissions each year. Each commission is approached as a collaborative process, guided by the client’s intent and the house’s historic language.
+            </p>
+            <a href="/contact" data-link class="inline-block border border-neutral-800 px-12 py-4 text-[10px] tracking-widest uppercase text-white hover:bg-white hover:text-black hover:border-white transition-all duration-500">
+              Request a Private Consultation
+            </a>
+          </div>
+        </section>
+      `;
+    }
+
+    function contactPage() {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-950">
+          <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
+            <div>
+              <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-8">Contact</h1>
+              <p class="text-neutral-400 text-sm md:text-base font-light leading-relaxed mb-6">
+                For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier.
+              </p>
+              <p class="text-xs tracking-widest uppercase text-neutral-500">Nicosia, Cyprus</p>
+            </div>
+
+            <form name="enquiry" method="POST" data-netlify="true" class="space-y-8">
+              <input type="hidden" name="form-name" value="enquiry">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group">
+                  <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2">Name</label>
+                  <input name="name" type="text" required class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none">
+                </div>
+                <div class="group">
+                  <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2">Email</label>
+                  <input name="email" type="email" required class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none">
+                </div>
+              </div>
+              <div class="group">
+                <label class="block text-[9px] tracking-widest uppercase text-neutral-600 mb-2">Message</label>
+                <textarea name="message" rows="4" required class="w-full bg-transparent border-b border-neutral-800 py-2 text-white outline-none focus:border-gold-400 transition-colors rounded-none resize-none"></textarea>
+              </div>
+              <button type="submit" class="text-[10px] tracking-widest uppercase text-white border border-neutral-800 px-10 py-3 hover:bg-white hover:text-black transition-all">
+                Send Enquiry
+              </button>
+            </form>
+          </div>
+        </section>
+      `;
+    }
+
+    function simpleLegalPage(title) {
+      return `
+        <section class="py-24 md:py-32 px-6 bg-neutral-950">
+          <div class="max-w-3xl mx-auto">
+            <h1 class="font-serif text-4xl md:text-5xl text-white tracking-tight mb-10 text-center">${title}</h1>
+            <p class="text-neutral-500 text-sm font-light leading-relaxed">
+              Placeholder. Provide final legal text when available.
+            </p>
+          </div>
+        </section>
+      `;
+    }
+
+    async function render(pathname) {
+      const m = await getManifest();
+
+      // Home uses a “strong” hero asset (choose necklace-04 if exists)
+      const homeHero = (m.assets.necklaces?.find(x => x.id === "necklaces-04")?.url)
+        || (m.assets.tiaras?.[0]?.url)
+        || (m.assets.necklaces?.[0]?.url)
+        || (m.assets.earrings?.[0]?.url)
+        || "";
+
+      if (pathname === "/" || pathname === "") {
+        setTitle("Nikos Ioannou | The Designers of Historic Jewels");
+        softMount(`
+          ${heroSection(homeHero)}
+          ${wallText()}
+          ${categoryTiles(m)}
+        `);
+        return;
+      }
+
+      const routes = {
+        "/earrings": () => { setTitle("Earrings — Nikos Ioannou"); softMount(galleryPage(m,"earrings","Earrings")); },
+        "/rings": () => { setTitle("Rings — Nikos Ioannou"); softMount(galleryPage(m,"rings","Rings")); },
+        "/bracelets": () => { setTitle("Bracelets — Nikos Ioannou"); softMount(galleryPage(m,"bracelets","Bracelets")); },
+        "/necklaces": () => { setTitle("Necklaces — Nikos Ioannou"); softMount(galleryPage(m,"necklaces","Necklaces")); },
+        "/pendants": () => { setTitle("Pendants — Nikos Ioannou"); softMount(galleryPage(m,"pendants","Pendants")); },
+        "/crosses": () => { setTitle("Crosses — Nikos Ioannou"); softMount(galleryPage(m,"crosses","Crosses")); },
+        "/tiaras": () => { setTitle("Tiaras — Nikos Ioannou"); softMount(galleryPage(m,"tiaras","Tiaras")); },
+
+        "/maison": () => { setTitle("Maison — Nikos Ioannou"); softMount(maisonPage()); },
+        "/heritage": () => { setTitle("Heritage — Nikos Ioannou"); softMount(heritagePage()); },
+        "/craftsmanship": () => { setTitle("Craftsmanship — Nikos Ioannou"); softMount(craftsmanshipPage()); },
+        "/bespoke": () => { setTitle("Bespoke — Nikos Ioannou"); softMount(bespokePage()); },
+        "/contact": () => { setTitle("Contact — Nikos Ioannou"); softMount(contactPage()); },
+
+        "/privacy": () => { setTitle("Privacy — Nikos Ioannou"); softMount(simpleLegalPage("Privacy")); },
+        "/terms": () => { setTitle("Terms — Nikos Ioannou"); softMount(simpleLegalPage("Terms")); }
+      };
+
+      if (routes[pathname]) {
+        routes[pathname]();
+      } else {
+        setTitle("Not Found — Nikos Ioannou");
+        softMount(`
+          <section class="py-24 md:py-32 px-6 bg-neutral-950">
+            <div class="max-w-2xl mx-auto text-center">
+              <h1 class="font-serif text-4xl text-white mb-6">Not Found</h1>
+              <p class="text-neutral-500 text-sm font-light mb-10">The requested page does not exist.</p>
+              <a href="/" data-link class="text-[10px] tracking-widest uppercase text-white hover:text-gold-300 transition-colors">Return Home →</a>
+            </div>
+          </section>
+        `);
+      }
+    }
+
+    function navigate(to) {
+      history.pushState(null, "", to);
+      render(location.pathname);
+    }
+
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[data-link]");
+      if (!a) return;
+      e.preventDefault();
+      // close mobile menu if open
+      mobileMenu.classList.add("hidden");
+      navigate(a.getAttribute("href"));
+    });
+
+    window.addEventListener("popstate", () => render(location.pathname));
+
+    // Mobile menu
+    const mobileBtn = document.getElementById("mobileBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileClose = document.getElementById("mobileClose");
+    mobileBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+    mobileClose.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+
+    // First render
+    render(location.pathname);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikos Ioannou Jewellers | The Designers of Historic Jewels</title>
+    <meta name="description" content="Nikos Ioannou Jewellers. Est. 1945 - Cyprus. The Designers of Historic Jewels.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neutral: {
+                            850: '#1f1f1f',
+                            900: '#171717',
+                            925: '#121212',
+                            950: '#080808', 
+                        },
+                        gold: {
+                            300: '#D4AF37',
+                            400: '#C5A028',
+                            500: '#B49020',
+                            900: '#3E320A',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest: '0.2em',
+                        tight: '-0.025em',
+                        tighter: '-0.05em',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'breathe': 'breathe 20s infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        breathe: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* BASE STYLES */
+        body {
+            background-color: #080808;
+            color: #e5e5e5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+        
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+        
+        /* IMAGE HANDLING */
+        img { transition: opacity 0.7s ease-in-out; }
+        .img-loading { opacity: 0; }
+        .img-loaded { opacity: 1; }
+        
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .image-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
+            z-index: -1;
+        }
+        
+        .image-container::after {
+            content: '\2726';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #D4AF37;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-container img[src=""],
+        .image-container img[src="#"],
+        .image-error::after { opacity: 0.2; }
+        
+        /* NAVIGATION */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 14rem;
+            background-color: #0a0a0a;
+            border: 1px solid #262626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dropdown-wrapper:hover .dropdown-menu,
+        .dropdown-menu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #a3a3a3;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .dropdown-menu a:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* SMOOTH SCROLLING */
+        html { scroll-padding-top: 100px; }
+        
+        /* GLASS EFFECT */
+        .glass {
+            background: rgba(8, 8, 8, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* FORM INPUTS */
+        input:focus, textarea:focus { outline: none; }
+        
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0px 1000px #080808 inset;
+            -webkit-text-fill-color: #ffffff;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        .skeleton {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #1a1a1a 4%, #262626 25%, #1a1a1a 36%);
+            background-size: 1000px 100%;
+        }
+        
+        @keyframes subtleShift {
+            0% { background: radial-gradient(ellipse at 45% 50%, #1a1a1a 0%, #000000 100%); }
+            50% { background: radial-gradient(ellipse at 55% 50%, #1a1a1a 0%, #000000 100%); }
+            100% { background: radial-gradient(ellipse at 45% 50%, #1a1a1a 0%, #000000 100%); }
+        }
+        
+        /* HERO CONTENT POSITIONING - RESPONSIVE */
+        .hero-content {
+            left: 42%;
+            top: 29%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            button, a { 
+                min-height: 44px; 
+                min-width: 44px; 
+            }
+            
+            /* Mobile Hero Positioning Fix */
+            .hero-content {
+                left: 52% !important;
+                top: 55% !important;
+                transform: translate(-50%, -50%) !important;
+            }
+            
+            /* Make logo much smaller on mobile */
+            .hero-content img {
+                max-width: 120px !important;
+            }
+            
+            /* Reduce spacing on mobile */
+            .hero-content .mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-content .mb-12 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            /* Ensure bracelet is properly sized on mobile */
+            .hero-bracelet-img {
+                max-width: 85% !important;
+                max-height: 85% !important;
+                margin-top: 0 !important;
+            }
+            
+            /* Reduce hero section height on mobile - MAXIMUM COMPRESSION */
+            #home {
+                min-height: 60vh !important;
+                height: 60vh !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens - iPhone specific */
+            .hero-content {
+                left: 52% !important;
+                top: 52% !important;
+            }
+            
+            /* Even smaller logo for small phones */
+            .hero-content img {
+                max-width: 100px !important;
+            }
+            
+            .hero-bracelet-img {
+                max-width: 90% !important;
+                max-height: 90% !important;
+            }
+        }
+        
+        /* PRINT STYLES */
+        @media print {
+            nav, footer, #mobile-menu, #modal { display: none !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-gold-900 selection:text-gold-300 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gold-500/20 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 -ml-2">
+                <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+
+            <!-- Desktop Links (Left) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <div class="dropdown-wrapper relative py-8">
+                    <a href="#jewellery" class="hover:text-white transition-colors flex items-center gap-1">
+                        Jewellery
+                        <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                    </a>
+                    <!-- Dropdown -->
+                    <div class="dropdown-menu">
+                        <a href="#earrings">Earrings</a>
+                        <a href="#rings">Rings</a>
+                        <a href="#bracelets">Bracelets</a>
+                        <a href="#necklaces">Necklaces</a>
+                        <a href="#pendants">Pendants</a>
+                        <a href="#crosses">Crosses</a>
+                        <a href="#tiaras">Tiaras</a>
+                    </div>
+                </div>
+                <a href="#home" onclick="setTimeout(() => document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'}), 100)" class="nav-link hover:text-white transition-colors">Maison</a>
+                <a href="#home" onclick="setTimeout(() => document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'}), 100)" class="nav-link hover:text-white transition-colors">Heritage</a>
+            </div>
+
+            <!-- Logo -->
+            <a href="#home" class="absolute left-1/2 transform -translate-x-1/2 text-center group z-40">
+                <h1 class="font-serif text-2xl tracking-widest text-white group-hover:text-gold-300 transition-colors duration-700">NIKOS IOANNOU</h1>
+            </a>
+
+            <!-- Desktop Links (Right) -->
+            <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-400">
+                <a href="#home" onclick="setTimeout(() => document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'}), 100)" class="nav-link hover:text-white transition-colors">Craftsmanship</a>
+                <a href="#home" onclick="setTimeout(() => document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'}), 100)" class="nav-link hover:text-white transition-colors">Bespoke</a>
+                <a href="#home" onclick="setTimeout(() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'}), 100)" class="nav-link hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Placeholder (Right) -->
+            <div class="lg:hidden w-6"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-500 lg:hidden flex flex-col pt-24 px-8 border-r border-neutral-800">
+        <button onclick="toggleMenu()" class="absolute top-8 right-6 text-white/50 hover:text-white transition-colors p-2">
+            <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+        <div class="flex flex-col gap-5 text-sm tracking-widest uppercase text-neutral-400 font-medium">
+            <div class="text-[10px] text-gold-500 mb-2 mt-4 font-semibold opacity-80">Collections</div>
+            <a href="#jewellery" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">View All</a>
+            <a href="#earrings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Earrings</a>
+            <a href="#rings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Rings</a>
+            <a href="#bracelets" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Bracelets</a>
+            <a href="#necklaces" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Necklaces</a>
+            <a href="#pendants" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Pendants</a>
+            <a href="#crosses" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Crosses</a>
+            <a href="#tiaras" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Tiaras</a>
+            
+            <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
+            <a href="#home" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
+            <a href="#home" onclick="toggleMenu(); setTimeout(() => document.getElementById('maison')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Maison</a>
+            <a href="#home" onclick="toggleMenu(); setTimeout(() => document.getElementById('heritage')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Heritage</a>
+            <a href="#home" onclick="toggleMenu(); setTimeout(() => document.getElementById('craftsmanship')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Craftsmanship</a>
+            <a href="#home" onclick="toggleMenu(); setTimeout(() => document.getElementById('bespoke')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Bespoke</a>
+            <a href="#home" onclick="toggleMenu(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'}), 300)" class="hover:text-white transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content Injection -->
+    <main id="app" class="flex-grow pt-24 min-h-screen transition-opacity duration-500 opacity-100">
+        <!-- Content Rendered by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-950 border-t border-gold-500/20 py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                
+                <!-- Column 1: Address & Contact -->
+                <div class="text-center md:text-left">
+                    <h3 class="font-serif text-lg text-white mb-6 tracking-tight">Contact</h3>
+                    <div class="space-y-3 text-neutral-400 text-sm font-light leading-relaxed">
+                        <p class="font-serif text-base text-neutral-300">Nikos Ioannou Jewellers</p>
+                        <p>79 Onasagorou Street<br>1011 Nicosia, Cyprus</p>
+                        <p class="pt-2">
+                            <a href="tel:+35722674023" class="hover:text-gold-400 transition-colors" aria-label="Call primary phone number">
+                                +357 22 674 023
+                            </a>
+                        </p>
+                        <p>
+                            <a href="mailto:info@ioannou-jewels.com.cy" class="hover:text-gold-400 transition-colors" aria-label="Send email to Nikos Ioannou Jewellers">
+                                info@ioannou-jewels.com.cy
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Social Media -->
+                <div class="text-center">
+                    <h3 class="font-serif text-lg text-white mb-6 tracking-tight">Follow</h3>
+                    <div class="flex justify-center items-center gap-6">
+                        <a href="https://www.instagram.com/nikosioannoujewellers/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-neutral-400 hover:text-gold-400 transition-colors group"
+                           aria-label="Visit Nikos Ioannou Jewellers on Instagram">
+                            <iconify-icon icon="mdi:instagram" width="24" class="group-hover:scale-110 transition-transform"></iconify-icon>
+                        </a>
+                        <a href="https://www.facebook.com/nikosioannoujewellers/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-neutral-400 hover:text-gold-400 transition-colors group"
+                           aria-label="Visit Nikos Ioannou Jewellers on Facebook">
+                            <iconify-icon icon="mdi:facebook" width="24" class="group-hover:scale-110 transition-transform"></iconify-icon>
+                        </a>
+                        <a href="https://www.pinterest.com/jewelsioannou/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="text-neutral-400 hover:text-gold-400 transition-colors group"
+                           aria-label="Visit Nikos Ioannou Jewellers on Pinterest">
+                            <iconify-icon icon="mdi:pinterest" width="24" class="group-hover:scale-110 transition-transform"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Legal & Website -->
+                <div class="text-center md:text-right">
+                    <h3 class="font-serif text-lg text-white mb-6 tracking-tight">Information</h3>
+                    <div class="space-y-3 text-neutral-400 text-sm font-light">
+                        <p>
+                            <a href="https://www.nikosioannou.com" 
+                               target="_blank" 
+                               rel="noopener"
+                               class="hover:text-gold-400 transition-colors"
+                               aria-label="Visit Nikos Ioannou Jewellers official website">
+                                www.nikosioannou.com
+                            </a>
+                        </p>
+                        <div class="flex flex-col gap-2 pt-2">
+                            <a href="#" class="hover:text-gold-400 transition-colors text-xs tracking-wider uppercase">Privacy Policy</a>
+                            <a href="#" class="hover:text-gold-400 transition-colors text-xs tracking-wider uppercase">Legal Notice</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar: Copyright -->
+            <div class="border-t border-neutral-800 pt-8 text-center">
+                <p class="text-neutral-500 text-xs tracking-widest uppercase">
+                    &copy; <span id="current-year"></span> Nikos Ioannou Jewellers. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Details Modal -->
+    <div id="modal" class="fixed inset-0 z-[70] bg-black/95 hidden items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-500">
+        <div class="bg-neutral-925 w-full max-w-6xl h-[90vh] grid grid-cols-1 lg:grid-cols-2 shadow-2xl overflow-hidden relative border border-neutral-800 ring-1 ring-white/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-white/50 hover:text-white transition-colors bg-black/20 p-2 rounded-full backdrop-blur-md">
+                <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+            </button>
+            
+            <!-- Modal Image -->
+            <div class="relative bg-neutral-900 h-1/2 lg:h-full flex items-center justify-center p-8 lg:p-16 overflow-hidden">
+                <img id="modal-img" src="" alt="Detail" class="w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-2xl">
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-8 lg:p-20 flex flex-col justify-center h-1/2 lg:h-full overflow-y-auto bg-neutral-950 border-l border-neutral-900">
+                <div class="space-y-10">
+                    <div>
+                        <span id="modal-category" class="text-[10px] tracking-[0.25em] uppercase text-gold-400 mb-4 block font-medium"></span>
+                        <h2 id="modal-title" class="font-serif text-3xl lg:text-4xl text-white tracking-tight leading-tight"></h2>
+                    </div>
+
+                    <div class="space-y-5 border-t border-neutral-900 pt-10">
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Collection</span>
+                            <span class="text-neutral-300 font-serif italic">Nikos Ioannou Archive</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Material</span>
+                            <span class="text-neutral-300 font-serif italic">18k Gold</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b border-neutral-900 pb-4 group hover:border-neutral-800 transition-colors">
+                            <span class="text-neutral-500 text-[10px] uppercase tracking-widest">Reference</span>
+                            <span id="modal-id" class="text-neutral-300 font-mono text-xs"></span>
+                        </div>
+                    </div>
+
+                    <p id="modal-description" class="text-neutral-400 leading-relaxed font-light font-serif text-lg lg:text-xl">
+                        <!-- Description will be dynamically inserted here -->
+                    </p>
+
+                    <div class="pt-8">
+                        <a href="#home" onclick="enquireAboutPiece()" class="inline-flex items-center justify-center w-full border border-neutral-800 py-4 text-xs tracking-widest uppercase text-white hover:bg-gold-500 hover:border-gold-500 hover:text-black transition-all duration-500">
+                            Enquire About This Piece
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+/**
+ * Nikos Ioannou Jewellers - Application Logic
+ * AURA Digital Studio - Institutional Website
+ * Est. 1945 - Cyprus
+ */
+
+// ============================================
+// DATA SOURCE - EXACT JSON FROM PROMPT
+// ============================================
+
+const RAW_ASSETS = {
+    "brand": "Nikos Ioannou",
+    "description": "Historic gold jewelry - curated archive",
+    "base_url": "https://niassets.netlify.app",
+    "assets": {
+        "earrings": [
+            { "id": "earrings-01", "url": "https://niassets.netlify.app/Earrings/ni-earring-01.jpg" },
+            { "id": "earrings-02", "url": "https://niassets.netlify.app/Earrings/ni-earring-02.jpg" },
+            { "id": "earrings-03", "url": "https://niassets.netlify.app/Earrings/ni-earring-03.jpg" },
+            { "id": "earrings-04", "url": "https://niassets.netlify.app/Earrings/ni-earring-04.jpg" },
+            { "id": "earrings-05", "url": "https://niassets.netlify.app/Earrings/ni-earring-05.jpg" },
+            { "id": "earrings-06", "url": "https://niassets.netlify.app/Earrings/ni-earring-06.jpg" },
+            { "id": "earrings-07", "url": "https://niassets.netlify.app/Earrings/ni-earring-07.jpg" },
+            { "id": "earrings-08", "url": "https://niassets.netlify.app/Earrings/ni-earring-08.jpg" }
+        ],
+        "rings": [
+            { "id": "rings-10", "url": "https://niassets.netlify.app/Rings/ni-ring-10.jpg" },
+            { "id": "rings-11", "url": "https://niassets.netlify.app/Rings/ni-ring-11.jpg" },
+            { "id": "rings-03", "url": "https://niassets.netlify.app/Rings/ni-ring-03.jpg" },
+            { "id": "rings-04", "url": "https://niassets.netlify.app/Rings/ni-ring-04.jpg" },
+            { "id": "rings-05", "url": "https://niassets.netlify.app/Rings/ni-ring-05.jpg" },
+            { "id": "rings-07", "url": "https://niassets.netlify.app/Rings/ni-ring-07.jpg" },
+            { "id": "rings-08", "url": "https://niassets.netlify.app/Rings/ni-ring-08.jpg" },
+            { "id": "rings-09", "url": "https://niassets.netlify.app/Rings/ni-ring-09.jpg" }
+        ],
+        "bracelets": [
+            { "id": "bracelets-03", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-03.jpg" },
+            { "id": "bracelets-04", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-04.jpg" },
+            { "id": "bracelets-05", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-05.jpg" },
+            { "id": "bracelets-06", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-06.jpg" },
+            { "id": "bracelets-07", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-07.jpg" },
+            { "id": "bracelets-08", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-08.jpg" },
+            { "id": "bracelets-10", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-10.jpg" },
+            { "id": "bracelets-11", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-11.jpg" },
+
+            { "id": "bracelets-13", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-13.jpg" },
+            { "id": "bracelets-14", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-14.jpg" },
+            { "id": "bracelets-15", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-15.jpg" },
+            { "id": "bracelets-16", "url": "https://niassets.netlify.app/Bracelets/ni-bracelet-16.jpg" }
+        ],
+        "necklaces": [
+            { "id": "necklaces-01", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-01.jpg" },
+            { "id": "necklaces-02", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-02.jpg" },
+            { "id": "necklaces-03", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-03.jpg" },
+            { "id": "necklaces-04", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-04.jpg" },
+            { "id": "necklaces-05", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-05.jpg" },
+            { "id": "necklaces-06", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-06.jpg" },
+            { "id": "necklaces-07", "url": "https://niassets.netlify.app/Necklaces/ni-necklace-07.jpg" }
+        ],
+        "pendants": [
+            { "id": "pendants-01", "url": "https://niassets.netlify.app/Pendants/ni-pendant-01.jpg" },
+            { "id": "pendants-03", "url": "https://niassets.netlify.app/Pendants/ni-pendant-03.jpg" },
+            { "id": "pendants-04", "url": "https://niassets.netlify.app/Pendants/ni-pendant-04.jpg" },
+            { "id": "pendants-05", "url": "https://niassets.netlify.app/Pendants/ni-pendant-05.jpg" }
+        ],
+        "crosses": [
+            { "id": "crosses-01", "url": "https://niassets.netlify.app/Crosses/ni-cross-01.jpg" },
+            { "id": "crosses-02", "url": "https://niassets.netlify.app/Crosses/ni-cross-02.jpg" },
+            { "id": "crosses-03", "url": "https://niassets.netlify.app/Crosses/ni-cross-03.jpg" },
+            { "id": "crosses-04", "url": "https://niassets.netlify.app/Crosses/ni-cross-04.jpg" },
+            { "id": "crosses-05", "url": "https://niassets.netlify.app/Crosses/ni-cross-05.jpg" },
+            { "id": "crosses-06", "url": "https://niassets.netlify.app/Crosses/ni-cross-06.jpg" }
+        ],
+        "tiaras": [
+            { "id": "tiaras-02", "url": "https://niassets.netlify.app/Tiaras/ni-tiara-02.jpg" }
+        ]
+    }
+};
+
+// ============================================
+// POETIC LINES (for gallery view)
+// One beautiful line - the hook, the mystery, the meaning
+// ============================================
+
+const POETIC_LINES = {
+    "earrings-01": "Celestial spheres from ancient Mediterranean courts",
+    "earrings-02": "Eternal circles worn by priestesses and queens",
+    "earrings-03": "Cascading beauty from Cyprus to Etruria",
+    "earrings-04": "Warrior shields transformed into feminine grace",
+    "earrings-05": "Byzantine devotional art in geometric form",
+    "earrings-06": "Gold becomes lace through Phoenician mastery",
+    "earrings-07": "Four thousand years of craft in modern clarity",
+    "earrings-08": "Solar radiance from archaic Cyprus",
+    
+    "rings-03": "The vault of heaven in miniature",
+    "rings-04": "Byzantine throne of authority and status",
+    "rings-05": "Ancient power worn by those who commanded empires",
+    "rings-07": "Baroque garden of gold growing from the finger",
+    "rings-08": "Ceremonial relief sculpture from antiquity",
+    "rings-09": "The eternal circle, the unbreakable bond",
+    "rings-10": "Textile patterns as protective talismans in gold",
+    "rings-11": "Modernist geometry meets ancient symbolism",
+    
+    "bracelets-03": "Prayer beads marking sacred time",
+    "bracelets-04": "Byzantine architecture translated into gold",
+    "bracelets-05": "Clasped hands in an endless chain",
+    "bracelets-06": "Pomegranate seeds\u2014ancient symbols of abundance",
+    "bracelets-07": "Meditation on relationship and unity",
+    "bracelets-08": "Lions of Mycenae, guardians at your wrist",
+    "bracelets-10": "Art Deco terraces climbing Mediterranean hills",
+    "bracelets-11": "Pages of an ancient talisman",
+    "bracelets-13": "The Greek meander, path to enlightenment",
+    "bracelets-14": "The fortified walls of ancient Nicosia in gold",
+    "bracelets-15": "Gold cascading in celebration and joy",
+    "bracelets-16": "Secret door to permanence and change",
+    
+    "necklaces-01": "Hand-formed links in ancient goldsmith tradition",
+    "necklaces-02": "Collar of Byzantine devotional artistry",
+    "necklaces-03": "Modernist boldness from the machine age",
+    "necklaces-04": "Cascading chains like waterfall and light",
+    "necklaces-05": "Medallions echoing ancient coins and seals",
+    "necklaces-06": "Woven gold as flexible as Byzantine silk",
+    "necklaces-07": "Suspended geometry in kinetic grace",
+    
+    "pendants-01": "Framed filigree from Phoenician masters",
+    "pendants-03": "Shield of protection with sacred imagery",
+    "pendants-04": "Circular universe suspended in gold",
+    "pendants-05": "Sculptural geometry of the modern age",
+    
+    "crosses-01": "Byzantine cross from Constantinople's golden age",
+    "crosses-02": "Greek cross with pre-Christian origins",
+    "crosses-03": "Raised patterns worked blind by ancient hands",
+    "crosses-04": "Scrolling patterns in transparent gold",
+    "crosses-05": "Modernist purity meeting sacred form",
+    "crosses-06": "Technical mastery of three ancient arts",
+    
+    "tiaras-02": "Architectural crown for ceremonial presence"
+};
+
+// ============================================
+// LINK TEXTS (for gallery view)
+// The perfect call-to-action matched to each piece's essence
+// ============================================
+
+const LINK_TEXTS = {
+    "earrings-01": "Discover the story",
+    "earrings-02": "Uncover its meaning",
+    "earrings-03": "Read its history",
+    "earrings-04": "Explore this piece",
+    "earrings-05": "Discover the story",
+    "earrings-06": "Uncover its meaning",
+    "earrings-07": "Read its history",
+    "earrings-08": "Discover the story",
+    
+    "rings-03": "Uncover its meaning",
+    "rings-04": "Read its history",
+    "rings-05": "Discover the story",
+    "rings-07": "Explore this piece",
+    "rings-08": "Read its history",
+    "rings-09": "Uncover its meaning",
+    "rings-10": "Discover the story",
+    "rings-11": "Explore this piece",
+    
+    "bracelets-03": "Uncover its meaning",
+    "bracelets-04": "Read its history",
+    "bracelets-05": "Explore this piece",
+    "bracelets-06": "Discover the story",
+    "bracelets-07": "Uncover its meaning",
+    "bracelets-08": "Discover the story",
+    "bracelets-10": "Read its history",
+    "bracelets-11": "Uncover its meaning",
+    "bracelets-13": "Discover the story",
+    "bracelets-14": "Uncover its meaning",
+    "bracelets-15": "Read its history",
+    "bracelets-16": "Discover the story",
+    
+    "necklaces-01": "Read its history",
+    "necklaces-02": "Discover the story",
+    "necklaces-03": "Explore this piece",
+    "necklaces-04": "Uncover its meaning",
+    "necklaces-05": "Discover the story",
+    "necklaces-06": "Read its history",
+    "necklaces-07": "Explore this piece",
+    
+    "pendants-01": "Discover the story",
+    "pendants-03": "Uncover its meaning",
+    "pendants-04": "Explore this piece",
+    "pendants-05": "Read its history",
+    
+    "crosses-01": "Discover the story",
+    "crosses-02": "Uncover its meaning",
+    "crosses-03": "Read its history",
+    "crosses-04": "Explore this piece",
+    "crosses-05": "Discover the story",
+    "crosses-06": "Read its history",
+    
+    "tiaras-02": "Discover the story"
+};
+
+// ============================================
+// SHORT DESCRIPTIONS (kept for fallback/technical reference)
+// Brief, factual, visual-only (1 sentence)
+// ============================================
+
+const SHORT_DESCRIPTIONS = {
+    "earrings-01": "Domed drop earrings with granulated surface texture and spherical form.",
+    "earrings-02": "Substantial hoop earrings with smooth polished exterior and hammered detail.",
+    "earrings-03": "Articulated drop earrings featuring graduated spherical elements with surface ornamentation.",
+    "earrings-04": "Shield-form earrings with raised central dome and granulated border detail.",
+    "earrings-05": "Linear drop earrings composed of linked rectangular elements with textured surfaces.",
+    "earrings-06": "Delicate openwork earrings featuring scrolling filigree wire construction.",
+    "earrings-07": "Geometric rectangular earrings with hammered surface and granulated perimeter.",
+    "earrings-08": "Circular button earrings with concentric granulation pattern.",
+    
+    "rings-03": "High dome ring with granulated surface covering entire form.",
+    "rings-04": "Ring with raised bezel setting and split shank construction.",
+    "rings-05": "Wide band with subtle surface texture and architectural proportion.",
+    "rings-07": "Ornate ring with raised filigree bezel and scrollwork detail.",
+    "rings-08": "Statement ring combining repoussÃ© surface and wide band form.",
+    "rings-09": "Simple band ring with clean lines and polished finish.",
+    "rings-10": "Band ring with continuous raised pattern inspired by textile motifs.",
+    "rings-11": "Architectural ring with geometric bezel and divided shank.",
+    
+    "bracelets-03": "Articulated bracelet with spherical gold elements.",
+    "bracelets-04": "Segmented bracelet with repeating rounded forms.",
+    "bracelets-05": "Linked bracelet with elongated oval elements.",
+    "bracelets-06": "Bracelet composed of closely spaced textured spheres.",
+    "bracelets-07": "Articulated chain bracelet with interlocking rounded links and integrated clasp.",
+    "bracelets-08": "Rigid bracelet terminating in sculpted animal heads.",
+    "bracelets-10": "Wide cuff with stepped horizontal ridges.",
+    "bracelets-11": "Open cuff with engraved surface panels.",
+    "bracelets-13": "Architectural cuff with inset linear motifs.",
+    "bracelets-14": "Articulated bracelet with angular linked elements.",
+    "bracelets-15": "Multi-strand bracelet with suspended elements.",
+    "bracelets-16": "Hinged bangle with integrated clasp structure.",
+    
+    "necklaces-01": "Chain necklace with hand-formed oval links in graduated sizing.",
+    "necklaces-02": "Collar necklace featuring elaborate filigree throughout.",
+    "necklaces-03": "Contemporary necklace with bold geometric linked elements.",
+    "necklaces-04": "Multi-strand necklace with graduated chain layers.",
+    "necklaces-05": "Statement necklace alternating repoussÃ© medallions and granulated beads.",
+    "necklaces-06": "Flexible mesh necklace created from woven wire construction.",
+    "necklaces-07": "Architectural necklace with suspended geometric elements.",
+    
+    "pendants-01": "Ornate pendant with filigree work within framed border.",
+    "pendants-03": "Shield-form pendant with engraved symbolic imagery.",
+    "pendants-04": "Circular pendant with surface decoration and central suspension loop.",
+    "pendants-05": "Geometric pendant with bold sculptural form.",
+    
+    "crosses-01": "Byzantine cross with granulation covering all surfaces.",
+    "crosses-02": "Greek cross with flared terminals and engraved detail.",
+    "crosses-03": "Ornate cross featuring repoussÃ© decoration.",
+    "crosses-04": "Filigree cross with scrolling wire patterns.",
+    "crosses-05": "Contemporary cross with clean architectural lines.",
+    "crosses-06": "Elaborate cross combining granulation, filigree, and engraving.",
+    
+    "tiaras-02": "Architectural tiara combining geometric framework with decorative elements."
+};
+
+// ============================================
+// LONG DESCRIPTIONS (for modal popup)
+// Expanded, detailed, technical (2-4 sentences)
+// ============================================
+
+const LONG_DESCRIPTIONS = {
+    "earrings-01": "Drop earrings crowned with domed spheres, their surfaces alive with granulation\u2014an ancient technique where countless tiny gold spheres are fused into patterns that catch and hold light. The dome recalls the celestial sphere, a symbol of cosmic order revered in Mediterranean antiquity. Each granule is placed by hand, a meditative act connecting the maker to goldsmiths who adorned Cypriot nobility three millennia ago. The weight speaks of ceremony and occasion, worn to mark moments that transcend the everyday.",
+    
+    "earrings-02": "Substantial hoops of gold, shaped into the eternal circle\u2014a form without beginning or end, symbolizing continuity and the cycles of life. The polished exterior reflects light with mirror clarity, while the interior bears subtle marks of the hammer, traces of the hand that shaped them. These are not delicate ornaments but declarations of presence, the kind worn by priestesses and queens in ancient Mediterranean courts, where gold signified divine favor and earthly power.",
+    
+    "earrings-03": "Articulated drops where graduated spheres descend like celestial bodies in ordered procession. Each sphere is adorned with granulation, that most patient of techniques where individual gold droplets are coaxed into patterns through controlled heat and ancient knowledge. The spheres move independently, creating subtle motion that catches the eye and holds attention. This cascading form appears in jewelry from Cyprus to Etruria, worn by women who understood that beauty lies in rhythm and repetition.",
+    
+    "earrings-04": "Shield-form earrings bearing the echo of ancient armor, their raised domes reminiscent of warrior bosses that once turned blades in battle. But here, protection takes a gentler form\u2014the dome rises from borders of fine granulation, transforming martial strength into feminine adornment. This marriage of power and beauty speaks to Cyprus's position as crossroads of empires, where Mycenaean warriors and Phoenician traders brought influences that merged into distinctive island forms.",
+    
+    "earrings-05": "Linear drops composed of linked elements that descend with architectural precision, their surfaces bearing hammer marks and engraved patterns that play with light and shadow. The narrow, elongated form recalls the Byzantine aesthetic, where jewelry became devotional art and every surface carried meaning. These are earrings for contemplation, their geometric purity suggesting spiritual rather than earthly concerns, worn perhaps by women who moved between monastery and court.",
+    
+    "earrings-06": "Openwork earrings where gold becomes lace, scrolling patterns built from twisted strands so fine they seem to defy their material weight. This is filigree work in its purest expression, an art form that traveled the Mediterranean with Phoenician traders and took root in Cyprus, where it merged with local traditions. The scrolls flow into one another without beginning or end, suggesting the eternal\u2014a meditation in gold on continuity and connection across generations.",
+    
+    "earrings-07": "Geometric forms where hammer marks become deliberate texture, and granulated borders frame surfaces that bear the honest evidence of making. These earrings embrace simplicity as philosophy, rejecting ornamental excess in favor of essential form. The rectangular shape speaks to modernist sensibilities, yet the granulation technique reaches back four thousand years, creating a dialogue between ancient craft and contemporary clarity.",
+    
+    "earrings-08": "Circular earrings where granulation radiates from a central point like ripples on water or rays of the sun\u2014ancient symbols of energy emanating from source. Each minute sphere of gold is placed individually, creating concentric circles that draw the eye inward to contemplative center. This solar pattern appears in jewelry from archaic Cyprus, worn as talismans connecting the wearer to celestial powers and cosmic order.",
+    
+    "rings-03": "A ring crowned with a high dome entirely covered in granulation, like a miniature earth studded with stars. The dome rises from the finger with authority, its surface alive with countless gold spheres that catch light from every angle. In ancient Cyprus, such domed forms symbolized the vault of heaven, the sacred dome under which all life unfolds. To wear this ring is to carry a piece of the cosmos, a reminder that some beauty transcends earthly concerns and speaks to the eternal.",
+    
+    "rings-04": "A ring where the central element is elevated on architectural supports, creating space and shadow beneath\u2014a throne for whatever symbolic or decorative form it carries. The band divides and flows around the finger like twin rivers rejoining at a sacred site. This structural approach appears in Byzantine imperial jewelry, where rings served as seals of authority and declarations of status. The elevation suggests importance, something raised above the everyday to occupy a realm of significance.",
+    
+    "rings-05": "A wide band that embraces the finger with substantial presence, its surface bearing the subtle texture of the goldsmith's hammer\u2014not hidden or polished away, but celebrated as evidence of making. The width recalls ancient Egyptian and Mesopotamian rings worn by those who commanded authority. This is gold as statement, as material weight, as reminder that luxury needs no elaborate decoration when the material itself speaks of permanence and power.",
+    
+    "rings-07": "An ornate ring where filigree work builds upward in layers of scrolling gold, creating a small garden of metal that seems to grow from the finger. The scrollwork flows and curves like vines seeking sunlight, an organic form frozen in precious metal. This baroque exuberance speaks to periods when jewelry celebrated abundance, when every surface became an opportunity for the goldsmith to demonstrate virtuosity and the wearer to display refined taste.",
+    
+    "rings-08": "A statement ring where gold is pushed and shaped from behind, creating raised patterns that catch light and cast shadow\u2014the ancient art of repoussÃ©, where the goldsmith works blind, feeling through the metal to create form. The wide band provides canvas for this sculptural approach, turning the ring into wearable relief sculpture. Such pieces recall the great ceremonial rings of antiquity, worn to impress and intimidate, to mark the wearer as person of consequence.",
+    
+    "rings-09": "A simple band of polished gold, unadorned and unapologetic in its plainness. The smooth surface creates an unbroken circle of reflected light, a wedding of form and material so elemental it transcends fashion. This is the ring that has existed since humans first learned to shape metal, the eternal circle symbolizing commitment, continuity, the promise that has no end. Its power lies not in decoration but in what it represents\u2014the unbreakable bond.",
+    
+    "rings-10": "A band whose surface carries patterns borrowed from textile\u2014the ancient arts of weaving and braiding translated into gold. The repeating motif wraps continuously around the ring, suggesting the endless patterns of life, the threads that connect past to present. In ancient cultures, such textile patterns held protective power, woven intentions made material. Here, the goldsmith preserves those protective patterns in metal, creating a talisman disguised as ornament.",
+    
+    "rings-11": "An architectural ring of geometric clarity, where lines meet at precise angles and negative space becomes as important as solid form. The band divides and reconnects, creating windows of light and shadow. This modernist approach to jewelry design emerged in the mid-twentieth century, when artists sought to strip away historical decoration and find beauty in pure form. Yet even this stark geometry carries meaning\u2014the division and reunion suggesting life's separations and reconn ections.",
+    
+    "bracelets-03": "A bracelet where spheres of gold move like prayer beads, each one a perfect world unto itself, linked in a chain that speaks to the ancient practice of counting blessings and marking sacred time. The spheres catch light from every angle, creating a living surface that changes with each gesture. Such articulated forms appear in jewelry from ancient Sumer to Byzantine Constantinople, worn by those who understood that beauty lies in repetition and rhythm, in the meditation of repeated form.",
+    
+    "bracelets-04": "Segmented bracelet where rounded forms repeat in measured cadence, like the arches of an aqueduct or the domes of a Byzantine church\u2014architecture reduced to its essential curve and translated into gold. Each segment is formed separately then joined, creating flexibility within structure, movement within order. This approach to bracelet construction appears across Mediterranean cultures, wherever goldsmiths sought to marry the rigid circle of the bangle with the fluid grace of articulated jewelry.",
+    
+    "bracelets-05": "Linked bracelet where elongated ovals interlock like clasped hands, each link flowing into the next in an endless chain of connection. The oval\u2014that most graceful of geometric forms, neither circle nor line but something between\u2014creates visual flow while the links provide structural integrity. This is the ancient goldsmith's solution to flexibility, each link bearing the marks of individual shaping yet joining to create harmonious unity.",
+    
+    "bracelets-06": "A bracelet dense with textured spheres that cluster together like pomegranate seeds or grapes on the vine\u2014ancient symbols of abundance and fertility. Each sphere is individually formed and given surface texture that catches light, creating a bracelet that seems to shimmer and breathe with movement. The weight is substantial, a physical reminder of the precious metal encircling the wrist, the kind of piece worn for ceremony and celebration when beauty must be both seen and felt.",
+    
+    "bracelets-07": "Chain bracelet where rounded links flow into one another with organic grace, the clasp so well integrated it becomes invisible\u2014a circle without apparent beginning or end. The smooth, rounded forms speak to continuity and connection, each link hand-shaped to fit perfectly with its neighbors. This is jewelry as meditation on relationship, on how individual elements join to create something stronger and more beautiful than any could be alone.",
+    
+    "bracelets-08": "Guardian bracelet terminating in lion heads\u2014those ancient protectors whose image has adorned royal jewelry from Mycenae to Persia, from Egypt to Cyprus. The lions' faces emerge from the gold with sculptural power, their gaze eternal and watchful. To wear such a bracelet is to carry protective spirits at your wrist, to invoke the courage and strength these beasts symbolized to ancient peoples who saw in them divine power made manifest.",
+    
+    "bracelets-10": "Wide cuff whose surface rises and falls in horizontal waves, creating shadow and light through pure form. The stepped ridges recall the agricultural terraces that climb Mediterranean hillsides, the ancient human impulse to impose order on landscape. This marriage of function and beauty, of structure and ornament, speaks to the Art Deco sensibility, when geometric forms were elevated to high art and simple lines became statements of modernity.",
+    
+    "bracelets-11": "Open cuff whose surface is divided into panels like pages of a book, each space filled with engraved patterns that tell stories in the language of line and curve. The cuff can be adjusted to fit, opening and closing like a door between worlds\u2014the practical made precious. Such engraved cuffs were worn by ancient Mediterranean peoples as talismans, the patterns carrying protective power, beauty intertwined with belief.",
+    
+    "bracelets-13": "Architectural cuff where linear motifs create compositions of geometric purity, echoing the clean lines of modernist design\u2014that early twentieth century moment when artists looked to machine age precision and found unexpected beauty in stark simplicity. Yet even this geometric vocabulary carries ancient resonance, recalling the Greek key pattern, the meander that symbolized eternal flow, the labyrinth path leading to enlightenment.",
+    
+    "bracelets-14": "This bracelet carries the exact angular geometry of Nicosia's Venetian walls\u2014those star-shaped fortifications built between 1567 and 1570 that still embrace the old city. Each sharp-angled link echoes the bastions designed by Giulio Savorgnano, the military engineer whose revolutionary zigzag plan transformed fortress architecture across Europe. The projecting angles weren't decorative but deadly strategic\u2014creating crossfire zones where defenders could protect every approach. To wear this bracelet is to carry a piece of Cypriot resilience at your wrist, those walls that witnessed Ottoman sieges, British colonial rule, and still stand as the heart of divided Nicosia. The goldsmith has transformed defensive architecture into wearable geometry, military necessity into elegant ornament, the city's protective embrace into a circle of precious metal\u2014history made intimate, fortification made beautiful.",
+    
+    "bracelets-15": "Multi-strand bracelet where suspended elements dangle and sway, creating gentle music with movement\u2014a bracelet that announces its wearer through subtle sound and kinetic grace. The layering of strands creates depth, while the suspended charms add individual character. This approach to jewelry design speaks to periods of abundance and celebration, when more was indeed more, when cascading gold expressed joy unrestrained.",
+    
+    "bracelets-16": "Hinged bangle that opens like a secret door, its mechanism invisible when closed, creating the illusion of a seamless circle of gold. The hinge represents the goldsmith's ingenuity\u2014making the practical beautiful, transforming necessity into art. Such technical solutions appear across jewelry history, wherever makers sought to create rigid circles that could still embrace the wrist, permanence that allowed for change.",
+    
+    "necklaces-01": "A chain where each oval link is shaped by hand, none precisely identical to its neighbor\u2014the honest signature of human making that no machine can replicate. The links graduate in size from back to front, drawing the eye to the central point where the largest links rest at the collarbone, creating subtle emphasis through proportion alone. This is the ancient goldsmith's chain, the fundamental link that has connected pendants to wearers for five thousand years, from Sumerian queens to Byzantine empresses. Each link represents individual labor, individual intention, making the whole chain a meditation on accumulated effort and enduring connection.",
+    
+    "necklaces-02": "A collar of pure filigree that sits close to the neck like Byzantine regalia, its surface an unbroken field of scrolling gold transformed into lace. This is the art that Phoenician traders carried across the Mediterranean, the technique that took root in Cyprus and flourished in the hands of island craftsmen who understood patience as virtue. The collar form\u2014rigid, architectural, ceremonial\u2014elevates the wearer, creating presence and formality. Such necklaces were worn by those who moved in circles of power, where jewelry served as declaration of status and demonstration of access to master craftsmen.",
+    
+    "necklaces-03": "Bold geometric links march around the neck with modernist confidence, each element substantial and architecturally defined\u2014jewelry reimagined for the machine age, when angular forms spoke of progress and geometric clarity became its own aesthetic philosophy. This is gold stripped of historical ornament, reduced to essential form and proportion. Yet even this stark geometry carries meaning: the links join and separate, connect and distinguish, creating a necklace that speaks to individual elements forming collective strength, a very modern meditation on unity and diversity.",
+    
+    "necklaces-04": "Multiple chains cascade from a single point, graduating in length like a waterfall frozen in gold, each strand independent yet contributing to the unified whole. This architectural approach to necklace construction creates depth through layering, movement through multiplicity. The effect is abundance without chaos, complexity held in graceful order. Such multi-strand designs appear in jewelry from ancient Egypt to Art Deco Paris, wherever goldsmiths sought to create the illusion of liquid gold, of metal that flows and drapes like fabric.",
+    
+    "necklaces-05": "Alternating elements create rhythm around the neck: raised medallions worked from behind through the ancient art of repoussÃ©, alternating with spheres covered in granulation\u2014two of the oldest goldsmithing techniques joined in harmonious composition. The medallions recall ancient coins and seals, objects of authority and exchange that bore images of rulers and gods. To wear such medallions is to invoke that history, to drape yourself in forms that once signified power and legitimacy across the ancient Mediterranean world.",
+    
+    "necklaces-06": "Gold woven into flexible mesh, transformed through patient labor into something almost textile, almost fabric\u2014yet remaining unmistakably precious metal. This is the goldsmith as weaver, creating jewelry that drapes and flows like Byzantine silk, that moves with the body rather than against it. The technique appears in ancient jewelry from Greece to Etruria, wherever craftsmen sought to make rigid metal flexible, to give gold the fluid grace of cloth. The result is luxury doubled: the precious material rendered even more precious through the extreme skill required to weave it.",
+    
+    "necklaces-07": "Geometric elements suspended from a foundation structure, creating kinetic jewelry that moves independently with each turn of the head, each gesture\u2014ornament that refuses to remain static. This architectural approach to jewelry design emerged in the modernist moment, when artists looked to mobile sculpture and found inspiration in suspended form. The geometric vocabulary speaks to that twentieth-century aesthetic, yet the principle is ancient: jewelry as something alive, as ornament that responds to its wearer, creating beauty not just through form but through movement and change.",
+    
+    "pendants-01": "A pendant where solid frame contains delicate filigree, like a window framing a garden of gold\u2014the interplay between structure and ornament, between containment and freedom. The frame provides architectural support while the interior wirework flows in scrolling patterns, creating negative space as important as solid metal. This compositional approach appears in jewelry from ancient Greece through Renaissance Italy, wherever goldsmiths understood that beauty often lies in contrast: the substantial protecting the delicate, the rigid framing the flowing. Such pendants were worn as amulets and declarations, objects suspended at the heart carrying both aesthetic and protective power.",
+    
+    "pendants-03": "A shield-form pendant bearing engraved imagery\u2014the shield that once turned weapons in battle now transformed into protective talisman worn at the breast. The shield as symbol carries power across millennia: from Mycenaean warriors to medieval knights, the shield represented protection not just physical but spiritual, not just defense but identity. Here that form is miniaturized, made intimate, transformed from armor into ornament. The engraved symbols would have carried meaning to their original wearer, perhaps religious, perhaps familial, perhaps protective invocations against unseen dangers.",
+    
+    "pendants-04": "A circular pendant, that most perfect of geometric forms\u2014no beginning, no end, the eternal return, the sun, the moon, the wheel of seasons and years. The circle has carried symbolic weight since humans first scratched patterns in sand: unity, completion, wholeness, the cosmos reduced to essential form. This pendant's surface decoration creates texture and visual interest, but the fundamental power lies in its shape, in that ancient circular form that speaks to something deep in human consciousness about order, completion, and the sacred geometry of existence.",
+    
+    "pendants-05": "Bold geometric form that announces itself through sculptural presence rather than surface decoration\u2014this is modernist jewelry at its purest, stripped of historical ornament, reduced to essential volumes and planes. The pendant exists in three dimensions, creating changing silhouettes as it moves, casting shadows, catching light at angular edges. This aesthetic emerged in the twentieth century when artists sought beauty in industrial forms, in geometric clarity, in the honest expression of material and construction. Yet even this stark geometry carries meaning: it speaks to transparency, to clarity, to the beauty of pure form.",
+    
+    "crosses-01": "A Byzantine cross in the traditional proportion\u2014equal arms expanding at their terminals, the entire surface alive with granulation applied in organized patterns. This form emerged in Constantinople during Christianity's golden age, when jewelry became devotional art and every surface carried sacred intention. The granulation technique, where countless gold spheres are fused to the surface, creates texture that catches light like stars in the night sky. To wear such a cross is to carry a piece of Byzantine devotion, to invoke the spiritual intensity of that civilization where art served transcendent purpose.",
+    
+    "crosses-02": "The Greek cross\u2014equal arms meeting at the center, a form that predates Christianity itself, carrying symbolic weight from pre-Christian antiquity. The flared terminals echo architectural columns, while engraved details speak in the linear language of ancient pattern-making. This form appears in contexts both sacred and secular across the Mediterranean world, worn by those who understood the cross as cosmic symbol: the meeting of vertical and horizontal, heaven and earth, the intersection where the divine touches the mortal. The engraving would carry personal or protective meanings, patterns as talismans.",
+    
+    "crosses-03": "A cross whose surface bears raised decoration created through repoussÃ©\u2014the goldsmith working from behind, hammering blind, feeling through the metal to create form without seeing it directly. This is one of the oldest metalworking techniques, requiring intimate knowledge of how gold behaves under stress, when it needs rest, how to coax it into shape without cracking or tearing. The resulting relief creates dimensional complexity, patterns that emerge from the surface like thoughts rising into consciousness. Such ornate crosses were worn as declarations of faith and demonstrations of access to skilled craftsmen.",
+    
+    "crosses-04": "A cross constructed entirely from filigree\u2014gold wire twisted, scrolled, and soldered into transparent patterns that allow light to pass through. This is the goldsmith's most delicate work, requiring absolute control of heat and solder, steady hands and patient hours. The openwork structure creates a cross that is more void than solid, more light than metal, suggesting the spiritual rather than material nature of what the form represents. Such filigree crosses appear throughout Christian jewelry history, worn by those who valued delicacy and complexity, ornament as meditation.",
+    
+    "crosses-05": "Modernist cross stripped to essential form\u2014clean lines, precise angles, geometric purity, surface decoration banished in favor of clarity and proportion. This aesthetic emerged when twentieth-century artists sought to find beauty in simplicity, to remove historical ornament and reveal the power of pure form. Yet even this stark geometry carries sacred weight: the vertical axis rising toward heaven, the horizontal arms embracing the earth, the intersection where divine and mortal meet. Sometimes meaning resides not in decoration but in the eloquence of essential form.",
+    
+    "crosses-06": "An elaborate cross that demonstrates the goldsmith's complete technical vocabulary: granulation covering surfaces with textured gold, filigree creating openwork sections, engraving adding linear detail\u2014three ancient techniques integrated into unified composition. This is jewelry as technical showcase, as demonstration of mastery across multiple arts. Such complex crosses were commissioned by those who valued virtuosity, who understood jewelry not just as ornament but as portable proof of civilization, of the accumulated skill that separates precious objects from mere decoration.",
+    
+    "tiaras-02": "A tiara built on architectural principles\u2014geometric framework providing structure while decorative elements create ornamental interest, the marriage of engineering and artistry that defines all great ceremonial jewelry. The tiara is perhaps the most symbolic of all ornaments: worn only on rare occasions, it literally elevates the wearer, adding height and presence, marking the person as worthy of attention and ceremony. This form descends from ancient diadems and crowns, from the circlets that marked royalty and divinity across civilizations. To wear a tiara is to step outside everyday existence, to mark an occasion as transcendent, to announce through ornament that this moment\u2014this day, this ceremony\u2014stands apart from ordinary time."
+};
+
+// Process assets with poetic lines, link texts, and descriptions
+const ASSETS = {};
+for (const [category, items] of Object.entries(RAW_ASSETS.assets)) {
+    ASSETS[category] = items.map((item) => ({
+        ...item,
+        poeticLine: POETIC_LINES[item.id] || "Timeless gold from ancient tradition",
+        linkText: LINK_TEXTS[item.id] || "Discover the story",
+        shortDescription: SHORT_DESCRIPTIONS[item.id] || "Gold jewellery piece with hand-finished surface.",
+        longDescription: LONG_DESCRIPTIONS[item.id] || SHORT_DESCRIPTIONS[item.id] || "Gold jewellery piece with hand-finished surface."
+    }));
+}
+
+// ============================================
+// HASH-BASED ROUTING (SIMPLE, NO SERVER CONFIG NEEDED)
+// ============================================
+
+const ROUTES = ['jewellery', 'earrings', 'rings', 'bracelets', 'necklaces', 'pendants', 'crosses', 'tiaras', 'history', 'heritage-gallery', 'craftsmanship-gallery'];
+const app = document.getElementById('app');
+
+function init() {
+    // Listen for hash changes
+    window.addEventListener('hashchange', router);
+    
+    // Handle initial load
+    router();
+}
+
+function router() {
+    const hash = window.location.hash.slice(1); // Remove leading #
+    document.getElementById('mobile-menu').classList.add('-translate-x-full');
+
+    if (!hash || hash === 'home') {
+        renderHome();
+    } else if (hash === 'jewellery') {
+        renderJewelleryOverview();
+    } else if (hash === 'history') {
+        renderHistory();
+    } else if (hash === 'heritage-gallery') {
+        renderHeritageGallery();
+    } else if (hash === 'craftsmanship-gallery') {
+        renderCraftsmanshipGallery();
+    } else if (ROUTES.includes(hash)) {
+        renderCategory(hash);
+    } else {
+        renderHome();
+    }
+    
+    // Scroll to top after content is rendered
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+}
+
+// ============================================
+// RENDER FUNCTIONS
+// ============================================
+
+function renderHome() {
+    const heroImg = 'images/hero-bracelet.jpg';
+
+    app.innerHTML = `
+        <!-- HERO -->
+        <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-black flex items-center justify-center" style="background: #000000;">
+                <img src="${heroImg}" 
+                     class="hero-bracelet-img object-contain opacity-60" 
+                     loading="eager"
+                     decoding="async"
+                     onload="this.style.opacity='0.6'"
+                     onerror="this.style.opacity='0.3'"
+                     style="opacity:0; transition: opacity 1s ease; max-width: 70%; max-height: 75%; margin-top: -10vh; filter: drop-shadow(0 0 80px rgba(0,0,0,0.9));"
+                     alt="Historic Jewellery">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70"></div>
+            </div>
+            
+            <div class="hero-content absolute z-10 text-center animate-fade-in" style="left: 42%; top: 29%; transform: translate(-50%, -50%);">
+                <div class="mb-6 flex justify-center">
+                    <img src="images/ni-logo-glow-v2.png" alt="Nikos Ioannou Logo" class="w-40 md:w-48 lg:w-56 h-auto drop-shadow-2xl" style="filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));">
+                </div>
+                
+                <div class="w-12 h-[1px] bg-gold-500 opacity-60 mx-auto mb-6"></div>
+                
+                <p class="font-serif text-xs md:text-sm tracking-[0.3em] uppercase text-gold-300 mb-12 text-center" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 3px 3px 10px rgba(0,0,0,0.6); letter-spacing: 0.3em;">Est. 1945 - Cyprus</p>
+                
+                <a href="#jewellery" class="inline-block border border-white/20 px-12 py-4 text-[11px] tracking-widest uppercase text-white hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-sm">
+                    Explore Jewellery
+                </a>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION -->
+        <section class="py-2 md:py-16 px-6 bg-neutral-950">
+            <div class="max-w-5xl mx-auto">
+                <div class="relative aspect-video bg-neutral-900 border border-neutral-800 overflow-hidden rounded-sm">
+                    <video 
+                        class="w-full h-full object-cover" 
+                        controls
+                        muted 
+                        loop 
+                        playsinline 
+                        webkit-playsinline
+                        preload="auto">
+                        <source src="images/hero-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO -->
+        <section class="py-16 px-6 bg-neutral-950">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="font-serif text-2xl md:text-3xl lg:text-4xl leading-relaxed text-neutral-300 font-light tracking-tight">
+                    "At Nikos Ioannou, gold is treated not as an ornament, but as a creative memory. Each piece is shaped by hand, informed by history, and intended to endure beyond time."
+                </p>
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="py-24 px-6 max-w-[1600px] mx-auto">
+            <!-- First Row (4 items) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
+                ${renderHomeTile('Earrings', 'earrings', ASSETS.earrings[0].url)}
+                ${renderHomeTile('Bracelets', 'bracelets', ASSETS.bracelets[5].url)}
+                ${renderHomeTile('Necklaces', 'necklaces', ASSETS.necklaces[2].url)}
+                ${renderHomeTile('Rings', 'rings', ASSETS.rings[0].url)}
+            </div>
+            
+            <!-- Second Row (3 larger items, Tiaras centered) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 mt-1 max-w-[1200px] mx-auto">
+                ${renderHomeTile('Pendants', 'pendants', ASSETS.pendants[0].url, 'object-position: center top; transform: scale(1.3) translateY(-12%);')}
+                ${renderHomeTile('Tiaras', 'tiaras', ASSETS.tiaras[0].url)}
+                ${renderHomeTile('Crosses', 'crosses', ASSETS.crosses[0].url)}
+            </div>
+        </section>
+
+        <!-- SIGNATURE PIECES -->
+        <section class="py-32 px-6 bg-neutral-925 border-y border-neutral-900">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-16 text-center tracking-tight">Selected Signature Pieces</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+                    ${renderSignatureCard(ASSETS.earrings[2], 'Earrings')}
+                    ${renderSignatureCard(ASSETS.bracelets[1], 'Bracelet')}
+                    ${renderSignatureCard(ASSETS.necklaces[2], 'Necklace')}
+                </div>
+            </div>
+        </section>
+
+        <!-- MAISON -->
+        <section id="maison" class="py-32 px-6 bg-neutral-950">
+            <div class="max-w-5xl mx-auto">
+                <!-- Core Statement -->
+                <div class="max-w-3xl mx-auto text-center mb-24">
+                    <h3 class="font-serif text-2xl md:text-3xl text-white mb-8 text-center">La Maison</h3>
+                    <p class="font-serif text-lg leading-loose text-neutral-400">
+                        "Nikos Ioannou Jewellers is a family-run atelier that started in Cyprus in 1945. The house is dedicated to historic gold jewellery, drawing from the Cypriot archaic period and regional traditions. Work is guided by continuity of hand rather than trend, and by historic permanence, keeping time still."
+                    </p>
+                </div>
+
+                <!-- Design Philosophy -->
+                <div class="max-w-4xl mx-auto mb-24">
+                    <h3 class="font-serif text-2xl md:text-3xl text-white mb-8 text-center">Design Philosophy</h3>
+                    <div class="space-y-6 text-neutral-400 leading-relaxed font-light">
+                        <p>Since the earliest periods of human civilization, creation has been inseparable from identity. The shaping of metal into personal objects marked a turning point in human expression, transforming material into meaning.</p>
+                        <p>Nikos Ioannou Jewellers approaches gold not as ornament alone, but as cultural continuity. Each piece reflects an enduring dialogue between form, memory, and craftsmanship, shaped by history yet resolved in the present.</p>
+                    </div>
+                </div>
+
+                <!-- Maison Images -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-6xl mx-auto">
+                    <div class="relative border border-neutral-800 overflow-hidden">
+                        <img src="images/maison/maison-flagship-interior-nicosia-01.jpg" alt="Maison Interior" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
+                    </div>
+                    <div class="relative border border-neutral-800 overflow-hidden">
+                        <img src="images/maison/maison-flagship-facade-nicosia-02.jpg" alt="Maison Facade" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
+                    </div>
+                </div>
+
+                <!-- Lines of Work -->
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="font-serif text-2xl md:text-3xl text-white mb-12 text-center">Lines of Work</h3>
+                    <div class="space-y-12">
+                        <!-- The Archaic -->
+                        <div class="border-l-2 border-gold-500/30 pl-8">
+                            <h4 class="font-serif text-xl text-gold-300 mb-4">The Archaic</h4>
+                            <p class="text-neutral-400 leading-relaxed font-light">A line rooted in the cultural and historical foundations of Cyprus and the Mediterranean. Forms draw from early regional traditions and the layered influences shaped by the island's geography and history. This line reflects continuity of tradition through precious metal.</p>
+                        </div>
+                        
+                        <!-- The Contemporary -->
+                        <div class="border-l-2 border-gold-500/30 pl-8">
+                            <h4 class="font-serif text-xl text-gold-300 mb-4">The Contemporary</h4>
+                            <p class="text-neutral-400 leading-relaxed font-light">A line informed by modernist and Art Deco principles. Emphasis is placed on architectural form, weight, and restraint, with a more severe and composed visual language.</p>
+                        </div>
+                        
+                        <!-- The Princess -->
+                        <div class="border-l-2 border-gold-500/30 pl-8">
+                            <h4 class="font-serif text-xl text-gold-300 mb-4">The Princess</h4>
+                            <p class="text-neutral-400 leading-relaxed font-light">A line shaped by contemporary design principles and current stylistic influences, incorporating precious materials and stones. Traditional techniques are blended with modern expression to achieve a lasting, luminous presence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERITAGE -->
+        <section id="heritage" class="py-32 px-6 bg-neutral-925 border-t border-neutral-900">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tight">Heritage</h2>
+                </div>
+                
+                <!-- Heritage Image -->
+                <div class="mb-16 max-w-2xl mx-auto">
+                    <div class="relative border border-neutral-800 p-2 bg-gradient-to-br from-neutral-900 to-neutral-925">
+                        <img src="images/heritage/heritage-founders-father-son-01.jpg" alt="Founders - Father and Son" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
+                    </div>
+                </div>
+
+                <div class="space-y-8 font-light text-neutral-400 leading-relaxed text-sm md:text-base text-justify md:text-left columns-1 md:columns-2 gap-16 mb-16">
+                    <p>Nikos Ioannou is a widely known company with a substantial qualitative contribution to the island's long-standing tradition in the field of jewellery making and selling.</p>
+                    <p>The founder started his career as a young apprentice in one of the goldsmithing workshops in the old district of Larnaca in 1945. The company was founded in 1961 and has since grown considerably, with shops in Nicosia and Limassol, other business ventures, as well as a substantial qualitative contribution to the jewellery-making industry.</p>
+                    <p>He developed the company while holding a personal interest and love for Cypriot art and culture, which led to a large collection of old Cypriot jewellery, artefacts, and antiques in his private gallery. In 1992, through personal efforts, he formed the Cyprus Jewellers Museum.</p>
+                    <p>Along with his own collection, he managed to gather through donations several additional pieces of jewellery and jewellery-making equipment, used since the beginning of the 18th century. These are exhibited at the Cyprus Jewellers Museum, of which he is the founder and chairman.</p>
+                    <p class="break-inside-avoid">In 1995, he was joined by his eldest son, Yiannos Ioannou, a graduate of the St Martin's School of Art in London. Yiannos Ioannou has won several awards at international jewellery-making competitions, which rightfully branded the company as "The Designers of Historic Jewels."</p>
+                    <p>He has continued the company's tradition while upgrading and modernising the services provided. Today, he is the Creative Director and leading force of the company.</p>
+                    <p>Nikos Ioannou Company now sells fine jewellery as well as luxury watches and maintains the same principles of attention to detail, customer satisfaction, and uncompromising quality that have contributed to its success throughout the years.</p>
+                </div>
+
+                <!-- Heritage Links -->
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center pt-8 border-t border-neutral-800">
+                    <a href="#heritage-gallery" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-400 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                        Explore the Heritage Gallery
+                    </a>
+                    <a href="#history" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-400 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                        Read the Full History
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRAFTSMANSHIP -->
+        <section id="craftsmanship" class="py-32 px-6 border-t border-neutral-900">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-12 text-center tracking-tight">Craftsmanship</h2>
+                
+                <!-- Workshop Image -->
+                <div class="max-w-4xl mx-auto mb-16">
+                    <div class="relative border border-neutral-800 p-2 bg-gradient-to-br from-neutral-900 to-neutral-925 shadow-2xl">
+                        <img src="images/yiannos-workshop.jpg" 
+                             alt="Yiannos Ioannou at work in the workshop" 
+                             class="w-full h-auto"
+                             loading="lazy"
+                             onload="this.style.opacity='1'"
+                             onerror="this.style.opacity='0.3'"
+                             style="opacity:0; transition: opacity 0.7s ease">
+                    </div>
+                </div>
+                
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="font-serif text-lg leading-loose text-neutral-400">
+                        "All jewellery is produced using traditional goldsmithing techniques. Surfaces are shaped by hand, forms are resolved through repeated refinement, and each piece is finished with attention to proportion and balance."
+                    </p>
+
+                    <!-- Optional Craftsmanship Gallery Link -->
+                    <div class="mt-12 pt-8 border-t border-neutral-800">
+                        <a href="#craftsmanship-gallery" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-400 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                            Explore the Craftsmanship Gallery
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BESPOKE -->
+        <section id="bespoke" class="py-32 px-6 bg-neutral-925 border-t border-neutral-900">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-serif text-3xl md:text-4xl text-white mb-8 tracking-tight">Bespoke</h2>
+                <p class="font-serif text-lg leading-loose text-neutral-400 mb-12">
+                    "The house accepts a limited number of bespoke commissions each year. Each commission is approached as a collaborative process, guided by the client's intent and the house's historic language."
+                </p>
+                
+                <!-- Bespoke Video (Vertical Portrait - Instagram/TikTok Style) -->
+                <div class="mx-auto mb-12" style="max-width: 360px;">
+                    <div class="relative border border-neutral-800 overflow-hidden bg-black shadow-2xl" style="aspect-ratio: 9/16;">
+                        <video 
+                            id="bespoke-video"
+                            class="w-full h-full" 
+                            controls
+                            playsinline 
+                            webkit-playsinline
+                            loop
+                            preload="auto"
+                            style="object-fit: cover; background: #000;">
+                            <source src="images/bespoke/bracelets-guardians-of-gold-animated-01.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                
+                <a href="#contact" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-400 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                    Request a Private Consultation
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-32 px-6 border-t border-neutral-900">
+            <div class="max-w-xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="font-serif text-3xl md:text-4xl text-white mb-6 tracking-tight">Contact</h2>
+                    <p class="text-neutral-400 font-light text-sm">"For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier."</p>
+                </div>
+                <form class="space-y-12" onsubmit="handleContactForm(event)">
+                    <div class="group relative">
+                        <input type="text" id="name" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Name">
+                        <label for="name" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Name</label>
+                    </div>
+                    <div class="group relative">
+                        <input type="email" id="email" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Email">
+                        <label for="email" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Email</label>
+                    </div>
+                    <div class="group relative">
+                        <textarea id="message" rows="4" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors resize-none rounded-none placeholder-transparent" placeholder="Message"></textarea>
+                        <label for="message" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-600 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-600 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Message</label>
+                    </div>
+                    <div class="text-center pt-8">
+                        <button type="submit" class="bg-white text-black px-12 py-4 text-[10px] tracking-[0.2em] uppercase hover:bg-gold-300 transition-colors duration-500 font-medium">
+                            Send Enquiry
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    `;
+}
+
+function renderJewelleryOverview() {
+    app.innerHTML = `
+        <div class="min-h-screen bg-neutral-950 px-6 pb-24">
+            <div class="max-w-[1600px] mx-auto min-h-screen">
+                
+                <!-- Header -->
+                <div class="pt-24 pb-24 text-center border-b border-neutral-900 animate-fade-in">
+                    <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 tracking-tight">Jewellery</h1>
+                    <p class="font-serif text-xl text-neutral-400 font-light max-w-2xl mx-auto">
+                        "The archive is organized by form. Each category represents a distinct approach to structure and ornamentation."
+                    </p>
+                </div>
+
+                <!-- Category Grid - First Row (4 items) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 py-8">
+                    ${renderCategoryTile('Earrings', 'earrings', ASSETS.earrings[0].url)}
+                    ${renderCategoryTile('Bracelets', 'bracelets', ASSETS.bracelets[5].url)}
+                    ${renderCategoryTile('Necklaces', 'necklaces', ASSETS.necklaces[2].url)}
+                    ${renderCategoryTile('Rings', 'rings', ASSETS.rings[0].url)}
+                </div>
+                
+                <!-- Category Grid - Second Row (3 equal boxes) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 pb-8 max-w-[1200px] mx-auto">
+                    ${renderCategoryTile('Pendants', 'pendants', ASSETS.pendants[0].url, 'object-position: center top; transform: scale(1.3) translateY(-12%);')}
+                    ${renderCategoryTile('Tiaras', 'tiaras', ASSETS.tiaras[0].url, 'object-fit: contain; object-position: center center;')}
+                    ${renderCategoryTile('Crosses', 'crosses', ASSETS.crosses[0].url, 'max-width: 85%; margin: 0 auto;')}
+                </div>
+
+                <!-- Back Nav -->
+                <div class="py-12 text-center border-t border-neutral-900">
+                     <a href="#home" class="text-xs tracking-widest uppercase text-neutral-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                        <iconify-icon icon="lucide:arrow-left" width="12"></iconify-icon>
+                        Return to Home
+                     </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderCategory(category) {
+    const items = ASSETS[category];
+    const title = category.charAt(0).toUpperCase() + category.slice(1);
+    
+    const gridHTML = items.map((item, i) => {
+        const delay = i * 50;
+        return `
+        <div class="group cursor-pointer opacity-0 animate-fade-in" style="animation-delay: ${delay}ms;" onclick="openModal('${item.id}', '${item.url}', '${title}', '${item.longDescription.replace(/'/g, "\\'")}')">
+            <div class="image-container aspect-[4/5] mb-6 overflow-hidden relative border border-transparent group-hover:border-neutral-800 transition-colors duration-500 bg-neutral-900">
+                <img src="${item.url}" 
+                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.style.opacity='1'"
+                     onerror="this.style.opacity='0.2'"
+                     style="opacity:0; transition: opacity 0.7s ease"
+                     alt="${item.id}">
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                    <span class="bg-black/80 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest px-4 py-2 border border-white/10">View Piece</span>
+                </div>
+            </div>
+            <div class="text-center px-4">
+                <p class="text-sm text-neutral-300 leading-relaxed italic font-serif mb-3">${item.poeticLine}</p>
+                <span class="inline-block text-xs tracking-widest uppercase text-gold-500 hover:text-gold-400 transition-colors border-b border-gold-500/30 hover:border-gold-400 pb-1">${item.linkText} &#x2726;</span>
+            </div>
+        </div>
+    `}).join('');
+
+    app.innerHTML = `
+        <div class="min-h-screen bg-neutral-950 px-6 pb-24">
+            <div class="max-w-[1600px] mx-auto min-h-screen">
+                
+                <!-- Header -->
+                <div class="pt-24 pb-24 text-center border-b border-neutral-900 animate-fade-in">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold-500 mb-6 block">Collection</span>
+                    <h1 class="font-serif text-5xl md:text-6xl text-white mb-6 tracking-tight">${title}</h1>
+                    <p class="font-serif text-xl text-neutral-400 font-light max-w-2xl mx-auto">
+                        "Each piece is handcrafted in gold, informed by historic form and executed with restraint."
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20 py-16">
+                    ${gridHTML}
+                </div>
+
+                <!-- Back Nav -->
+                <div class="py-12 text-center border-t border-neutral-900">
+                     <a href="#jewellery" class="text-xs tracking-widest uppercase text-neutral-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                        <iconify-icon icon="lucide:arrow-left" width="12"></iconify-icon>
+                        Return to Jewellery
+                     </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// ============================================
+// COMPONENT RENDERERS
+// ============================================
+
+function renderHomeTile(label, route, imgUrl, customStyles = '') {
+    return `
+        <a href="#${route}" class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 block border border-neutral-900 hover:border-neutral-800 transition-colors image-container">
+            <img src="${imgUrl}" 
+                 class="w-full h-full object-cover object-center opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-[1.5s] ease-out" 
+                 loading="lazy"
+                 decoding="async"
+                 onload="this.style.opacity='0.7'"
+                 onerror="this.style.opacity='0.2'"
+                 style="opacity:0; transition: opacity 0.7s ease; ${customStyles}"
+                 alt="${label}">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 group-hover:from-black/20 group-hover:to-black/40 transition-all duration-700"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10">
+                <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tight italic text-center">${label}</h3>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                <span class="bg-black/80 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest px-6 py-3 border border-white/20">View Collection</span>
+            </div>
+        </a>
+    `;
+}
+
+function renderCategoryTile(label, route, imgUrl, customStyles = '') {
+    return `
+        <a href="#${route}" class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 block border border-neutral-900 hover:border-neutral-800 transition-colors image-container">
+            <img src="${imgUrl}" 
+                 class="w-full h-full object-contain object-center group-hover:scale-105 transition-all duration-[1.5s] ease-out" 
+                 loading="lazy"
+                 decoding="async"
+                 onload="this.style.opacity='1'"
+                 onerror="this.style.opacity='0.2'"
+                 style="opacity:0; transition: opacity 0.7s ease; ${customStyles}"
+                 alt="${label}">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 group-hover:from-black/20 group-hover:to-black/40 transition-all duration-700"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10">
+                <h3 class="font-serif text-2xl md:text-3xl text-white tracking-tight italic text-center">${label}</h3>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                <span class="bg-black/80 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest px-6 py-3 border border-white/20">View Collection</span>
+            </div>
+        </a>
+    `;
+
+}
+
+function renderSignatureCard(item, label) {
+    return `
+        <div class="group cursor-pointer" onclick="openModal('${item.id}', '${item.url}', '${label}', '${item.longDescription.replace(/'/g, "\\'")}')">
+            <div class="image-container aspect-square mb-8 overflow-hidden border border-transparent group-hover:border-neutral-800 transition-colors bg-neutral-900">
+                <img src="${item.url}" 
+                     class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
+                     loading="lazy"
+                     decoding="async"
+                     onload="this.style.opacity='1'"
+                     onerror="this.style.opacity='0.2'"
+                     style="opacity:0; transition: opacity 0.7s ease"
+                     alt="${item.id}">
+            </div>
+            <div class="text-center">
+                <span class="block text-[10px] text-neutral-500 mb-2 tracking-widest uppercase">Gold / ${label}</span>
+                <span class="inline-block border-b border-transparent group-hover:border-gold-500 text-xs tracking-widest uppercase text-white transition-all pb-1">View Piece</span>
+            </div>
+        </div>
+    `;
+}
+
+// ============================================
+// FULL HISTORY PAGE
+// ============================================
+
+function renderHistory() {
+    app.innerHTML = `
+        <section class="min-h-screen bg-neutral-950 py-32 px-6">
+            <div class="max-w-3xl mx-auto">
+                <!-- TITLE -->
+                <h1 class="font-serif text-4xl md:text-5xl text-white mb-6 tracking-tight">The Full History</h1>
+                <p class="text-sm text-neutral-500 uppercase tracking-widest mb-16 font-sans">Est. 1945 \u2014 Nicosia, Cyprus</p>
+
+                <!-- LONG-FORM TEXT -->
+                <div class="prose prose-invert prose-lg max-w-none space-y-8 leading-relaxed text-neutral-300 font-serif">
+                    <p>
+                        Nikos Ioannou's working life began in 1945, when, at the age of fifteen, he was apprenticed to the Cyprus jewellery trade. There he spent three years learning gold- and silversmithing, under the tight guidance of an established workshop. By 1948 he had mastered the essential processes\u2014forging, soldering, engraving, filigree\u2014and was judged capable of earning his own living.
+                    </p>
+
+                    <p>
+                        Over the next decade, he worked in several establishments across Nicosia, refining his skills and gradually building professional independence. In 1961, at the age of thirty-one, he opened his own workshop under his own name: <em>Nikos Ioannou</em>. The business was modest in scale, but it was founded on the classical disciplines he had absorbed during his years as a journeyman. His production included commissioned jewellery for private clients, ritual or ceremonial pieces, and works adapted from archaic and Byzantine prototypes held in Cyprus's archaeological collections.
+                    </p>
+
+                    <!-- Optional Image 1 -->
+                    <figure class="my-16">
+                        <img src="images/heritage/heritage-shop-family-1960s-02.jpg" 
+                             alt="The Ioannou family at the original workshop, circa 1960s" 
+                             class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-700"
+                             loading="lazy">
+                        <figcaption class="text-sm text-neutral-500 mt-4 text-center italic">The Ioannou family at the original workshop, circa 1960s</figcaption>
+                    </figure>
+
+                    <p>
+                        By the mid-1970s, Nikos Ioannou had become known in Cyprus not only as a skilled craftsman but as someone with a particular interest in the island's archaeological heritage. He began studying the goldwork held by the Cyprus Museum\u2014especially pieces from the Archaic and Classical periods\u2014and soon undertook a personal project: the creation of a comprehensive archive of Cypriot jewellery history. This archive, which he assembled over many years, included drawings, photographs, and written documentation of ancient, Byzantine, and folk jewellery traditions.
+                    </p>
+
+                    <p>
+                        In 1990, with the assistance of the Bank of Cyprus Cultural Foundation, Nikos Ioannou opened the <strong>Cyprus Jewellers Museum</strong> in Nicosia. The museum held over five hundred pieces of historic jewellery\u2014some ancient, some Byzantine, others drawn from regional folk traditions\u2014and was accompanied by descriptive text, technical notes, and scholarly commentary. It was the first museum of its kind in Cyprus and was praised for its educational value and its meticulous attention to craft technique and historical context. The museum remains a point of reference for anyone researching the island's goldsmithing tradition.
+                    </p>
+
+                    <!-- Optional Image 2 -->
+                    <figure class="my-16">
+                        <img src="images/heritage/heritage-atelier-opening-03.jpg" 
+                             alt="Opening ceremony of the Cyprus Jewellers Museum, 1990" 
+                             class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-700"
+                             loading="lazy">
+                        <figcaption class="text-sm text-neutral-500 mt-4 text-center italic">Opening ceremony of the Cyprus Jewellers Museum, 1990</figcaption>
+                    </figure>
+
+                    <p>
+                        Nikos Ioannou continued working until his retirement in the early 2000s. Throughout his career, he maintained a quiet, disciplined approach to his craft, preferring precision and historical accuracy over novelty. His output was never large, and his ambitions were never commercial in the modern sense. He worked with his hands, taught his methods to a small number of students, and built his reputation on continuity, not disruption.
+                    </p>
+
+                    <p>
+                        In 2005, his son <strong>Yiannos Ioannou</strong> formally assumed direction of the workshop. Yiannos had worked alongside his father since adolescence, learning the same traditional processes and studying the same historical sources. Under his leadership, the workshop has retained its character: small-scale, family-run, and grounded in the goldsmithing techniques established in the mid-twentieth century. The business continues to produce historic jewellery\u2014primarily archaic gold work and adaptations from Cypriot and regional prototypes\u2014and the number of pieces produced each year remains deliberately limited.
+                    </p>
+
+                    <p>
+                        The workshop today operates from the same location in Nicosia where Nikos Ioannou first opened his doors in 1961. Yiannos Ioannou works at the same bench, using many of the same tools, and following the same methods his father taught him. This continuity is deliberate. It is not maintained for the sake of tradition alone, but because the work demands it. Historic gold jewellery\u2014whether archaic, Byzantine, or folk\u2014requires a particular set of skills, a certain discipline of hand, and a willingness to subordinate personal style to historical precedent.
+                    </p>
+
+                    <p>
+                        It is this commitment to craft, to continuity, and to the discipline of making that defines the house of Nikos Ioannou. The family does not claim to innovate. It does not pursue fashion. It does not court celebrity. It makes jewellery\u2014slowly, carefully, and by hand\u2014and it does so in the belief that some forms of work are worth preserving, not because they are commercially advantageous, but because they are culturally necessary.
+                    </p>
+                </div>
+
+                <!-- NAVIGATION LINK -->
+                <div class="mt-20 pt-12 border-t border-neutral-800 text-center">
+                    <a href="#home" class="inline-block px-8 py-3 border border-neutral-700 text-neutral-400 uppercase tracking-widest text-sm hover:bg-neutral-900 hover:text-neutral-200 transition-all duration-500 font-sans">
+                        Return to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// ============================================
+// HERITAGE GALLERY PAGE
+// ============================================
+
+function renderHeritageGallery() {
+    app.innerHTML = `
+        <section class="min-h-screen bg-neutral-950 py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <!-- TITLE -->
+                <div class="text-center mb-20">
+                    <h1 class="font-serif text-4xl md:text-5xl text-white mb-6 tracking-tight">Heritage Gallery</h1>
+                    <p class="text-sm text-neutral-500 uppercase tracking-widest font-sans">Visual Documentation \u2014 Lineage and Continuity</p>
+                </div>
+
+                <!-- HERITAGE IMAGES (3 IMAGES) -->
+                <!-- Top Image: Centered -->
+                <div class="max-w-3xl mx-auto mb-8">
+                    <figure class="group">
+                        <div class="aspect-[4/3] bg-neutral-900 overflow-hidden">
+                            <img src="images/heritage/heritage-original-workshop-04.jpg" 
+                                 alt="The original workshop, Nicosia, 1961" 
+                                 class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                 loading="lazy">
+                        </div>
+                        <figcaption class="text-sm text-neutral-500 mt-4 font-sans text-center">The original workshop, Nicosia, 1961</figcaption>
+                    </figure>
+                </div>
+
+                <!-- Bottom Two Images: Side by Side -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Image 2: Atelier Opening -->
+                    <figure class="group">
+                        <div class="aspect-[4/3] bg-neutral-900 overflow-hidden">
+                            <img src="images/heritage/heritage-atelier-opening-03.jpg" 
+                                 alt="Opening of the Cyprus Jewellers Museum, 1990" 
+                                 class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                 loading="lazy">
+                        </div>
+                        <figcaption class="text-sm text-neutral-500 mt-4 font-sans">Opening of the Cyprus Jewellers Museum, 1990</figcaption>
+                    </figure>
+
+                    <!-- Image 3: Family at Shop -->
+                    <figure class="group">
+                        <div class="aspect-[4/3] bg-neutral-900 overflow-hidden">
+                            <img src="images/heritage/heritage-shop-family-1960s-02.jpg" 
+                                 alt="The Ioannou family at the original workshop, circa 1960s" 
+                                 class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                                 loading="lazy">
+                        </div>
+                        <figcaption class="text-sm text-neutral-500 mt-4 font-sans">The Ioannou family at the original workshop, circa 1960s</figcaption>
+                    </figure>
+                </div>
+
+                <!-- NAVIGATION LINK -->
+                <div class="mt-20 pt-12 border-t border-neutral-800 text-center">
+                    <a href="#home" class="inline-block px-8 py-3 border border-neutral-700 text-neutral-400 uppercase tracking-widest text-sm hover:bg-neutral-900 hover:text-neutral-200 transition-all duration-500 font-sans">
+                        Return to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// ============================================
+// CRAFTSMANSHIP GALLERY PAGE
+// ============================================
+
+function renderCraftsmanshipGallery() {
+    app.innerHTML = `
+        <section class="min-h-screen bg-neutral-950 py-32 px-6">
+            <div class="max-w-6xl mx-auto">
+                <!-- TITLE -->
+                <div class="text-center mb-20">
+                    <h1 class="font-serif text-4xl md:text-5xl text-white mb-6 tracking-tight">Craftsmanship Gallery</h1>
+                    <p class="text-sm text-neutral-500 uppercase tracking-widest font-sans">Continuity of Making</p>
+                </div>
+
+                <!-- PHILOSOPHICAL TEXT -->
+                <div class="max-w-3xl mx-auto mb-20">
+                    <p class="text-lg leading-relaxed text-neutral-300 font-serif text-center italic">
+                        "The workshop is not a place of innovation or disruption. It is a place of continuity. Here, the same methods are taught, the same tools are used, and the same discipline of hand is required. This is not nostalgia. It is necessity. The work demands it."
+                    </p>
+                </div>
+
+                <!-- WORKSHOP IMAGE -->
+                <figure class="max-w-5xl mx-auto">
+                    <div class="aspect-[16/10] bg-neutral-900 overflow-hidden">
+                        <img src="images/craftsmanship/yiannos-workshop.jpg" 
+                             alt="Yiannos Ioannou at work in the Nicosia workshop" 
+                             class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-700"
+                             loading="lazy">
+                    </div>
+                    <figcaption class="text-sm text-neutral-500 mt-6 text-center font-sans">Yiannos Ioannou at work in the Nicosia workshop</figcaption>
+                </figure>
+
+                <!-- NAVIGATION LINK -->
+                <div class="mt-20 pt-12 border-t border-neutral-800 text-center">
+                    <a href="#home" class="inline-block px-8 py-3 border border-neutral-700 text-neutral-400 uppercase tracking-widest text-sm hover:bg-neutral-900 hover:text-neutral-200 transition-all duration-500 font-sans">
+                        Return to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// ============================================
+// MODAL & INTERACTION
+// ============================================
+
+// Store current piece details for enquiry
+let currentPieceDetails = null;
+
+function openModal(id, url, category, description) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    const descElement = document.getElementById('modal-description');
+    
+    // Store the piece details for later use in enquiry
+    currentPieceDetails = {
+        id: id,
+        category: category,
+        description: description
+    };
+    
+    img.src = url;
+    img.onload = function() { this.style.opacity = '1'; };
+    img.onerror = function() { this.style.opacity = '0.2'; };
+    
+    document.getElementById('modal-title').innerText = `Historic Gold ${category}`;
+    document.getElementById('modal-category').innerText = category;
+    document.getElementById('modal-id').innerText = id;
+    
+    // Use the unique expanded description for this piece
+    if (descElement && description) {
+        descElement.innerText = description;
+    }
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+    });
+
+    document.body.style.overflow = 'hidden';
+}
+
+function enquireAboutPiece() {
+    closeModal();
+    
+    // Navigate to home first
+    window.location.hash = 'home';
+    
+    // Wait longer for home page to fully render, then scroll to contact
+    setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            // Scroll directly to contact section with instant behavior
+            contactSection.scrollIntoView({behavior: 'instant', block: 'start'});
+            
+            // Then pre-fill the message field
+            setTimeout(() => {
+                const messageField = document.getElementById('message');
+                if (messageField && currentPieceDetails) {
+                    const enquiryText = `I am enquiring about:\n\nCategory: ${currentPieceDetails.category}\nReference: ${currentPieceDetails.id}\nDescription: ${currentPieceDetails.description}\n\n`;
+                    messageField.value = enquiryText;
+                    messageField.focus();
+                }
+            }, 100);
+        }
+    }, 800);
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    
+    modal.classList.add('opacity-0');
+    img.style.opacity = '0';
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        img.src = ''; 
+    }, 500);
+
+    document.body.style.overflow = 'auto';
+}
+
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+    } else {
+        menu.classList.add('-translate-x-full');
+    }
+}
+
+// Close dropdown when clicking outside
+function setupDropdownClose() {
+    const dropdownWrapper = document.querySelector('.dropdown-wrapper');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (!dropdownWrapper || !dropdownMenu) return;
+    
+    // Close dropdown when clicking on any dropdown link
+    const dropdownLinks = dropdownMenu.querySelectorAll('a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            dropdownMenu.classList.remove('open');
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdownWrapper.contains(e.target)) {
+            dropdownMenu.classList.remove('open');
+        }
+    });
+    
+    // Close dropdown when mouse leaves the dropdown area
+    dropdownWrapper.addEventListener('mouseleave', () => {
+        dropdownMenu.classList.remove('open');
+    });
+}
+
+function handleContactForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent('Enquiry from ' + name);
+    const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n\n' +
+        'Message:\n' + message
+    );
+    
+    window.location.href = 'mailto:info@ioannou-jewels.com.cy?subject=' + subject + '&body=' + body;
+    
+    // Show success message
+    alert('Thank you for your enquiry. We will contact you shortly.');
+    event.target.reset();
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        setupDropdownClose();
+    });
+} else {
+    init();
+    setupDropdownClose();
+}
+    </script>
+</body>
+</html>
