@@ -1596,7 +1596,8 @@ function openModal(id, url, category, description) {
     
     // Use the unique expanded description for this piece
     if (descElement && description) {
-        descElement.innerText = description;
+        // Replace \n with <br> for proper line breaks in HTML
+        descElement.innerHTML = description.replace(/\n/g, '<br><br>');
     }
     
     modal.classList.remove('hidden');
