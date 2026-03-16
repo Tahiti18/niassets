@@ -1261,7 +1261,7 @@ function renderCategory(category) {
     const gridHTML = items.map((item, i) => {
         const delay = i * 50;
         return `
-        <div class="group cursor-pointer opacity-0 animate-fade-in" style="animation-delay: ${delay}ms;" onclick="openModal('${item.id}', '${item.url}', '${title}', '${item.longDescription.replace(/'/g, "\\'")}')">
+        <div class="group cursor-pointer opacity-0 animate-fade-in" style="animation-delay: ${delay}ms;" onclick="openModal('${item.id}', '${item.url}', '${title}', '${item.longDescription.replace(/'/g, "\\'").replace(/\n/g, ' ')}')">
             <div class="image-container aspect-[4/5] mb-6 overflow-hidden relative border border-transparent group-hover:border-neutral-800 transition-colors duration-500 bg-neutral-900">
                 <img src="${item.url}" 
                      class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
@@ -1365,7 +1365,7 @@ function renderCategoryTile(label, route, imgUrl, customStyles = '') {
 
 function renderSignatureCard(item, label) {
     return `
-        <div class="group cursor-pointer" onclick="openModal('${item.id}', '${item.url}', '${label}', '${item.longDescription.replace(/'/g, "\\'")}')">
+        <div class="group cursor-pointer" onclick="openModal('${item.id}', '${item.url}', '${label}', '${item.longDescription.replace(/'/g, "\\'").replace(/\n/g, ' ')}')">
             <div class="image-container aspect-square mb-8 overflow-hidden border border-transparent group-hover:border-neutral-800 transition-colors bg-neutral-900">
                 <img src="${item.url}" 
                      class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-[1.5s] ease-out" 
