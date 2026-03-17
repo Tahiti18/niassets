@@ -10,12 +10,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Iconify -->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="images/hero-bracelet.jpg">
 
     <!-- Tailwind Configuration -->
     <script>
@@ -956,7 +959,8 @@ function renderHome() {
                 <img src="${heroImg}" 
                      class="hero-bracelet-img object-contain" 
                      loading="eager"
-                     decoding="async"
+                     decoding="sync"
+                     fetchpriority="high"
                      onload="this.style.opacity='1'"
                      onerror="this.style.opacity='0.5'"
                      style="opacity:0; transition: opacity 1s ease; max-width: 70%; max-height: 75%; margin-top: -10vh;"
