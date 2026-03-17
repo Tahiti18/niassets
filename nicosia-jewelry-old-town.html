@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store in Nicosia Old Town | Nikos Ioannou Jewellers</title>
+    <meta name="description" content="Historic jewelry store in Nicosia Old Town offering handcrafted gold jewellery inspired by Cypriot heritage. Visit us at Onasagorou 79.">
+    <meta name="keywords" content="jewelry store Nicosia, jewellery shop Old Town, gold jewelry Cyprus, handcrafted jewellery Nicosia, heritage jewelry, Nicosia Old Town gold">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jewelry Store in Nicosia Old Town | Nikos Ioannou Jewellers">
+    <meta property="og:description" content="Historic jewelry store in Nicosia Old Town offering handcrafted gold jewellery inspired by Cypriot heritage.">
+    <meta property="og:url" content="https://nikosioannou.com/nicosia-jewelry-old-town">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://nikosioannou.com/ni-logo-glow-v2.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#D4AF37',
+                            400: '#C5A028',
+                            500: '#B49020',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+        body {
+            background: #080808;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .map-container iframe {
+            /* Maps display in full color */
+        }
+        
+        /* GLASS EFFECT */
+        .glass {
+            background: rgba(8, 8, 8, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* NAV LINK UNDERLINE */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #B49020;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 14rem;
+            background-color: #0a0a0a;
+            border: 1px solid #262626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #e5e5e5;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .dropdown-menu a:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass border-b border-gold-500/20 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 -ml-2">
+            <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+
+        <!-- Desktop Links (Left) -->
+        <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-200">
+            <div class="dropdown-wrapper relative py-8">
+                <a href="/#jewellery" class="hover:text-white transition-colors flex items-center gap-1">
+                    Jewellery
+                    <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                </a>
+                <!-- Dropdown -->
+                <div class="dropdown-menu">
+                    <a href="/#earrings">Earrings</a>
+                    <a href="/#rings">Rings</a>
+                    <a href="/#bracelets">Bracelets</a>
+                    <a href="/#necklaces">Necklaces</a>
+                    <a href="/#pendants">Pendants</a>
+                    <a href="/#crosses">Crosses</a>
+                    <a href="/#tiaras">Tiaras</a>
+                </div>
+            </div>
+            <div class="dropdown-wrapper relative py-8">
+                <a href="/" class="hover:text-white transition-colors flex items-center gap-1">
+                    Maison
+                    <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                </a>
+                <!-- Dropdown -->
+                <div class="dropdown-menu">
+                    <a href="/#maison">Maison</a>
+                    <a href="/#heritage">Heritage</a>
+                    <a href="/#craftsmanship">Craftsmanship</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <a href="/" class="absolute left-1/2 transform -translate-x-1/2 text-center group z-40">
+            <h1 class="font-serif text-2xl tracking-widest text-white group-hover:text-gold-300 transition-colors duration-700">NIKOS IOANNOU</h1>
+        </a>
+
+        <!-- Desktop Links (Right) -->
+        <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-200">
+            <a href="/#bespoke" class="nav-link hover:text-white transition-colors">Bespoke</a>
+            <a href="/#locations" class="nav-link hover:text-white transition-colors">Locations</a>
+            <a href="/#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+        </div>
+
+        <!-- Mobile Placeholder (Right) -->
+        <div class="lg:hidden w-6"></div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-500 lg:hidden flex flex-col pt-24 px-8 border-r border-neutral-800">
+    <button onclick="toggleMenu()" class="absolute top-8 right-6 text-white/50 hover:text-white transition-colors p-2">
+        <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+    </button>
+    <div class="flex flex-col gap-5 text-sm tracking-widest uppercase text-neutral-200 font-medium">
+        <div class="text-[10px] text-gold-500 mb-2 mt-4 font-semibold opacity-80">Collections</div>
+        <a href="/#jewellery" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">View All</a>
+        <a href="/#earrings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Earrings</a>
+        <a href="/#rings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Rings</a>
+        <a href="/#bracelets" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Bracelets</a>
+        <a href="/#necklaces" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Necklaces</a>
+        <a href="/#pendants" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Pendants</a>
+        <a href="/#crosses" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Crosses</a>
+        <a href="/#tiaras" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Tiaras</a>
+        
+        <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
+        <a href="/" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
+        <a href="/#maison" onclick="toggleMenu()" class="hover:text-white transition-colors">Maison</a>
+        <a href="/#heritage" onclick="toggleMenu()" class="hover:text-white transition-colors">Heritage</a>
+        <a href="/#craftsmanship" onclick="toggleMenu()" class="hover:text-white transition-colors">Craftsmanship</a>
+        <a href="/#bespoke" onclick="toggleMenu()" class="hover:text-white transition-colors">Bespoke</a>
+        <a href="/#locations" onclick="toggleMenu()" class="hover:text-white transition-colors">Locations</a>
+        <a href="/#contact" onclick="toggleMenu()" class="hover:text-white transition-colors">Contact</a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="pt-32 pb-20">
+    <div class="max-w-5xl mx-auto px-6">
+        
+        <!-- Breadcrumb -->
+        <nav class="text-xs uppercase tracking-widest text-neutral-300 mb-12">
+            <a href="/" class="hover:text-white">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/#locations" class="hover:text-white">Locations</a>
+            <span class="mx-2">/</span>
+            <span class="text-neutral-200">Nicosia Old Town</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="mb-16 pb-16 border-b border-neutral-900">
+            <span class="text-xs tracking-[0.3em] uppercase text-gold-500 mb-4 block">Heritage & Tradition</span>
+            <h1 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight leading-tight">
+                Jewellery Store in Nicosia Old Town
+            </h1>
+            <p class="text-xl text-neutral-200 font-light leading-relaxed max-w-3xl mb-8">
+                Nikos Ioannou Jewellers is a historic jewelry store in Nicosia Old Town, Cyprus, offering handcrafted 18k gold jewelry including earrings, rings, necklaces, and bracelets. Located on Onasagorou Street within the Venetian walls, our jewellery shop preserves traditional Mediterranean goldsmithing techniques. Each piece is handcrafted in Cyprus using centuries-old methods—hand-hammering, granulation, and gold sheet work. Visit our Nicosia Old Town jewelry store to discover authentic heritage pieces inspired by the island's layered history from Neolithic to Byzantine periods.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-4">
+                <a href="tel:+35722674025" class="inline-flex items-center gap-2 bg-white hover:bg-neutral-200 text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                    Call Now
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Onasagorou+79+Nicosia+1011+Cyprus" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white text-white hover:bg-white hover:text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    <iconify-icon icon="lucide:navigation" width="18"></iconify-icon>
+                    Get Directions
+                </a>
+                <a href="/#earrings" class="inline-flex items-center gap-2 border border-neutral-700 text-neutral-200 hover:text-white hover:border-neutral-600 px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    View Collections
+                </a>
+            </div>
+        </div>
+
+        <!-- Content Layout -->
+        <div class="max-w-4xl mx-auto mb-20">
+            
+            <div class="space-y-12 mb-16">
+                
+                <!-- Jewelry Available Section -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Jewelry Available at This Store</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:gem" class="text-gold-500 mb-3" width="24" aria-label="Gold earrings icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Gold Earrings</h3>
+                            <p class="text-neutral-200 text-sm">Byzantine-inspired, archaic hooks, articulated drops</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:circle-dot" class="text-gold-500 mb-3" width="24" aria-label="Gold rings icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Gold Rings</h3>
+                            <p class="text-neutral-200 text-sm">Byzantine treasure rings, Mycenaean sphinx designs</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:hexagon" class="text-gold-500 mb-3" width="24" aria-label="Necklaces and pendants icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Necklaces & Pendants</h3>
+                            <p class="text-neutral-200 text-sm">Architectural chains, hand-formed links</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:square" class="text-gold-500 mb-3" width="24" aria-label="Gold bracelets icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Bracelets</h3>
+                            <p class="text-neutral-200 text-sm">Segmented designs, linked gold forms</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6 md:col-span-2">
+                            <iconify-icon icon="lucide:heart" class="text-gold-500 mb-3" width="24" aria-label="Wedding and engagement jewelry icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Wedding & Engagement Jewelry</h3>
+                            <p class="text-neutral-200 text-sm">Bespoke wedding bands and engagement rings</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- About This Location -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Historic Jewelry Store in Nicosia</h2>
+                    <div class="space-y-4 text-neutral-300 leading-relaxed">
+                        <p>
+                            Our Nicosia Old Town jewelry store is located on Onasagorou Street, within walking distance of the Cyprus Museum and Famagusta Gate. This jewellery shop serves as a destination for those seeking handcrafted gold jewelry rooted in Mediterranean tradition.
+                        </p>
+                        <p>
+                            The pieces you'll find here—handcrafted from 18-karat gold—draw inspiration from the island's heritage: Neolithic simplicity, Bronze Age design, Byzantine beauty, and early Mediterranean forms. Each piece is crafted using traditional goldsmithing techniques passed down through generations.
+                        </p>
+                        <p>
+                            Our Old Town location offers rings, earrings, necklaces, and bracelets designed to last a lifetime. Each piece is handcrafted in our Cyprus workshop using methods that predate written language on the island.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Collections -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Gold Jewelry Collections</h2>
+                    <div class="space-y-6">
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Heritage Earrings</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Our Old Town location showcases earring designs drawn from archaeological discoveries across Cyprus—articulated drops with granulation, archaic hook forms dating to the Neolithic period.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Byzantine-Inspired Rings</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Rings that echo the grandeur of Byzantine imperial jewellery, set with natural cabochon gemstones and detailed with hand-twisted wire and traditional beaded work.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Architectural Necklaces</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Hand-formed chains and linked designs that translate architectural forms into wearable gold—pieces inspired by Mediterranean temple and aqueduct structures.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Custom Heritage Jewelry</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                In our Old Town jewellery shop, we collaborate with clients on bespoke commissions. Whether recreating a family heirloom or designing a new piece rooted in historical form, our craftsmen work within traditional methods.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why Visit -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Why Visit Our Nicosia Old Town Store</h2>
+                    <div class="space-y-4 text-neutral-300 leading-relaxed">
+                        <p>
+                            Unlike chain jewellery shops filled with imported inventory, every piece here originates from our workshop. We know its design provenance, the historical references it carries, and the specific traditional techniques used in its creation.
+                        </p>
+                        <p>
+                            The Old Town setting matters. This jewelry store is located in a historic neighborhood where Cyprus's material culture remains visible. Visiting our store becomes part of encountering the island's craft heritage.
+                        </p>
+                        <p>
+                            We offer jewelry for those who value heritage over trend and quality over quantity. These are pieces designed to be worn daily, passed down through families, and treasured for generations.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Internal Links -->
+                <section class="bg-neutral-950 p-8 border border-neutral-900">
+                    <h3 class="text-xl font-serif text-white mb-4">Other Jewelry Store Locations</h3>
+                    <div class="space-y-3">
+                        <a href="/limassol-jewelry-store.html" class="block text-gold-500 hover:text-gold-400 transition-colors">
+                            → Jewelry store in Limassol
+                        </a>
+                        <a href="/nicosia-jewelry-store.html" class="block text-gold-500 hover:text-gold-400 transition-colors">
+                            → Jewellery shop in Nicosia (Galaxias Centre)
+                        </a>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-neutral-900">
+                        <h4 class="text-sm uppercase tracking-widest text-neutral-300 mb-3">Browse Gold Jewelry Collections</h4>
+                        <div class="space-y-2 text-sm">
+                            <a href="/#earrings" class="block text-neutral-200 hover:text-white transition-colors">Gold Earrings Cyprus</a>
+                            <a href="/#rings" class="block text-neutral-200 hover:text-white transition-colors">Gold Rings Cyprus</a>
+                            <a href="/#bracelets" class="block text-neutral-200 hover:text-white transition-colors">Gold Bracelets Cyprus</a>
+                            <a href="/#necklaces" class="block text-neutral-200 hover:text-white transition-colors">Gold Necklaces Cyprus</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Business Info & Map -->
+            <div class="space-y-8 max-w-2xl mx-auto">
+                
+                <!-- Business Card -->
+                <div class="bg-neutral-950 border border-neutral-900 p-8">
+                    <h2 class="font-serif text-2xl text-gold-400 mb-6">Visit Our Old Town Store</h2>
+                    
+                    <!-- Address -->
+                    <div class="mb-6 pb-6 border-b border-neutral-900">
+                        <div class="flex items-start gap-3 mb-2">
+                            <iconify-icon icon="lucide:map-pin" class="text-gold-500 mt-1" width="18" aria-label="Location pin"></iconify-icon>
+                            <div>
+                                <p class="text-white font-medium">Nikos Ioannou Jewellers</p>
+                                <p class="text-neutral-200 text-sm">Onasagorou 79</p>
+                                <p class="text-neutral-200 text-sm">Nicosia 1011, Cyprus</p>
+                                <p class="text-neutral-300 text-xs mt-1 italic">Historic Old Town</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-6 pb-6 border-b border-neutral-900">
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:phone" class="text-gold-500" width="18" aria-label="Phone"></iconify-icon>
+                            <a href="tel:+35722674025" class="text-white hover:text-gold-500 transition-colors">
+                                +357 22 674025
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Opening Hours -->
+                    <div>
+                        <h3 class="text-sm uppercase tracking-widest text-neutral-300 mb-4">Opening Hours</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Monday</span>
+                                <span class="text-white">10:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Tuesday</span>
+                                <span class="text-white">10:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Wednesday</span>
+                                <span class="text-white">10:00–14:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Thursday</span>
+                                <span class="text-white">10:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Friday</span>
+                                <span class="text-white">10:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Saturday</span>
+                                <span class="text-white">10:00–14:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Sunday</span>
+                                <span class="text-neutral-300">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
+                <div class="map-container border border-neutral-900 overflow-hidden">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.123!2d33.3636!3d35.1738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de17640000001%3A0xabcdef1234567890!2sOnasagorou%2079%2C%20Nicosia%201011%2C%20Cyprus!5e0!3m2!1sen!2scy!4v1234567890124!5m2!1sen!2scy" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Map showing Nikos Ioannou Jewellers Nicosia Old Town jewelry store location at Onasagorou 79 Cyprus">
+                    </iframe>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="mb-20 pb-20 border-t border-neutral-900 pt-20">
+            <h2 class="font-serif text-4xl text-gold-400 mb-12 text-center">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Where can I find traditional Cypriot jewelry in Nicosia?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Nikos Ioannou Jewellers in Nicosia Old Town specializes in heritage-inspired jewelry crafted using traditional techniques. Our jewellery shop on Onasagorou Street offers handcrafted 18k gold pieces rooted in Cyprus's ancient Mediterranean history.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Where can I buy authentic handcrafted jewellery in Nicosia?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our Old Town jewelry store at Onasagorou 79 offers authentic handcrafted gold jewellery made in Cyprus. Every piece originates from our workshop using techniques like hand-hammering, granulation, and traditional gold sheet work.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Do you sell gold jewelry in Nicosia?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Yes, our Nicosia jewellery shop specializes exclusively in 18k gold jewelry. All pieces are handcrafted in Cyprus using solid gold sheet and traditional Mediterranean goldsmithing methods unchanged for millennia.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Do you offer custom jewelry design in Nicosia Old Town?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Yes, our Nicosia Old Town jewelry store provides bespoke jewelry services. We collaborate with clients to design custom pieces inspired by historical forms and crafted using traditional goldsmithing techniques. Contact us at +357 22 674025.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">What type of jewelry is available at your store?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our jewelry store offers gold earrings, gold rings, necklaces, bracelets, pendants, and wedding jewelry. All pieces are handcrafted from 18k gold using traditional techniques inspired by Neolithic, Mycenaean, Byzantine, and Roman sources.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">What are the opening hours for your Nicosia Old Town store?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our Old Town jewelry store is open Monday, Tuesday, Thursday, and Friday from 10:00–18:00. Wednesday and Saturday hours are 10:00–14:00. We are closed on Sundays. Visit us at Onasagorou 79 or call +357 22 674025.
+                    </p>
+                </div>
+
+                <div class="pb-8">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Is parking available near your Nicosia Old Town jewellery shop?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Nicosia Old Town is best accessed on foot or by public parking nearby. Several municipal car parks serve the walled city, with Onasagorou Street easily walkable from most central parking locations.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="mb-20 text-center">
+            <div class="bg-neutral-950 border border-neutral-900 p-12">
+                <h2 class="font-serif text-3xl text-white mb-4">Visit Our Nicosia Old Town Jewelry Store</h2>
+                <p class="text-neutral-200 mb-8 max-w-2xl mx-auto">
+                    Discover handcrafted 18k gold jewelry in Nicosia's historic walled city. Open Monday to Saturday.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+35722674025" class="inline-flex items-center gap-2 bg-white hover:bg-neutral-200 text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                        <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                        Call +357 22 674025
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Onasagorou+79+Nicosia+1011+Cyprus" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white text-white hover:bg-white hover:text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                        <iconify-icon icon="lucide:navigation" width="18"></iconify-icon>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black border-t border-neutral-900 py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="text-neutral-300 text-sm">© 2026 Nikos Ioannou Jewellers. All rights reserved.</p>
+        <p class="text-neutral-300 text-xs mt-2">Handcrafted gold jewelry inspired by Cypriot heritage</p>
+    </div>
+</footer>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  "name": "Nikos Ioannou Jewellers - Nicosia Old Town",
+  "image": "https://nikosioannou.com/ni-logo-glow-v2.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Onasagorou 79",
+    "addressLocality": "Nicosia",
+    "postalCode": "1011",
+    "addressCountry": "CY"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.1738,
+    "longitude": 33.3636
+  },
+  "telephone": "+357 22 674025",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
+      "opens": "10:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday", "Saturday"],
+      "opens": "10:00",
+      "closes": "14:00"
+    }
+  ],
+  "priceRange": "$$$",
+  "url": "https://nikosioannou.com/nicosia-jewelry-old-town",
+  "sameAs": [
+    "https://nikosioannou.com"
+  ]
+}
+</script>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+    } else {
+        menu.classList.add('-translate-x-full');
+    }
+}
+</script>
+
+</body>
+</html>

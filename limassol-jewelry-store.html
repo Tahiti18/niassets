@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Store in Limassol | Nikos Ioannou Jewellers Cyprus</title>
+    <meta name="description" content="Luxury jewelry store in Limassol offering handcrafted 18k gold earrings, rings, and necklaces inspired by Cypriot heritage. Visit us at Arch. Makarios III Avenue 242.">
+    <meta name="keywords" content="jewelry store Limassol, jewellery shop Limassol, gold jewelry Cyprus, handcrafted jewelry Limassol, luxury jewellery store, Limassol gold rings">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jewelry Store in Limassol | Nikos Ioannou Jewellers">
+    <meta property="og:description" content="Luxury jewelry store in Limassol offering handcrafted 18k gold earrings, rings, and necklaces inspired by Cypriot heritage.">
+    <meta property="og:url" content="https://nikosioannou.com/limassol-jewelry-store">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://nikosioannou.com/ni-logo-glow-v2.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#D4AF37',
+                            400: '#C5A028',
+                            500: '#B49020',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+        body {
+            background: #080808;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .map-container iframe {
+            /* Maps display in full color */
+        }
+        
+        /* GLASS EFFECT */
+        .glass {
+            background: rgba(8, 8, 8, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* NAV LINK UNDERLINE */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #B49020;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* DROPDOWN MENU */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 14rem;
+            background-color: #0a0a0a;
+            border: 1px solid #262626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #e5e5e5;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .dropdown-menu a:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass border-b border-gold-500/20 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 -ml-2">
+            <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+        </button>
+
+        <!-- Desktop Links (Left) -->
+        <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-200">
+            <div class="dropdown-wrapper relative py-8">
+                <a href="/#jewellery" class="hover:text-white transition-colors flex items-center gap-1">
+                    Jewellery
+                    <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                </a>
+                <!-- Dropdown -->
+                <div class="dropdown-menu">
+                    <a href="/#earrings">Earrings</a>
+                    <a href="/#rings">Rings</a>
+                    <a href="/#bracelets">Bracelets</a>
+                    <a href="/#necklaces">Necklaces</a>
+                    <a href="/#pendants">Pendants</a>
+                    <a href="/#crosses">Crosses</a>
+                    <a href="/#tiaras">Tiaras</a>
+                </div>
+            </div>
+            <div class="dropdown-wrapper relative py-8">
+                <a href="/" class="hover:text-white transition-colors flex items-center gap-1">
+                    Maison
+                    <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
+                </a>
+                <!-- Dropdown -->
+                <div class="dropdown-menu">
+                    <a href="/#maison">Maison</a>
+                    <a href="/#heritage">Heritage</a>
+                    <a href="/#craftsmanship">Craftsmanship</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <a href="/" class="absolute left-1/2 transform -translate-x-1/2 text-center group z-40">
+            <h1 class="font-serif text-2xl tracking-widest text-white group-hover:text-gold-300 transition-colors duration-700">NIKOS IOANNOU</h1>
+        </a>
+
+        <!-- Desktop Links (Right) -->
+        <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-200">
+            <a href="/#bespoke" class="nav-link hover:text-white transition-colors">Bespoke</a>
+            <a href="/#locations" class="nav-link hover:text-white transition-colors">Locations</a>
+            <a href="/#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+        </div>
+
+        <!-- Mobile Placeholder (Right) -->
+        <div class="lg:hidden w-6"></div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-xl transform -translate-x-full transition-transform duration-500 lg:hidden flex flex-col pt-24 px-8 border-r border-neutral-800">
+    <button onclick="toggleMenu()" class="absolute top-8 right-6 text-white/50 hover:text-white transition-colors p-2">
+        <iconify-icon icon="lucide:x" width="24" stroke-width="1.5"></iconify-icon>
+    </button>
+    <div class="flex flex-col gap-5 text-sm tracking-widest uppercase text-neutral-200 font-medium">
+        <div class="text-[10px] text-gold-500 mb-2 mt-4 font-semibold opacity-80">Collections</div>
+        <a href="/#jewellery" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">View All</a>
+        <a href="/#earrings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Earrings</a>
+        <a href="/#rings" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Rings</a>
+        <a href="/#bracelets" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Bracelets</a>
+        <a href="/#necklaces" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Necklaces</a>
+        <a href="/#pendants" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Pendants</a>
+        <a href="/#crosses" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Crosses</a>
+        <a href="/#tiaras" onclick="toggleMenu()" class="border-b border-neutral-800 pb-3 hover:text-white transition-colors">Tiaras</a>
+        
+        <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
+        <a href="/" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
+        <a href="/#maison" onclick="toggleMenu()" class="hover:text-white transition-colors">Maison</a>
+        <a href="/#heritage" onclick="toggleMenu()" class="hover:text-white transition-colors">Heritage</a>
+        <a href="/#craftsmanship" onclick="toggleMenu()" class="hover:text-white transition-colors">Craftsmanship</a>
+        <a href="/#bespoke" onclick="toggleMenu()" class="hover:text-white transition-colors">Bespoke</a>
+        <a href="/#locations" onclick="toggleMenu()" class="hover:text-white transition-colors">Locations</a>
+        <a href="/#contact" onclick="toggleMenu()" class="hover:text-white transition-colors">Contact</a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="pt-32 pb-20">
+    <div class="max-w-5xl mx-auto px-6">
+        
+        <!-- Breadcrumb -->
+        <nav class="text-xs uppercase tracking-widest text-neutral-300 mb-12">
+            <a href="/" class="hover:text-white">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/#locations" class="hover:text-white">Locations</a>
+            <span class="mx-2">/</span>
+            <span class="text-neutral-200">Limassol</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="mb-16 pb-16 border-b border-neutral-900">
+            <span class="text-xs tracking-[0.3em] uppercase text-gold-500 mb-4 block">Coastal Luxury</span>
+            <h1 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight leading-tight">
+                Jewelry Store in Limassol
+            </h1>
+            <p class="text-xl text-neutral-200 font-light leading-relaxed max-w-3xl mb-8">
+                Nikos Ioannou Jewellers is a luxury jewelry store in Limassol, Cyprus, offering handcrafted 18k gold jewelry including earrings, rings, necklaces, and bracelets. Located on Makarios Avenue, our jewellery shop specializes in traditional Mediterranean goldsmithing techniques passed down through generations. Each piece is handcrafted in Cyprus using methods that have remained unchanged for millennia—hand-hammering, granulation, and meticulous gold sheet work. Visit our Limassol jewelry store to discover authentic heritage pieces designed to last a lifetime.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-4">
+                <a href="tel:+35725340726" class="inline-flex items-center gap-2 bg-white hover:bg-neutral-200 text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                    Call Now
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Arch.+Makarios+III+Avenue+242+Limassol+3105+Cyprus" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white text-white hover:bg-white hover:text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    <iconify-icon icon="lucide:navigation" width="18"></iconify-icon>
+                    Get Directions
+                </a>
+                <a href="/#earrings" class="inline-flex items-center gap-2 border border-neutral-700 text-neutral-200 hover:text-white hover:border-neutral-600 px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                    View Collections
+                </a>
+            </div>
+        </div>
+
+        <!-- Content Layout -->
+        <div class="max-w-4xl mx-auto mb-20">
+            
+            <div class="space-y-12 mb-16">
+                
+                <!-- Jewelry Available Section -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Jewelry Available at This Store</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:gem" class="text-gold-500 mb-3" width="24" aria-label="Gold earrings icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Gold Earrings</h3>
+                            <p class="text-neutral-200 text-sm">Byzantine drops, archaic hooks, granulated designs</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:circle-dot" class="text-gold-500 mb-3" width="24" aria-label="Gold rings icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Gold Rings</h3>
+                            <p class="text-neutral-200 text-sm">Byzantine treasure rings, Mycenaean reproductions</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:hexagon" class="text-gold-500 mb-3" width="24" aria-label="Necklaces and pendants icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Necklaces & Pendants</h3>
+                            <p class="text-neutral-200 text-sm">Hand-formed chains, architectural links</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6">
+                            <iconify-icon icon="lucide:square" class="text-gold-500 mb-3" width="24" aria-label="Gold bracelets icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Bracelets</h3>
+                            <p class="text-neutral-200 text-sm">Segmented forms, flowing linked designs</p>
+                        </div>
+                        <div class="bg-neutral-950 border border-neutral-900 p-6 md:col-span-2">
+                            <iconify-icon icon="lucide:heart" class="text-gold-500 mb-3" width="24" aria-label="Wedding and engagement jewelry icon"></iconify-icon>
+                            <h3 class="text-white font-medium mb-2">Wedding & Engagement Jewelry</h3>
+                            <p class="text-neutral-200 text-sm">Custom wedding bands and engagement rings in 18k gold</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- About This Location -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">About Our Limassol Jewellery Shop</h2>
+                    <div class="space-y-4 text-neutral-300 leading-relaxed">
+                        <p>
+                            Our Limassol jewelry store serves as a destination for those seeking authentic handcrafted gold jewelry in Cyprus. Located in Cyprus's second-largest city, we preserve traditional goldsmithing techniques including hand-hammering, granulation, and gold sheet work.
+                        </p>
+                        <p>
+                            Each piece begins as solid 18-karat gold sheet, specially blended to achieve the warm yellow tone characteristic of Mediterranean antiquity. The jewelry you'll find here is crafted by hand—formed one strike of the hammer at a time, using methods unchanged for millennia.
+                        </p>
+                        <p>
+                            Our Limassol location features rings inspired by Mycenaean sphinxes, earrings echoing Byzantine mosaics, and bracelets carrying island history. When you visit our jewelry store, you'll find pieces designed to be passed down through generations.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Collections -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Collections at Our Limassol Jewelry Store</h2>
+                    <div class="space-y-6">
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Gold Earrings</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Dionysus Grapes and Vine Leaf Earrings inspired by Roman mosaics, Archaic Hook forms, and granulated designs. Each pair reflects Mediterranean design heritage.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Gold Rings</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Byzantine treasure rings set with natural sapphires, emeralds, and rubies. Winged Sphinx reproductions from Mycenaean Greece. Each ring tells a story spanning Bronze Age to Byzantine Empire.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Gold Necklaces & Bracelets</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Hand-formed links, cascading chains, and architectural forms. Each piece is individually constructed using traditional techniques.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-6">
+                            <h3 class="text-xl font-serif text-white mb-2">Bespoke Jewelry Services</h3>
+                            <p class="text-neutral-200 text-sm leading-relaxed">
+                                Our Limassol jewellery shop offers consultation for custom jewelry projects. Work with our craftsmen to create heirloom pieces using traditional goldsmithing techniques.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why Visit -->
+                <section>
+                    <h2 class="font-serif text-3xl text-gold-400 mb-6 tracking-tight">Why Choose Our Limassol Jewelry Store</h2>
+                    <div class="space-y-4 text-neutral-300 leading-relaxed">
+                        <p>
+                            Unlike mass-produced jewelry found in typical jewellery shops, every item here originates from our Cyprus workshop. Our staff understands the provenance of each design, the historical context it references, and the traditional methods used in its creation.
+                        </p>
+                        <p>
+                            You're not purchasing from standard inventory—you're acquiring authentic handcrafted jewelry made in Cyprus using methods older than the island's written history. Each piece is designed for daily wear and built to last generations.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Internal Links -->
+                <section class="bg-neutral-950 p-8 border border-neutral-900">
+                    <h3 class="text-xl font-serif text-white mb-4">Other Jewelry Store Locations</h3>
+                    <div class="space-y-3">
+                        <a href="/nicosia-jewelry-old-town.html" class="block text-gold-500 hover:text-gold-400 transition-colors">
+                            → Jewelry store in Nicosia Old Town
+                        </a>
+                        <a href="/nicosia-jewelry-store.html" class="block text-gold-500 hover:text-gold-400 transition-colors">
+                            → Jewellery shop in Nicosia (Galaxias Centre)
+                        </a>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-neutral-900">
+                        <h4 class="text-sm uppercase tracking-widest text-neutral-300 mb-3">Browse Gold Jewelry Collections</h4>
+                        <div class="space-y-2 text-sm">
+                            <a href="/#earrings" class="block text-neutral-200 hover:text-white transition-colors">Gold Earrings Cyprus</a>
+                            <a href="/#rings" class="block text-neutral-200 hover:text-white transition-colors">Gold Rings Cyprus</a>
+                            <a href="/#bracelets" class="block text-neutral-200 hover:text-white transition-colors">Gold Bracelets Cyprus</a>
+                            <a href="/#necklaces" class="block text-neutral-200 hover:text-white transition-colors">Gold Necklaces Cyprus</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Business Info & Map -->
+            <div class="space-y-8 max-w-2xl mx-auto">
+                
+                <!-- Business Card -->
+                <div class="bg-neutral-950 border border-neutral-900 p-8">
+                    <h2 class="font-serif text-2xl text-gold-400 mb-6">Visit Our Limassol Store</h2>
+                    
+                    <!-- Address -->
+                    <div class="mb-6 pb-6 border-b border-neutral-900">
+                        <div class="flex items-start gap-3 mb-2">
+                            <iconify-icon icon="lucide:map-pin" class="text-gold-500 mt-1" width="18" aria-label="Location pin"></iconify-icon>
+                            <div>
+                                <p class="text-white font-medium">Nikos Ioannou Jewellers</p>
+                                <p class="text-neutral-200 text-sm">Arch. Makarios III Avenue 242</p>
+                                <p class="text-neutral-200 text-sm">Limassol 3105, Cyprus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-6 pb-6 border-b border-neutral-900">
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:phone" class="text-gold-500" width="18" aria-label="Phone"></iconify-icon>
+                            <a href="tel:+35725340726" class="text-white hover:text-gold-500 transition-colors">
+                                +357 25 340726
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Opening Hours -->
+                    <div>
+                        <h3 class="text-sm uppercase tracking-widest text-neutral-300 mb-4">Opening Hours</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Monday</span>
+                                <span class="text-white">10:00–13:00, 15:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Tuesday</span>
+                                <span class="text-white">10:00–13:00, 15:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Wednesday</span>
+                                <span class="text-white">10:00–14:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Thursday</span>
+                                <span class="text-white">10:00–13:00, 15:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Friday</span>
+                                <span class="text-white">10:00–13:00, 15:00–18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Saturday</span>
+                                <span class="text-white">10:00–14:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-200">Sunday</span>
+                                <span class="text-neutral-300">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
+                <div class="map-container border border-neutral-900 overflow-hidden">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.867!2d33.041!3d34.6848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14e73310c0000001%3A0x1234567890abcdef!2sArch.%20Makarios%20III%20Avenue%20242%2C%20Limassol%203105%2C%20Cyprus!5e0!3m2!1sen!2scy!4v1234567890123!5m2!1sen!2scy" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Map showing Nikos Ioannou Jewellers Limassol jewelry store location at Arch. Makarios III Avenue 242 Cyprus">
+                    </iframe>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="mb-20 pb-20 border-t border-neutral-900 pt-20">
+            <h2 class="font-serif text-4xl text-gold-400 mb-12 text-center">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Where can I find authentic handcrafted jewelry in Limassol?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Nikos Ioannou Jewellers is a leading luxury jewelry store in Limassol, specializing in handcrafted 18k gold pieces inspired by ancient Cypriot and Mediterranean heritage. Our jewellery shop focuses on traditional goldsmithing techniques and historically-informed designs.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Where can I buy handcrafted gold jewellery in Limassol?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our Limassol jewelry store at Arch. Makarios III Avenue 242 offers handcrafted gold jewelry, including earrings, rings, necklaces, and bracelets. Each piece is made using traditional techniques—hand-hammered gold sheet, granulation, and historical design references.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Do you sell gold jewelry in Limassol?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Yes, our Limassol jewellery shop specializes exclusively in 18k gold jewelry. All pieces are handcrafted in Cyprus using solid gold sheet and traditional Mediterranean goldsmithing methods.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Do you offer bespoke jewelry services in Limassol?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Yes, our Limassol jewelry store provides bespoke commission services. We work with clients to create custom pieces rooted in historical forms and crafted using traditional goldsmithing methods. Consultations are available by appointment.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">What type of jewelry is available at your Limassol store?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our jewelry store offers gold earrings, gold rings, necklaces, bracelets, pendants, and wedding jewelry. All pieces are handcrafted from 18k gold using traditional techniques and inspired by Cypriot archaeological discoveries, Byzantine mosaics, and Mycenaean artifacts.
+                    </p>
+                </div>
+
+                <div class="pb-8 border-b border-neutral-900">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">What are your store hours in Limassol?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Our Limassol jewelry store is open Monday, Tuesday, Thursday, and Friday from 10:00–13:00 and 15:00–18:00. Wednesday and Saturday hours are 10:00–14:00. We are closed on Sundays. Visit us at Arch. Makarios III Avenue 242 or call +357 25 340726.
+                    </p>
+                </div>
+
+                <div class="pb-8">
+                    <h3 class="text-xl font-serif text-gold-400 mb-3">Can I view jewelry collections online before visiting your Limassol store?</h3>
+                    <p class="text-neutral-200 leading-relaxed">
+                        Yes, explore our full collection online at <a href="/" class="text-gold-500 hover:text-gold-400">nikosioannou.com</a>, including gold earrings, rings, bracelets, necklaces, and pendants. We recommend visiting our Limassol jewellery shop in person to experience the craftsmanship firsthand.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="mb-20 text-center">
+            <div class="bg-neutral-950 border border-neutral-900 p-12">
+                <h2 class="font-serif text-3xl text-white mb-4">Visit Our Limassol Jewelry Store</h2>
+                <p class="text-neutral-200 mb-8 max-w-2xl mx-auto">
+                    Discover handcrafted 18k gold jewelry at our Limassol location on Makarios Avenue. Open Monday to Saturday.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+35725340726" class="inline-flex items-center gap-2 bg-white hover:bg-neutral-200 text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                        <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                        Call +357 25 340726
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Arch.+Makarios+III+Avenue+242+Limassol+3105+Cyprus" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border border-white text-white hover:bg-white hover:text-black px-8 py-3 font-medium text-sm uppercase tracking-wider transition-colors">
+                        <iconify-icon icon="lucide:navigation" width="18"></iconify-icon>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black border-t border-neutral-900 py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <p class="text-neutral-300 text-sm">© 2026 Nikos Ioannou Jewellers. All rights reserved.</p>
+        <p class="text-neutral-300 text-xs mt-2">Handcrafted gold jewelry inspired by Cypriot heritage</p>
+    </div>
+</footer>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  "name": "Nikos Ioannou Jewellers - Limassol",
+  "image": "https://nikosioannou.com/ni-logo-glow-v2.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Arch. Makarios III Avenue 242",
+    "addressLocality": "Limassol",
+    "postalCode": "3105",
+    "addressCountry": "CY"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.6848,
+    "longitude": 33.0436
+  },
+  "telephone": "+357 25 340726",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
+      "opens": "10:00",
+      "closes": "13:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday"],
+      "opens": "15:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday", "Saturday"],
+      "opens": "10:00",
+      "closes": "14:00"
+    }
+  ],
+  "priceRange": "$$$",
+  "url": "https://nikosioannou.com/limassol-jewelry-store",
+  "sameAs": [
+    "https://nikosioannou.com"
+  ]
+}
+</script>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+    } else {
+        menu.classList.add('-translate-x-full');
+    }
+}
+</script>
+
+</body>
+</html>
