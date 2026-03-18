@@ -332,15 +332,15 @@
                     </div>
                 </div>
                 <div class="dropdown-wrapper relative py-8">
-                    <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('maison').scrollIntoView({behavior:'smooth',block:'start'})" class="hover:text-white transition-colors flex items-center gap-1">
+                    <a href="javascript:void(0)" onclick="scrollToSection('maison', event)" class="hover:text-white transition-colors flex items-center gap-1">
                         Maison
                         <iconify-icon icon="lucide:chevron-down" width="10" class="opacity-50"></iconify-icon>
                     </a>
                     <!-- Dropdown -->
                     <div class="dropdown-menu">
-                        <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('maison').scrollIntoView({behavior:'smooth',block:'start'})">Maison</a>
-                        <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('heritage').scrollIntoView({behavior:'smooth',block:'start'})">Heritage</a>
-                        <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('craftsmanship').scrollIntoView({behavior:'smooth',block:'start'})">Craftsmanship</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('maison', event)">Maison</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('heritage', event)">Heritage</a>
+                        <a href="javascript:void(0)" onclick="scrollToSection('craftsmanship', event)">Craftsmanship</a>
                     </div>
                 </div>
             </div>
@@ -352,9 +352,9 @@
 
             <!-- Desktop Links (Right) -->
             <div class="hidden lg:flex items-center gap-10 text-xs tracking-widest uppercase text-neutral-200">
-                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('bespoke').scrollIntoView({behavior:'smooth',block:'start'})" class="nav-link hover:text-white transition-colors">Bespoke</a>
-                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('locations').scrollIntoView({behavior:'smooth',block:'start'})" class="nav-link hover:text-white transition-colors">Locations</a>
-                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior:'smooth',block:'start'})" class="nav-link hover:text-white transition-colors">Contact</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('bespoke', event)" class="nav-link hover:text-white transition-colors">Bespoke</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('locations', event)" class="nav-link hover:text-white transition-colors">Locations</a>
+                <a href="javascript:void(0)" onclick="scrollToSection('contact', event)" class="nav-link hover:text-white transition-colors">Contact</a>
             </div>
 
             <!-- Mobile Placeholder (Right) -->
@@ -380,12 +380,12 @@
             
             <div class="text-[10px] text-gold-500 mb-2 mt-6 font-semibold opacity-80">Maison</div>
             <a href="#home" onclick="toggleMenu()" class="hover:text-white transition-colors">Home</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('maison').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Maison</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('heritage').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Heritage</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('craftsmanship').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Craftsmanship</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('bespoke').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Bespoke</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('locations').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Locations</a>
-            <a href="javascript:void(0)" onclick="event.preventDefault(); toggleMenu(); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior:'smooth',block:'start'}), 300)" class="hover:text-white transition-colors">Contact</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('maison', event)" class="hover:text-white transition-colors">Maison</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('heritage', event)" class="hover:text-white transition-colors">Heritage</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('craftsmanship', event)" class="hover:text-white transition-colors">Craftsmanship</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('bespoke', event)" class="hover:text-white transition-colors">Bespoke</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('locations', event)" class="hover:text-white transition-colors">Locations</a>
+            <a href="javascript:void(0)" onclick="scrollToSection('contact', event)" class="hover:text-white transition-colors">Contact</a>
         </div>
     </div>
 
@@ -911,6 +911,29 @@ for (const [category, items] of Object.entries(RAW_ASSETS.assets)) {
 const ROUTES = ['jewellery', 'earrings', 'rings', 'bracelets', 'necklaces', 'pendants', 'crosses', 'tiaras', 'history', 'heritage-gallery', 'craftsmanship-gallery'];
 const app = document.getElementById('app');
 
+let pendingScrollSection = null;
+
+function scrollToSection(sectionId, event) {
+    if (event) event.preventDefault();
+    
+    // Close mobile menu if it's open
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu && !mobileMenu.classList.contains('-translate-x-full')) {
+        toggleMenu();
+    }
+    
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+        // Already on home page, scroll directly
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        // Not on home page. Go to home, then scroll.
+        pendingScrollSection = sectionId;
+        window.location.hash = 'home';
+    }
+}
+
 function init() {
     // Listen for hash changes
     window.addEventListener('hashchange', router);
@@ -939,9 +962,21 @@ function router() {
         renderHome();
     }
     
-    // Scroll to top after content is rendered
+    // Handle scrolling
     requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (pendingScrollSection) {
+            // Wait slightly for DOM to settle, then scroll to requested section
+            setTimeout(() => {
+                const section = document.getElementById(pendingScrollSection);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'instant', block: 'start' });
+                }
+                pendingScrollSection = null;
+            }, 100);
+        } else {
+            // Normal navigation, scroll to top
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
     });
 }
 
@@ -1192,7 +1227,7 @@ function renderHome() {
                     </div>
                 </div>
                 
-                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior:'smooth',block:'start'})" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-200 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
+                <a href="javascript:void(0)" onclick="scrollToSection('contact', event)" class="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-widest uppercase text-neutral-200 hover:border-gold-500 hover:text-gold-500 hover:bg-neutral-900 transition-all duration-500">
                     Request a Private Consultation
                 </a>
             </div>
