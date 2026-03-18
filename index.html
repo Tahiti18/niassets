@@ -15,15 +15,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="images/hero-bracelet-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="images/hero-bracelet.jpg" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="images/hero-bracelet-mobile.webp" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="images/hero-bracelet.jpg" media="(min-width: 769px)">
 
 
 
@@ -1793,9 +1789,15 @@ function handleContactForm(event) {
 // INITIALIZATION
 // ============================================
 
-// Execute immediately without waiting for DOMContentLoaded to eliminate Element Render Delay
-init();
-setupDropdownClose();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        setupDropdownClose();
+    });
+} else {
+    init();
+    setupDropdownClose();
+}
     </script>
 </body>
 </html>
