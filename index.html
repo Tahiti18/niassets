@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="images/hero-bracelet.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="images/hero-bracelet.jpg">
 
     <!-- Tailwind Configuration -->
     <script>
@@ -69,18 +69,6 @@
 
     <!-- Custom Styles -->
     <style>
-        /* FONT DISPLAY SWAP */
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            src: local('Cormorant Garamond');
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Inter';
-            src: local('Inter');
-            font-display: swap;
-        }
-
         /* BASE STYLES */
         body {
             background-color: #080808;
@@ -997,7 +985,7 @@ function router() {
 // ============================================
 
 function renderHome() {
-    const heroImg = 'images/hero-bracelet.webp';
+    const heroImg = 'images/hero-bracelet.jpg';
 
     app.innerHTML = `
         <!-- HERO -->
@@ -1005,8 +993,6 @@ function renderHome() {
             <div class="absolute inset-0 z-0 bg-black flex items-center justify-center" style="background: #000000;">
                 <img src="${heroImg}" 
                      class="hero-bracelet-img object-contain" 
-                     width="1200"
-                     height="800"
                      loading="eager"
                      decoding="sync"
                      fetchpriority="high"
@@ -1019,12 +1005,7 @@ function renderHome() {
             
             <div class="hero-content absolute z-10 text-center animate-fade-in" style="left: 42%; top: 29%; transform: translate(-50%, -50%);">
                 <div class="mb-6 flex justify-center">
-                    <img src="images/ni-logo-glow-v2.png" 
-                         alt="Nikos Ioannou Logo" 
-                         width="224" 
-                         height="64"
-                         class="w-40 md:w-48 lg:w-56 h-auto drop-shadow-2xl" 
-                         style="filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));">
+                    <img src="images/ni-logo-glow-v2.png" alt="Nikos Ioannou Logo" class="w-40 md:w-48 lg:w-56 h-auto drop-shadow-2xl" style="filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));">
                 </div>
                 
                 <div class="w-12 h-[1px] bg-gold-500 opacity-60 mx-auto mb-6"></div>
@@ -1118,24 +1099,10 @@ function renderHome() {
                 <!-- Maison Images -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-6xl mx-auto">
                     <div class="relative border border-neutral-800 overflow-hidden">
-                        <img src="images/maison/maison-flagship-interior-nicosia-01.webp" 
-                             alt="Maison Interior" 
-                             width="1000"
-                             height="667"
-                             class="w-full h-auto" 
-                             loading="lazy" 
-                             onload="this.style.opacity='1'" 
-                             style="opacity:0; transition: opacity 0.7s ease">
+                        <img src="images/maison/maison-flagship-interior-nicosia-01.jpg" alt="Maison Interior" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
                     </div>
                     <div class="relative border border-neutral-800 overflow-hidden">
-                        <img src="images/maison/maison-flagship-facade-nicosia-02.webp" 
-                             alt="Maison Facade" 
-                             width="1000"
-                             height="667"
-                             class="w-full h-auto" 
-                             loading="lazy" 
-                             onload="this.style.opacity='1'" 
-                             style="opacity:0; transition: opacity 0.7s ease">
+                        <img src="images/maison/maison-flagship-facade-nicosia-02.jpg" alt="Maison Facade" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
                     </div>
                 </div>
 
@@ -1175,14 +1142,7 @@ function renderHome() {
                 <!-- Heritage Image -->
                 <div class="mb-16 max-w-2xl mx-auto">
                     <div class="relative border border-neutral-800 p-2 bg-gradient-to-br from-neutral-900 to-neutral-925">
-                        <img src="images/heritage/heritage-founders-father-son-01.webp" 
-                             alt="Founders - Father and Son" 
-                             width="1000"
-                             height="667"
-                             class="w-full h-auto" 
-                             loading="lazy" 
-                             onload="this.style.opacity='1'" 
-                             style="opacity:0; transition: opacity 0.7s ease">
+                        <img src="images/heritage/heritage-founders-father-son-01.jpg" alt="Founders - Father and Son" class="w-full h-auto" loading="lazy" onload="this.style.opacity='1'" style="opacity:0; transition: opacity 0.7s ease">
                     </div>
                 </div>
 
@@ -1216,10 +1176,8 @@ function renderHome() {
                 <!-- Workshop Image -->
                 <div class="max-w-4xl mx-auto mb-16">
                     <div class="relative border border-neutral-800 p-2 bg-gradient-to-br from-neutral-900 to-neutral-925 shadow-2xl">
-                        <img src="images/yiannos-workshop.webp" 
+                        <img src="images/yiannos-workshop.jpg" 
                              alt="Yiannos Ioannou at work in the workshop" 
-                             width="1200"
-                             height="800"
                              class="w-full h-auto"
                              loading="lazy"
                              onload="this.style.opacity='1'"
