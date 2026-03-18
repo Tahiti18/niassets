@@ -6,8 +6,8 @@
     <title>Nikos Ioannou Jewellers | The Designers of Historic Jewels</title>
     <meta name="description" content="Nikos Ioannou Jewellers. Est. 1945 - Cyprus. The Designers of Historic Jewels.">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Compiled Tailwind CSS -->
+    <link rel="stylesheet" href="css/output.css">
     
     <!-- Iconify -->
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
@@ -21,52 +21,7 @@
     <link rel="preload" as="image" href="images/hero-bracelet-mobile.webp" media="(max-width: 768px)">
     <link rel="preload" as="image" href="images/hero-bracelet.jpg" media="(min-width: 769px)">
 
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        neutral: {
-                            850: '#1f1f1f',
-                            900: '#171717',
-                            925: '#121212',
-                            950: '#080808', 
-                        },
-                        gold: {
-                            300: '#D4AF37',
-                            400: '#C5A028',
-                            500: '#B49020',
-                            900: '#3E320A',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Inter"', 'sans-serif'],
-                    },
-                    letterSpacing: {
-                        widest: '0.2em',
-                        tight: '-0.025em',
-                        tighter: '-0.05em',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'breathe': 'breathe 20s infinite alternate',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        breathe: {
-                            '0%': { transform: 'scale(1)' },
-                            '100%': { transform: 'scale(1.05)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+
 
     <!-- Custom Styles -->
     <style>
