@@ -18,7 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="images/hero-bracelet.jpg">
+    <link rel="preload" as="image" href="images/hero-bracelet-mobile.webp" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="images/hero-bracelet.jpg" media="(min-width: 769px)">
 
     <!-- Tailwind Configuration -->
     <script>
@@ -991,15 +992,18 @@ function renderHome() {
         <!-- HERO -->
         <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0 bg-black flex items-center justify-center" style="background: #000000;">
-                <img src="${heroImg}" 
-                     class="hero-bracelet-img object-contain" 
-                     loading="eager"
-                     decoding="sync"
-                     fetchpriority="high"
-                     onload="this.style.opacity='1'"
-                     onerror="this.style.opacity='0.5'"
-                     style="opacity:0; transition: opacity 1s ease; max-width: 70%; max-height: 75%; margin-top: -10vh;"
-                     alt="Historic Jewellery">
+                <picture>
+                    <source srcset="images/hero-bracelet-mobile.webp" media="(max-width: 768px)" type="image/webp">
+                    <img src="${heroImg}" 
+                         class="hero-bracelet-img object-contain" 
+                         loading="eager"
+                         decoding="sync"
+                         fetchpriority="high"
+                         onload="this.style.opacity='1'"
+                         onerror="this.style.opacity='0.5'"
+                         style="opacity:0; transition: opacity 1s ease; max-width: 70%; max-height: 75%; margin-top: -10vh;"
+                         alt="Historic Jewellery">
+                </picture>
                 <!-- Vignette removed for brighter display -->
             </div>
             
