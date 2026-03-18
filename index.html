@@ -17,83 +17,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://nikosioannou.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nikosioannou.com/">
-    <meta property="og:title" content="Nikos Ioannou Jewellers | The Designers of Historic Jewels">
-    <meta property="og:description" content="Nikos Ioannou Jewellers. Est. 1945 - Cyprus. Handcrafted 18k gold jewelry inspired by ancient Cypriot heritage and Byzantine artistry.">
-    <meta property="og:image" content="https://nikosioannou.com/ni-logo-glow-v2.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Nikos Ioannou Jewellers">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://nikosioannou.com/">
-    <meta name="twitter:title" content="Nikos Ioannou Jewellers | The Designers of Historic Jewels">
-    <meta name="twitter:description" content="Handcrafted 18k gold jewelry inspired by ancient Cypriot heritage. Est. 1945.">
-    <meta name="twitter:image" content="https://nikosioannou.com/ni-logo-glow-v2.png">
-
-    <!-- Structured Data: JewelryStore & Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "JewelryStore",
-      "name": "Nikos Ioannou Jewellers",
-      "alternateName": "Nikos Ioannou",
-      "url": "https://nikosioannou.com",
-      "logo": "https://nikosioannou.com/ni-logo-glow-v2.png",
-      "image": "https://nikosioannou.com/images/hero-bracelet.jpg",
-      "description": "Nikos Ioannou Jewellers. Est. 1945 - Cyprus. The Designers of Historic Jewels. Handcrafted 18k gold jewelry inspired by ancient Cypriot heritage.",
-      "telephone": "+357 22 674 023",
-      "email": "info@ioannou-jewels.com.cy",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "79 Onasagorou Street",
-        "addressLocality": "Nicosia",
-        "postalCode": "1011",
-        "addressCountry": "CY"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "35.1706",
-        "longitude": "33.3619"
-      },
-      "sameAs": [
-        "https://www.facebook.com/nikosioannoujewellers/",
-        "https://www.instagram.com/nikosioannoujewellers/",
-        "https://www.pinterest.com/jewelsioannou/"
-      ],
-      "priceRange": "$$$",
-      "department": [
-        {
-          "@type": "JewelryStore",
-          "name": "Nikos Ioannou Jewellers Limassol",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Arch. Makarios III Avenue 242",
-            "addressLocality": "Limassol",
-            "addressCountry": "CY"
-          }
-        },
-        {
-          "@type": "JewelryStore",
-          "name": "Nikos Ioannou Jewellers Nicosia (Galaxias)",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Arch. Makarios III Ave 33",
-            "addressLocality": "Nicosia",
-            "addressCountry": "CY"
-          }
-        }
-      ]
-    }
-    </script>
-
     <!-- Preload LCP Image -->
     <link rel="preload" as="image" href="images/hero-bracelet-mobile.webp" media="(max-width: 768px)">
     <link rel="preload" as="image" href="images/hero-bracelet.jpg" media="(min-width: 769px)">
@@ -1024,6 +947,14 @@ function renderHome() {
         <!-- HERO -->
         <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0 bg-black flex items-center justify-center" style="background: #000000;">
+                <picture style="display: contents">
+                    <source srcset="images/hero-bracelet-mobile.webp" media="(max-width: 768px)" type="image/webp">
+                    <img src="${heroImg}" 
+                         class="hero-bracelet-img object-contain" 
+                         loading="eager"
+                         decoding="sync"
+                         fetchpriority="high"
+                         onload="this.style.opacity='1'"
                          onerror="this.style.opacity='0.5'"
                          style="opacity:0; transition: opacity 1s ease; max-width: 70%; max-height: 75%; margin-top: -10vh;"
                          alt="Historic Jewellery">
@@ -1413,7 +1344,7 @@ function renderCategory(category) {
                      onload="this.style.opacity='1'"
                      onerror="this.style.opacity='0.2'"
                      style="opacity:0; transition: opacity 0.7s ease"
-                     alt="${item.shortDescription}">
+                     alt="${item.id}">
                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
                 
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
@@ -1517,7 +1448,7 @@ function renderSignatureCard(item, label) {
                      onload="this.style.opacity='1'"
                      onerror="this.style.opacity='0.2'"
                      style="opacity:0; transition: opacity 0.7s ease"
-                     alt="${item.shortDescription}">
+                     alt="${item.id}">
             </div>
             <div class="text-center">
                 <span class="block text-[10px] text-neutral-300 mb-2 tracking-widest uppercase">Gold / ${label}</span>
