@@ -1,0 +1,17 @@
+[[redirects]]
+  from = "/nicosia-jewelry-store.html"
+  to = "/nicosia-jewelry-store"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nicosia-jewelry-old-town.html"
+  to = "/nicosia-jewelry-old-town"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/limassol-jewelry-store.html"
+  to = "/limassol-jewelry-store"
+  status = 301
+  force = true
