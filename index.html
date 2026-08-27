@@ -338,6 +338,16 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans selection:bg-gold-900 selection:text-gold-300 overflow-x-hidden">
 
+    <!-- Static Netlify form definition for build-time detection -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="bot-field">
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <textarea name="message"></textarea>
+    </form>
+
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass border-b border-gold-500/20 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
@@ -1341,23 +1351,28 @@ function renderHome() {
                     <h2 class="font-serif text-3xl md:text-4xl text-gold-400 mb-6 tracking-tight">Contact</h2>
                     <p class="text-white font-light text-sm">"For enquiries regarding jewellery, bespoke commissions, or private appointments, please contact the atelier."</p>
                 </div>
-                <form class="space-y-12" onsubmit="handleContactForm(event)">
+                <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" class="space-y-12" onsubmit="handleContactForm(event)" aria-describedby="contact-form-status">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p hidden>
+                        <label>Do not fill this out if you are human: <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label>
+                    </p>
                     <div class="group relative">
-                        <input type="text" id="name" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Name">
+                        <input type="text" id="name" name="name" required autocomplete="name" class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Name">
                         <label for="name" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-300 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-300 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Name</label>
                     </div>
                     <div class="group relative">
-                        <input type="email" id="email" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Email">
+                        <input type="email" id="email" name="email" required autocomplete="email" class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors rounded-none placeholder-transparent" placeholder="Email">
                         <label for="email" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-300 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-300 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Email</label>
                     </div>
                     <div class="group relative">
-                        <textarea id="message" rows="4" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors resize-none rounded-none placeholder-transparent" placeholder="Message"></textarea>
+                        <textarea id="message" name="message" rows="4" required class="peer w-full bg-transparent border-b border-neutral-800 py-3 text-white outline-none focus:border-gold-500 transition-colors resize-none rounded-none placeholder-transparent" placeholder="Message"></textarea>
                         <label for="message" class="absolute left-0 -top-3.5 text-[10px] uppercase tracking-widest text-neutral-300 transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-3 peer-placeholder-shown:text-neutral-300 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-gold-500">Message</label>
                     </div>
                     <div class="text-center pt-8">
-                        <button type="submit" class="bg-white text-black px-12 py-4 text-[10px] tracking-[0.2em] uppercase hover:bg-gold-300 transition-colors duration-500 font-medium">
+                        <button id="contact-submit" type="submit" class="bg-white text-black px-12 py-4 text-[10px] tracking-[0.2em] uppercase hover:bg-gold-300 transition-colors duration-500 font-medium">
                             Send Enquiry
                         </button>
+                        <p id="contact-form-status" class="text-center mt-6 text-sm text-neutral-300" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
                     </div>
                 </form>
             </div>
@@ -1840,26 +1855,44 @@ function setupDropdownClose() {
     });
 }
 
-function handleContactForm(event) {
+async function handleContactForm(event) {
     event.preventDefault();
     
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const form = event.currentTarget;
+    const submitButton = document.getElementById('contact-submit');
+    const statusElement = document.getElementById('contact-form-status');
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent('Enquiry from ' + name);
-    const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n\n' +
-        'Message:\n' + message
-    );
+    // Prevent rapid duplicate submissions while a request is pending
+    if (submitButton.disabled) return;
     
-    window.location.href = 'mailto:info@ioannou-jewels.com.cy?subject=' + subject + '&body=' + body;
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-disabled', 'true');
+    form.setAttribute('aria-busy', 'true');
+    statusElement.textContent = '';
+    statusElement.setAttribute('role', 'status');
     
-    // Show success message
-    alert('Thank you for your enquiry. We will contact you shortly.');
-    event.target.reset();
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+        });
+        
+        if (!response.ok) {
+            throw new Error('Netlify form submission was not accepted');
+        }
+        
+        form.reset();
+        statusElement.textContent = 'Thank you. Your enquiry has been received.';
+    } catch (error) {
+        statusElement.setAttribute('role', 'alert');
+        statusElement.textContent = 'We could not send your enquiry. Your information has not been cleared. Please try again or contact us by email.';
+        statusElement.focus();
+    } finally {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-disabled');
+        form.removeAttribute('aria-busy');
+    }
 }
 
 // ============================================
